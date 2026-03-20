@@ -184,7 +184,10 @@ const values = [
       </h2>
       <div class="contact-links">
         <a href="mailto:doschak@gmail.com" class="contact-btn">
-          Contact me
+          Get in touch
+        </a>
+        <a href={b + '/cv.pdf'} target="_blank" rel="noopener" class="contact-btn contact-btn--secondary">
+          Download CV
         </a>
         <a href="https://www.linkedin.com/in/bdoshchak/" target="_blank" rel="noopener" class="contact-linkedin label">
           LinkedIn <ArrowUpRight size={13} class="inline-icon" />
@@ -526,6 +529,17 @@ const values = [
   .contact-btn:hover {
     background: var(--color-blue-dim);
     color: var(--color-white);
+  }
+
+  .contact-btn--secondary {
+    background: transparent;
+    color: var(--color-white);
+    border: 1px solid oklch(45% 0 0);
+  }
+
+  .contact-btn--secondary:hover {
+    background: oklch(18% 0 0);
+    border-color: oklch(60% 0 0);
   }
 
   .contact-linkedin {

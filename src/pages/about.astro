@@ -61,7 +61,7 @@ const values = [
         <div class="page-header-photo">
           <div class="photo-wrap">
             <img
-              src={b + '/photo.jpg'}
+              src={b + '/me.png'}
               alt="Bohdan Doshchak"
               class="photo"
               width="480"
@@ -86,10 +86,12 @@ const values = [
       </header>
       <div class="bio-body">
           <p class="bio-paragraph bio-lead">
-            20 years means I've made the expensive mistakes already. The redesigns
-            that shipped but didn't stick. The component libraries built without
-            governance. The handoffs that weren't handoffs at all. I've been
-            through enough cycles to know what actually holds.
+            20 years teaches you what actually works. Redesigns stick when the
+            team owns them from the start. Component libraries survive when
+            governance is built in, not bolted on later. Handoffs land when
+            specs are written for the engineer, not the design review. I've been
+            through enough cycles to know the difference — and I build that way
+            from day one.
           </p>
           <p class="bio-paragraph">
             I started freelancing in 2001 — websites for local businesses,
@@ -244,14 +246,16 @@ const values = [
 
   .photo-wrap {
     position: relative;
+    height: 100%;
+    display: flex;
+    align-items: flex-end;
   }
 
   .photo {
-    width: 100%;
-    height: auto;
-    aspect-ratio: 4 / 5;
-    object-fit: cover;
-    object-position: top center;
+    width: 115%;
+    height: 100%;
+    object-fit: contain;
+    object-position: bottom center;
     filter: grayscale(30%) contrast(1.05);
   }
 

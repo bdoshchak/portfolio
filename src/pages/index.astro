@@ -113,7 +113,7 @@ const capabilities = [
       <ul class="work-grid" role="list">
         {works.map((work) => (
           <li class="work-card">
-            <a href={`/work/${work.slug}`} class="work-card-link" aria-label={`${work.title} — ${work.client}`}>
+            <a href={b + `/work/${work.slug}`} class="work-card-link" aria-label={`${work.title} — ${work.client}`}>
               <div class="work-card-image" aria-hidden="true">
                 {work.cover && <img src={b + work.cover} alt="" class="work-card-cover" />}
                 <span class="work-card-counter label">{work.counter}</span>
@@ -254,7 +254,7 @@ const capabilities = [
             teams unblocked and quality consistent. Engineering background means systems
             thinking is native, not learned.
           </p>
-          <a href="/about" class="about-link label">Full story <ArrowRight size={13} class="inline-icon" /></a>
+          <a href={b + '/about'} class="about-link label">Full story <ArrowRight size={13} class="inline-icon" /></a>
         </div>
         <div class="about-photo-wrap">
           <img

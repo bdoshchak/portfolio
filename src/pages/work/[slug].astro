@@ -41,7 +41,7 @@ const outcomeCounter = `[0${++_idx}]`;
        ================================================ -->
   <section class="cs-hero" aria-label="Project introduction">
     <div class="container">
-      <a href="/work" class="cs-back label">
+      <a href={b + '/work'} class="cs-back label">
         <ArrowLeft size={13} class="inline-icon" /> Work
       </a>
       <div class="cs-hero-grid">
@@ -259,7 +259,7 @@ const outcomeCounter = `[0${++_idx}]`;
        NEXT PROJECT
        ================================================ -->
   <nav class="cs-next" aria-label="Next project">
-    <a href={`/work/${nextSlug}`} class="cs-next-link">
+    <a href={b + `/work/${nextSlug}`} class="cs-next-link">
       <div class="container cs-next-inner">
         <span class="cs-next-label label">Next project</span>
         <span class="cs-next-title">{nextTitle}</span>

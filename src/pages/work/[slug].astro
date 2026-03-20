@@ -23,6 +23,7 @@ const {
 } = project;
 
 const next = projects.find((p) => p.slug === nextSlug)!;
+const b = import.meta.env.BASE_URL.replace(/\/$/, '');
 
 // Dynamic section counters (01–03 are fixed: Overview, Role, Process)
 let _idx = 3;
@@ -62,7 +63,7 @@ const outcomeCounter = `[0${++_idx}]`;
         <!-- top-right: logo / image -->
         {logoSrc && (
           <div class="cs-hero-logo" aria-hidden="true">
-            <img src={logoSrc} alt="" class="cs-logo-img" />
+            <img src={b + logoSrc} alt="" class="cs-logo-img" />
           </div>
         )}
 
@@ -106,7 +107,7 @@ const outcomeCounter = `[0${++_idx}]`;
           {overviewImage
             ? (
               <div class={nda ? 'cs-overview-nda' : ''}>
-                <img src={overviewImage} alt="" class={`cs-overview-img${nda ? '' : ' lb-trigger'}`} data-lb-src={nda ? undefined : overviewImage} />
+                <img src={b + overviewImage} alt="" class={`cs-overview-img${nda ? '' : ' lb-trigger'}`} data-lb-src={nda ? undefined : b + overviewImage} />
                 {nda && <span class="cs-placeholder-label label">Visuals under NDA</span>}
               </div>
             )
@@ -201,10 +202,10 @@ const outcomeCounter = `[0${++_idx}]`;
             {screens.map((src) => (
               <li class="cs-strip-item">
                 <img
-                  src={src}
+                  src={b + src}
                   alt=""
                   class="cs-strip-img lb-trigger"
-                  data-lb-src={src}
+                  data-lb-src={b + src}
                   loading="lazy"
                 />
               </li>

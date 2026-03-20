@@ -2,6 +2,8 @@
 import Layout from '../layouts/Layout.astro';
 import { ArrowLeft, ArrowRight, ArrowUpRight } from 'lucide-astro';
 
+const b = import.meta.env.BASE_URL.replace(/\/$/, '');
+
 const experience = [
   {
     company: 'Master of Code Global',
@@ -59,7 +61,7 @@ const values = [
         <div class="page-header-photo">
           <div class="photo-wrap">
             <img
-              src="/photo.jpg"
+              src={b + '/photo.jpg'}
               alt="Bohdan Doshchak"
               class="photo"
               width="480"
@@ -169,7 +171,7 @@ const values = [
   <!-- ================================================
        CONTACT CTA
        ================================================ -->
-  <section class="contact-section" aria-label="Contact">
+  <section class="contact-section" aria-label="Contact" style={`background-image: url('${b}/cutting_mat_bg.png')`}>
     <div class="container">
       <div class="contact-eyebrow">
         <span class="contact-counter label">[04]</span>
@@ -435,7 +437,6 @@ const values = [
      CONTACT
      ================================================ */
   .contact-section {
-    background-image: url('/cutting_mat_bg.png');
     background-size: cover;
     background-position: center;
     padding-top: var(--sp-24);

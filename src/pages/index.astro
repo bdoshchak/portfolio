@@ -2,6 +2,8 @@
 import Layout from '../layouts/Layout.astro';
 import { ArrowDown, ArrowRight, ArrowUpRight, ExternalLink } from 'lucide-astro';
 
+const b = import.meta.env.BASE_URL.replace(/\/$/, '');
+
 const works = [
   {
     slug: 'liveperson',
@@ -92,7 +94,7 @@ const capabilities = [
         </a>
       </div>
       <div class="hero-portrait" aria-hidden="true">
-        <img src="/hero_photo.jpeg" alt="" class="hero-portrait-img" />
+        <img src={b + '/hero_photo.jpeg'} alt="" class="hero-portrait-img" />
       </div>
     </div>
     <div class="hero-scroll-hint" aria-hidden="true"></div>
@@ -113,7 +115,7 @@ const capabilities = [
           <li class="work-card">
             <a href={`/work/${work.slug}`} class="work-card-link" aria-label={`${work.title} — ${work.client}`}>
               <div class="work-card-image" aria-hidden="true">
-                {work.cover && <img src={work.cover} alt="" class="work-card-cover" />}
+                {work.cover && <img src={b + work.cover} alt="" class="work-card-cover" />}
                 <span class="work-card-counter label">{work.counter}</span>
               </div>
               <div class="work-card-body">
@@ -158,7 +160,7 @@ const capabilities = [
           >
             <div class="work-card-image fun-card-image" aria-hidden="true">
               <img
-                src="/snake-thumbnail.png"
+                src={b + '/snake-thumbnail.png'}
                 alt=""
                 class="fun-thumb-img"
                 loading="lazy"
@@ -256,7 +258,7 @@ const capabilities = [
         </div>
         <div class="about-photo-wrap">
           <img
-            src="/me.png"
+            src={b + '/me.png'}
             alt="Bohdan Doshchak"
             class="about-photo"
             width="480"
@@ -271,7 +273,7 @@ const capabilities = [
   <!-- ================================================
        [F] CONTACT
        ================================================ -->
-  <section class="section-contact" id="contact" aria-label="Contact">
+  <section class="section-contact" id="contact" aria-label="Contact" style={`background-image: url('${b}/cutting_mat_bg.png')`}>
     <div class="container">
       <div class="contact-eyebrow">
         <span class="contact-counter label">[04]</span>
@@ -783,7 +785,6 @@ const capabilities = [
      CONTACT
      ================================================ */
   .section-contact {
-    background-image: url('/cutting_mat_bg.png');
     background-size: cover;
     background-position: center;
     padding-top: var(--sp-24);

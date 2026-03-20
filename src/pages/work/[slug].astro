@@ -62,7 +62,7 @@ const outcomeCounter = `[0${++_idx}]`;
 
         <!-- top-right: logo / image -->
         {logoSrc && (
-          <div class="cs-hero-logo" aria-hidden="true">
+          <div class="cs-hero-logo" data-slug={project.slug} aria-hidden="true">
             <img src={b + logoSrc} alt="" class="cs-logo-img" />
           </div>
         )}
@@ -442,6 +442,10 @@ const outcomeCounter = `[0${++_idx}]`;
     max-width: 100%;
     height: auto;
     object-fit: contain;
+  }
+
+  [data-slug="liveperson"] .cs-logo-img {
+    max-width: 80%;
   }
 
   .cs-info-bar {

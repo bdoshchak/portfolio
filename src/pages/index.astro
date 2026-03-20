@@ -101,6 +101,28 @@ const capabilities = [
   </section>
 
   <!-- ================================================
+       [C] SIGNAL BAR
+       ================================================ -->
+  <section class="signal-bar" aria-label="Key numbers">
+    <div class="container">
+      <ul class="signal-grid" role="list">
+        <li class="signal-item">
+          <span class="signal-number" aria-label="More than 20">20+</span>
+          <span class="signal-label">Years in commercial design</span>
+        </li>
+        <li class="signal-item">
+          <span class="signal-number">TONS</span>
+          <span class="signal-label">of delivered projects</span>
+        </li>
+        <li class="signal-item">
+          <span class="signal-number">UP TO 12</span>
+          <span class="signal-label">direct reports</span>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ================================================
        [B] WORK
        ================================================ -->
   <section class="section-work" id="work" aria-label="Selected work">
@@ -165,7 +187,7 @@ const capabilities = [
                 class="fun-thumb-img"
                 loading="lazy"
               />
-              <ExternalLink size={18} class="fun-arrow" aria-hidden="true" />
+              <ArrowUpRight size={20} class="fun-arrow" aria-hidden="true" />
             </div>
             <div class="work-card-body">
               <div class="work-card-meta">
@@ -184,28 +206,6 @@ const capabilities = [
               </ul>
             </div>
           </a>
-        </li>
-      </ul>
-    </div>
-  </section>
-
-  <!-- ================================================
-       [C] SIGNAL BAR
-       ================================================ -->
-  <section class="signal-bar" aria-label="Key numbers">
-    <div class="container">
-      <ul class="signal-grid" role="list">
-        <li class="signal-item">
-          <span class="signal-number" aria-label="More than 20">20+</span>
-          <span class="signal-label">Years in commercial design</span>
-        </li>
-        <li class="signal-item">
-          <span class="signal-number">TONS</span>
-          <span class="signal-label">of delivered projects</span>
-        </li>
-        <li class="signal-item">
-          <span class="signal-number">UP TO 12</span>
-          <span class="signal-label">direct reports</span>
         </li>
       </ul>
     </div>
@@ -650,14 +650,16 @@ const capabilities = [
 
   .fun-arrow {
     position: absolute;
-    bottom: var(--sp-3);
-    left: var(--sp-3);
+    top: 0;
+    right: 0;
     z-index: 2;
     display: block;
     color: var(--color-white);
-    background: oklch(8% 0 0 / 0.65);
-    padding: var(--sp-2);
-    border-radius: 2px;
+    background: oklch(8% 0 0 / 0.75);
+    padding: 8px;
+    border-radius: 0;
+    width: 36px;
+    height: 36px;
   }
 
   .fun-card:hover .fun-card-image {

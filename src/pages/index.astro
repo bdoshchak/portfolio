@@ -63,7 +63,7 @@ const capabilities = [
     body: 'End-to-end UI/UX. From discovery to production-ready specs and high-fidelity Figma prototypes. AI-augmented prototyping.',
   },
   {
-    title: 'Design Systems',
+    title: 'Design System Maintenance',
     body: 'Component architecture, tokens and variables. Tuning and expanding systems for product needs.',
   },
   {
@@ -123,12 +123,33 @@ const capabilities = [
   </section>
 
   <!-- ================================================
-       [B] WORK
+       [01] CAPABILITIES
+       ================================================ -->
+  <section class="section-capabilities" id="capabilities" aria-label="Capabilities">
+    <div class="container">
+      <header class="section-header">
+        <span class="section-counter label" aria-hidden="true">[01]</span>
+        <h2 class="section-title">Capabilities</h2>
+      </header>
+
+      <ul class="cap-grid" role="list">
+        {capabilities.map((cap) => (
+          <li class="cap-item">
+            <h3 class="cap-title">{cap.title}</h3>
+            <p class="cap-body">{cap.body}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- ================================================
+       [02] WORK
        ================================================ -->
   <section class="section-work" id="work" aria-label="Selected work">
     <div class="container">
       <header class="section-header">
-        <span class="section-counter label" aria-hidden="true">[01]</span>
+        <span class="section-counter label" aria-hidden="true">[02]</span>
         <h2 class="section-title">Work</h2>
       </header>
 
@@ -211,26 +232,6 @@ const capabilities = [
     </div>
   </section>
 
-  <!-- ================================================
-       [D] CAPABILITIES
-       ================================================ -->
-  <section class="section-capabilities" id="capabilities" aria-label="Capabilities">
-    <div class="container">
-      <header class="section-header">
-        <span class="section-counter label" aria-hidden="true">[02]</span>
-        <h2 class="section-title">Capabilities</h2>
-      </header>
-
-      <ul class="cap-grid" role="list">
-        {capabilities.map((cap) => (
-          <li class="cap-item">
-            <h3 class="cap-title">{cap.title}</h3>
-            <p class="cap-body">{cap.body}</p>
-          </li>
-        ))}
-      </ul>
-    </div>
-  </section>
 
   <!-- ================================================
        [E] ABOUT PREVIEW
@@ -707,7 +708,7 @@ const capabilities = [
      CAPABILITIES
      ================================================ */
   .section-capabilities {
-    background: var(--bg-primary);
+    background: var(--color-grey-100);
     padding-bottom: var(--sp-24);
   }
 
@@ -754,7 +755,7 @@ const capabilities = [
      ABOUT PREVIEW
      ================================================ */
   .section-about {
-    background: var(--bg-secondary);
+    background: var(--color-white);
     padding-top: var(--sp-24);
     padding-bottom: var(--sp-24);
   }

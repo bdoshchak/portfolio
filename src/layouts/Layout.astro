@@ -63,10 +63,6 @@ const b = import.meta.env.BASE_URL.replace(/\/$/, '');
       <slot />
     </main>
 
-    <!-- ===== CURSOR ===== -->
-    <div class="cursor-dot" aria-hidden="true" transition:persist></div>
-    <div class="cursor-ring" aria-hidden="true" transition:persist></div>
-
     <!-- ===== FOOTER ===== -->
     <footer class="footer">
       <div class="footer-inner container">
@@ -81,77 +77,6 @@ const b = import.meta.env.BASE_URL.replace(/\/$/, '');
   </body>
 </html>
 
-<script is:inline>
-(function () {
-  // Only on pointer-fine (mouse) devices
-  if (!window.matchMedia('(pointer: fine)').matches) return;
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-
-  // Guard: only initialise once — ClientRouter re-runs is:inline on every navigation
-  if (window.__cursorInit) {
-    document.documentElement.style.cursor = 'none';
-    return;
-  }
-  window.__cursorInit = true;
-
-  const dot  = document.querySelector('.cursor-dot');
-  const ring = document.querySelector('.cursor-ring');
-  if (!dot || !ring) return;
-
-  // Hide native cursor
-  document.documentElement.style.cursor = 'none';
-
-  // Re-apply on every navigation (ClientRouter may reset documentElement styles)
-  document.addEventListener('astro:after-swap', function () {
-    document.documentElement.style.cursor = 'none';
-  });
-
-  let mx = -200, my = -200; // mouse target
-  let rx = -200, ry = -200; // ring interpolated position
-
-  window.addEventListener('mousemove', (e) => {
-    mx = e.clientX;
-    my = e.clientY;
-  });
-
-  window.addEventListener('mouseleave', () => {
-    dot.classList.add('is-hidden');
-    ring.classList.add('is-hidden');
-  });
-
-  window.addEventListener('mouseenter', () => {
-    dot.classList.remove('is-hidden');
-    ring.classList.remove('is-hidden');
-  });
-
-  // Expand ring on interactive elements
-  document.addEventListener('mouseover', (e) => {
-    if (e.target.closest('a, button, [role="button"]')) {
-      ring.classList.add('is-hover');
-    } else {
-      ring.classList.remove('is-hover');
-    }
-  });
-
-  function lerp(a, b, t) { return a + (b - a) * t; }
-
-  function tick() {
-    // Dot: snaps instantly
-    dot.style.transform =
-      `translate3d(calc(${mx}px - 50%), calc(${my}px - 50%), 0)`;
-
-    // Ring: lags behind with lerp
-    rx = lerp(rx, mx, 0.10);
-    ry = lerp(ry, my, 0.10);
-    ring.style.transform =
-      `translate3d(calc(${rx}px - 50%), calc(${ry}px - 50%), 0)`;
-
-    requestAnimationFrame(tick);
-  }
-
-  tick();
-})();
-</script>
 
 <script is:inline>
 (function () {
@@ -281,48 +206,4 @@ const b = import.meta.env.BASE_URL.replace(/\/$/, '');
 
   .footer-link:hover { color: var(--color-white); }
 
-  /* ===== CUSTOM CURSOR ===== */
-  @media (pointer: fine) {
-    .cursor-dot,
-    .cursor-ring {
-      position: fixed;
-      top: 0;
-      left: 0;
-      pointer-events: none;
-      z-index: 9999;
-      will-change: transform;
-      mix-blend-mode: difference;
-    }
-
-    .cursor-dot {
-      width: 6px;
-      height: 6px;
-      background: #fff;
-      border-radius: 50%;
-    }
-
-    .cursor-ring {
-      width: 36px;
-      height: 36px;
-      border: 1.5px solid rgba(255, 255, 255, 0.85);
-      border-radius: 50%;
-      transition:
-        width  300ms cubic-bezier(0.4, 0, 0.2, 1),
-        height 300ms cubic-bezier(0.4, 0, 0.2, 1),
-        opacity 200ms;
-    }
-
-    .cursor-ring.is-hover {
-      width: 60px;
-      height: 60px;
-    }
-
-    .cursor-dot.is-hidden  { opacity: 0; }
-    .cursor-ring.is-hidden { opacity: 0; }
-  }
-
-  @media (pointer: coarse), (prefers-reduced-motion: reduce) {
-    .cursor-dot,
-    .cursor-ring { display: none; }
-  }
 </style>

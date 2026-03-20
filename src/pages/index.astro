@@ -79,46 +79,41 @@ const capabilities = [
        ================================================ -->
   <section class="hero" aria-label="Introduction">
     <div class="hero-inner container">
-      <div class="hero-content">
-        <p class="hero-label label animate-fade-up">Lead UI/UX Designer & Design Manager</p>
-        <h1 class="hero-name animate-fade-up delay-1">
-          <span class="hero-name-line">BOHDAN</span>
-          <span class="hero-name-line">DOSHCHAK</span>
-        </h1>
-        <p class="hero-statement animate-fade-up delay-2">
-          I design systems, not just screens.
-        </p>
-        <a href="#work" class="hero-cta animate-fade-up delay-3" aria-label="Jump to selected work">
-          Selected Work
-          <ArrowDown size={16} class="hero-cta-arrow" aria-hidden="true" />
-        </a>
+      <div class="hero-left">
+        <div class="hero-content">
+          <p class="hero-label label animate-fade-up">Lead UI/UX Designer & Design Manager</p>
+          <h1 class="hero-name animate-fade-up delay-1">
+            <span class="hero-name-line">BOHDAN</span>
+            <span class="hero-name-line">DOSHCHAK</span>
+          </h1>
+          <p class="hero-statement animate-fade-up delay-2">
+            I design systems, not just screens.
+          </p>
+          <a href="#work" class="hero-cta animate-fade-up delay-3" aria-label="Jump to selected work">
+            Selected Work
+            <ArrowDown size={16} class="hero-cta-arrow" aria-hidden="true" />
+          </a>
+        </div>
+        <div class="hero-metrics" aria-label="Key numbers">
+          <ul class="signal-grid" role="list">
+            <li class="signal-item">
+              <span class="signal-number" aria-label="More than 20">20+</span>
+              <span class="signal-label">Years in commercial design</span>
+            </li>
+            <li class="signal-item">
+              <span class="signal-number">TONS</span>
+              <span class="signal-label">of delivered projects</span>
+            </li>
+            <li class="signal-item">
+              <span class="signal-number">UP TO 12</span>
+              <span class="signal-label">direct reports</span>
+            </li>
+          </ul>
+        </div>
       </div>
       <div class="hero-portrait animate-fade-in delay-4" aria-hidden="true">
         <img src={b + '/portrait_color.jpg'} alt="" class="hero-portrait-img" />
       </div>
-    </div>
-    <div class="hero-scroll-hint" aria-hidden="true"></div>
-  </section>
-
-  <!-- ================================================
-       [C] SIGNAL BAR
-       ================================================ -->
-  <section class="signal-bar" aria-label="Key numbers">
-    <div class="container">
-      <ul class="signal-grid" role="list">
-        <li class="signal-item">
-          <span class="signal-number" aria-label="More than 20">20+</span>
-          <span class="signal-label">Years in commercial design</span>
-        </li>
-        <li class="signal-item">
-          <span class="signal-number">TONS</span>
-          <span class="signal-label">of delivered projects</span>
-        </li>
-        <li class="signal-item">
-          <span class="signal-number">UP TO 12</span>
-          <span class="signal-label">direct reports</span>
-        </li>
-      </ul>
     </div>
   </section>
 
@@ -333,7 +328,7 @@ const capabilities = [
      HERO
      ================================================ */
   .hero {
-    min-height: 100svh;
+    height: 100svh;
     background: var(--color-black);
     padding-top: 60px; /* nav height */
     position: relative;
@@ -343,47 +338,67 @@ const capabilities = [
   .hero-inner {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    align-items: end;
-    min-height: calc(100svh - 60px);
+    align-items: stretch;
+    height: calc(100svh - 60px);
     width: 100%;
     position: relative;
     z-index: 1;
   }
 
+  .hero-left {
+    display: flex;
+    flex-direction: column;
+  }
+
   .hero-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     padding-top: var(--sp-16);
-    padding-bottom: var(--sp-16);
+    padding-bottom: var(--sp-8);
   }
 
   .hero-portrait {
     align-self: stretch;
     margin-right: calc(-1 * var(--grid-margin));
     overflow: hidden;
-    min-height: 60vh;
+  }
+
+  .hero-metrics {
+    border-top: 1px solid oklch(20% 0 0);
+    padding: var(--sp-6) 0;
+    margin-bottom: var(--sp-8);
+    flex-shrink: 0;
   }
 
   .hero-portrait-img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: top center;
+    object-position: bottom center;
     display: block;
   }
 
   @media (max-width: 768px) {
     .hero-inner {
       grid-template-columns: 1fr;
-      grid-template-rows: auto 1fr;
-      align-items: start;
+      height: auto;
+      min-height: calc(100svh - 60px);
     }
-    .hero-content {
-      padding-top: var(--sp-8);
-      padding-bottom: var(--sp-6);
+    .hero-left {
+      order: 2;
     }
     .hero-portrait {
-      display: block;
+      order: 1;
       margin-right: 0;
-      min-height: 0;
+      height: 50vw;
+      min-height: 220px;
+    }
+    .hero-content {
+      justify-content: flex-start;
+      padding-top: var(--sp-8);
+      padding-bottom: var(--sp-6);
     }
   }
 
@@ -415,6 +430,7 @@ const capabilities = [
 
   .hero-cta {
     display: inline-flex;
+    align-self: flex-start;
     align-items: center;
     gap: var(--sp-3);
     font-family: var(--font-display);
@@ -668,13 +684,8 @@ const capabilities = [
   }
 
   /* ================================================
-     SIGNAL BAR
+     SIGNAL / METRICS
      ================================================ */
-  .signal-bar {
-    background: var(--color-black);
-    padding: var(--sp-16) 0;
-  }
-
   .signal-grid {
     display: flex;
     gap: var(--sp-16);

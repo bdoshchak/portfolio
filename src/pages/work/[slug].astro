@@ -149,7 +149,7 @@ const outcomeCounter = `[0${++_idx}]`;
         <span class="section-counter label" aria-hidden="true">[03]</span>
         <h2 class="section-title">Process</h2>
       </header>
-      <ol class="cs-process-grid" role="list">
+      <ol class="cs-process-grid" role="list" style={`--process-cols: ${process.length}`}>
         {process.map((step, i) => (
           <li class="cs-process-step">
             <span class="cs-step-num label">{String(i + 1).padStart(2, '0')}</span>
@@ -648,16 +648,24 @@ const outcomeCounter = `[0${++_idx}]`;
      ================================================ */
   .cs-process-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr));
-    gap: 0;
+    grid-template-columns: repeat(var(--process-cols, 4), 1fr);
+    gap: var(--sp-8);
   }
 
   .cs-process-step {
-    padding: var(--sp-8) var(--sp-8) var(--sp-8) 0;
+    padding: var(--sp-8) 0 var(--sp-8);
   }
 
-  .cs-process-step + .cs-process-step {
-    padding-left: var(--sp-8);
+  @media (max-width: 860px) {
+    .cs-process-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 500px) {
+    .cs-process-grid {
+      grid-template-columns: 1fr;
+    }
   }
 
   .cs-step-num {
@@ -855,8 +863,8 @@ const outcomeCounter = `[0${++_idx}]`;
     background: linear-gradient(to top, rgba(0,0,0,0.82) 0%, transparent 100%);
     color: rgba(255,255,255,0.9);
     font-family: var(--font-body);
-    font-size: 0.6875rem;
-    line-height: 1.45;
+    font-size: 0.875rem;
+    line-height: 1.5;
     opacity: 0;
     transition: opacity 220ms;
     pointer-events: none;
@@ -897,11 +905,6 @@ const outcomeCounter = `[0${++_idx}]`;
   .cs-strip-dots { display: none; }
 
   @media (max-width: 600px) {
-    .cs-process-step + .cs-process-step {
-      padding-left: 0;
-      border-left: none;
-    }
-
     /* strip: snap mode, no arrows, no fade */
     .cs-strip-btn { display: none; }
 

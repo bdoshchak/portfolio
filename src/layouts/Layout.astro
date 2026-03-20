@@ -64,8 +64,8 @@ const b = import.meta.env.BASE_URL.replace(/\/$/, '');
     </main>
 
     <!-- ===== CURSOR ===== -->
-    <div class="cursor-dot" aria-hidden="true"></div>
-    <div class="cursor-ring" aria-hidden="true"></div>
+    <div class="cursor-dot" aria-hidden="true" transition:persist></div>
+    <div class="cursor-ring" aria-hidden="true" transition:persist></div>
 
     <!-- ===== FOOTER ===== -->
     <footer class="footer">
@@ -87,12 +87,24 @@ const b = import.meta.env.BASE_URL.replace(/\/$/, '');
   if (!window.matchMedia('(pointer: fine)').matches) return;
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
+  // Guard: only initialise once — ClientRouter re-runs is:inline on every navigation
+  if (window.__cursorInit) {
+    document.documentElement.style.cursor = 'none';
+    return;
+  }
+  window.__cursorInit = true;
+
   const dot  = document.querySelector('.cursor-dot');
   const ring = document.querySelector('.cursor-ring');
   if (!dot || !ring) return;
 
   // Hide native cursor
   document.documentElement.style.cursor = 'none';
+
+  // Re-apply on every navigation (ClientRouter may reset documentElement styles)
+  document.addEventListener('astro:after-swap', function () {
+    document.documentElement.style.cursor = 'none';
+  });
 
   let mx = -200, my = -200; // mouse target
   let rx = -200, ry = -200; // ring interpolated position

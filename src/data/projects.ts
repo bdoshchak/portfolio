@@ -55,8 +55,8 @@ export const projects: Project[] = [
     overviewImage: '/work/liveperson/01.png',
     screens: [
       { src: '/work/liveperson/01.png', annotation: 'Primary agent workspace — legacy UI redesigned for WCAG 2.0 compliance, extended with new features, and kept familiar enough to eliminate retraining overhead.' },
-      { src: '/work/liveperson/wireframes.png' },
-      { src: '/work/liveperson/02.png' },
+      { src: '/work/liveperson/wireframes.png', annotation: 'Rapid wireframing during the discovery phase of a new feature wizard — mapping flows before committing to high-fidelity.' },
+      { src: '/work/liveperson/02.png', annotation: 'High-fidelity mockup of the wizard — first step of the rule definition flow for the new feature.' },
       { src: '/work/liveperson/03.png' },
       { src: '/work/liveperson/04.png' },
       { src: '/work/liveperson/knowledge%20center.png' },
@@ -100,8 +100,8 @@ export const projects: Project[] = [
       { value: 'up to 4', label: 'engineering teams were fully loaded weeks ahead' },
       { value: '3', label: 'design systems maintained' },
     ],
-    nextSlug: 'nba-teams',
-    nextTitle: 'Web Platform for NBA Teams',
+    nextSlug: 'political-crm',
+    nextTitle: 'Web CRM for Political Activists',
   },
   {
     slug: 'nba-teams',
@@ -235,8 +235,8 @@ export const projects: Project[] = [
     metrics: [
       { value: '2', label: 'platforms (iPhone + iPad)' },
     ],
-    nextSlug: 'political-crm',
-    nextTitle: 'Web CRM for Political Activists',
+    nextSlug: 'liveperson',
+    nextTitle: 'SaaS Help Desk & Bot Builder Platform',
   },
   {
     slug: 'political-crm',
@@ -293,7 +293,7 @@ export const projects: Project[] = [
       { value: '12h', label: 'to 3 working AI prototypes' },
       { value: '3+yr', label: 'ongoing engagement' },
     ],
-    nextSlug: 'liveperson',
-    nextTitle: 'SaaS Help Desk & Bot Builder Platform',
+    nextSlug: 'nba-teams',
+    nextTitle: 'Web Platform for NBA Teams',
   },
 ];

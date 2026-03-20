@@ -1,3 +1,8 @@
+export interface ScreenItem {
+  src: string;
+  annotation?: string;
+}
+
 export interface ProjectMetric {
   value: string;
   label: string;
@@ -20,8 +25,9 @@ export interface Project {
   logoSrc?: string;
   cover?: string;
   overviewImage?: string;
-  screens?: string[];
+  screens?: ScreenItem[];
   protoUrl?: string;
+  protoGif?: string;
   title: string;
   tagline: string;
   overview: string;
@@ -48,13 +54,14 @@ export const projects: Project[] = [
     cover: '/work/liveperson/cover.png',
     overviewImage: '/work/liveperson/01.png',
     screens: [
-      '/work/liveperson/wireframes.png',
-      '/work/liveperson/02.png',
-      '/work/liveperson/03.png',
-      '/work/liveperson/04.png',
-      '/work/liveperson/knowledge%20center.png',
-      '/work/liveperson/knowledge%20center%20-%20dark%20-%201920.png',
-      '/work/liveperson/iconset.png',
+      { src: '/work/liveperson/01.png', annotation: 'Primary agent workspace — legacy UI redesigned for WCAG 2.0 compliance, extended with new features, and kept familiar enough to eliminate retraining overhead.' },
+      { src: '/work/liveperson/wireframes.png' },
+      { src: '/work/liveperson/02.png' },
+      { src: '/work/liveperson/03.png' },
+      { src: '/work/liveperson/04.png' },
+      { src: '/work/liveperson/knowledge%20center.png' },
+      { src: '/work/liveperson/knowledge%20center%20-%20dark%20-%201920.png' },
+      { src: '/work/liveperson/iconset.png' },
     ],
     title: 'SaaS Help Desk & Bot Builder Platform',
     tagline: 'Three coexisting design systems. Four engineering teams. One designer keeping it together.',
@@ -244,12 +251,13 @@ export const projects: Project[] = [
     cover: '/work/political/politicalcover.png',
     overviewImage: '/work/political/01.png',
     screens: [
-      '/work/political/01.png',
-      '/work/political/02.png',
-      '/work/political/03.png',
-      '/work/political/04.png',
+      { src: '/work/political/01.png' },
+      { src: '/work/political/02.png' },
+      { src: '/work/political/03.png' },
+      { src: '/work/political/04.png' },
     ],
     protoUrl: 'https://bdoshchak.github.io/page-builder/',
+    protoGif: '/work/political/builder-preview.gif',
     title: 'Web CRM for Political Activists',
     tagline: '3+ year engagement. 3 platforms. One AI sprint that changed the scope.',
     overview: 'Digital platform for US-based grassroots political activism — public website, volunteer mobile app, and internal CRM for campaign staff. The platform grew over 3+ years from initial concept to a full-featured suite: volunteer coordination, phone banking queues, canvassing tracking, petition management, and real-time campaign updates.',

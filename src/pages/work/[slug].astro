@@ -1,6 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import { ArrowLeft, ArrowRight, ArrowUpRight, ChevronLeft, ChevronRight, X } from 'lucide-astro';
+import { ArrowLeft, ArrowRight, ArrowUpRight, ChevronLeft, ChevronRight, ChevronDown, X } from 'lucide-astro';
 import { projects } from '../../data/projects';
 import type { Project } from '../../data/projects';
 
@@ -16,7 +16,7 @@ interface Props { project: Project; }
 const { project } = Astro.props;
 const {
   counter, clientDisplay, year, role, domains, nda, logoSrc,
-  cover, overviewImage, screens, protoUrl,
+  cover, overviewImage, screens, protoUrl, protoGif,
   title, tagline, overview, challenge,
   responsibilities, process, outcomes, metrics,
   nextSlug, nextTitle,
@@ -167,18 +167,25 @@ const outcomeCounter = `[0${++_idx}]`;
   {protoUrl && (
     <section class="cs-proto-callout" aria-label="AI sprint">
       <div class="container">
-        <header class="section-header cs-proto-header">
-          <span class="section-counter label" aria-hidden="true">{protoCounter}</span>
-          <h2 class="section-title cs-proto-title">Fast Prototyping with AI</h2>
-        </header>
-        <div class="cs-proto-inner">
-          <div class="cs-proto-row">
+        <div class="cs-proto-grid">
+          <div class="cs-proto-col-left">
+            <header class="section-header cs-proto-header">
+              <span class="section-counter label" aria-hidden="true">{protoCounter}</span>
+              <h2 class="section-title cs-proto-title">Fast Prototyping with AI</h2>
+            </header>
             <p class="cs-proto-text">By client request, the AI-powered page builder was prototyped in 12 total working hours — a clickable prototype in Figma, a fully functional build in Google AI Studio, and a working version in Claude Code. The client confirmed development scope after the sprint.</p>
+            <p class="cs-proto-metric">12 hours. 3 working prototypes.</p>
+          </div>
+          <div class="cs-proto-col-right">
+            {protoGif && (
+              <a href={protoUrl} target="_blank" rel="noopener noreferrer" class="cs-proto-gif-link">
+                <img src={b + protoGif} alt="Prototype preview" class="cs-proto-gif" />
+              </a>
+            )}
             <a href={protoUrl} target="_blank" rel="noopener noreferrer" class="cs-proto-link">
               See live prototype <ArrowUpRight size={14} class="inline-icon" />
             </a>
           </div>
-          <p class="cs-proto-metric">12 hours. 3 working prototypes.</p>
         </div>
       </div>
     </section>
@@ -199,15 +206,21 @@ const outcomeCounter = `[0${++_idx}]`;
             <ChevronLeft size={22} />
           </button>
           <ul class="cs-strip" id="cs-strip" role="list">
-            {screens.map((src) => (
+            {screens.map((screen) => (
               <li class="cs-strip-item">
-                <img
-                  src={b + src}
-                  alt=""
-                  class="cs-strip-img lb-trigger"
-                  data-lb-src={b + src}
-                  loading="lazy"
-                />
+                <div class="cs-strip-thumb">
+                  <img
+                    src={b + screen.src}
+                    alt=""
+                    class="cs-strip-img lb-trigger"
+                    data-lb-src={b + screen.src}
+                    data-lb-annotation={screen.annotation ?? ''}
+                    loading="lazy"
+                  />
+                  {screen.annotation && (
+                    <div class="cs-strip-ann" aria-hidden="true">{screen.annotation}</div>
+                  )}
+                </div>
               </li>
             ))}
           </ul>
@@ -283,6 +296,19 @@ const outcomeCounter = `[0${++_idx}]`;
     </button>
     <div class="lb-stage" id="lb-stage">
       <img class="lb-img" id="lb-img" src="" alt="" />
+      <!-- annotation overlay — visible by default when annotation exists -->
+      <div class="lb-ann-overlay" id="lb-ann-overlay">
+        <div class="lb-ann-row">
+          <p class="lb-ann-text" id="lb-ann-text"></p>
+          <button class="lb-ann-collapse" id="lb-ann-collapse" aria-label="Hide annotation">
+            <ChevronDown size={16} />
+          </button>
+        </div>
+      </div>
+      <!-- badge shown when annotation is collapsed -->
+      <button class="lb-ann-badge" id="lb-ann-badge" aria-label="Show annotation">
+        <span aria-hidden="true">i</span>
+      </button>
     </div>
     <div class="lb-counter label" id="lb-counter"></div>
   </div>
@@ -668,17 +694,32 @@ const outcomeCounter = `[0${++_idx}]`;
   /* title and counter need to be light on dark bg */
   .cs-proto-title { color: var(--color-white); }
 
-  .cs-proto-inner {
+  .cs-proto-grid {
     display: flex;
-    flex-direction: column;
-    gap: 0;
+    gap: var(--sp-12);
+    align-items: start;
   }
 
-  .cs-proto-row {
+  .cs-proto-col-left {
+    flex: 1;
     display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: var(--sp-12);
+    flex-direction: column;
+    gap: var(--sp-8);
+    min-width: 0;
+  }
+
+  .cs-proto-col-left .section-header {
+    margin-bottom: 0;
+  }
+
+  .cs-proto-col-right {
+    flex-shrink: 0;
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--sp-6);
+    padding-top: var(--sp-24);
   }
 
   .cs-proto-text {
@@ -686,7 +727,6 @@ const outcomeCounter = `[0${++_idx}]`;
     font-size: var(--fs-body-lg);
     color: var(--color-grey-400);
     line-height: var(--lh-loose);
-    max-width: 60ch;
   }
 
   .cs-proto-metric {
@@ -696,33 +736,52 @@ const outcomeCounter = `[0${++_idx}]`;
     letter-spacing: var(--ls-tight);
     line-height: var(--lh-tight);
     color: var(--color-white);
-    margin-top: var(--sp-16);
+  }
+
+  .cs-proto-gif-link {
+    display: block;
+    width: 100%;
+  }
+
+  .cs-proto-gif-link:hover .cs-proto-gif {
+    opacity: 0.85;
+  }
+
+  .cs-proto-gif {
+    width: 100%;
+    display: block;
+    border: 1px solid oklch(20% 0 0);
+    transition: opacity 150ms;
   }
 
   .cs-proto-link {
     display: inline-flex;
     align-items: center;
     gap: var(--sp-2);
-    flex-shrink: 0;
     font-family: var(--font-display);
     font-weight: var(--fw-extrabold);
     font-size: var(--fs-label);
     letter-spacing: var(--ls-wide);
     text-transform: uppercase;
     color: var(--color-white);
-    background: oklch(50% 0.22 263);
+    background: transparent;
+    border: 1px solid oklch(45% 0 0);
     padding: var(--sp-3) var(--sp-6);
-    transition: background 150ms;
+    transition: background 150ms, border-color 150ms;
     white-space: nowrap;
   }
 
   .cs-proto-link:hover {
-    background: oklch(44% 0.22 263);
+    background: oklch(18% 0 0);
+    border-color: oklch(60% 0 0);
   }
 
-  @media (max-width: 600px) {
-    .cs-proto-row {
+  @media (max-width: 700px) {
+    .cs-proto-grid {
       flex-direction: column;
+    }
+    .cs-proto-col-right {
+      width: 100%;
     }
   }
 
@@ -768,6 +827,12 @@ const outcomeCounter = `[0${++_idx}]`;
     flex: 0 0 auto;
   }
 
+  .cs-strip-thumb {
+    position: relative;
+    overflow: hidden;
+    line-height: 0;
+  }
+
   .cs-strip-img {
     height: 220px;
     width: auto;
@@ -776,9 +841,29 @@ const outcomeCounter = `[0${++_idx}]`;
     transition: opacity 200ms, transform 200ms;
   }
 
-  .cs-strip-img:hover {
+  .cs-strip-item:hover .cs-strip-img {
     opacity: 0.85;
     transform: scale(1.02);
+  }
+
+  .cs-strip-ann {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 2rem 0.625rem 0.5rem;
+    background: linear-gradient(to top, rgba(0,0,0,0.82) 0%, transparent 100%);
+    color: rgba(255,255,255,0.9);
+    font-family: var(--font-body);
+    font-size: 0.6875rem;
+    line-height: 1.45;
+    opacity: 0;
+    transition: opacity 220ms;
+    pointer-events: none;
+  }
+
+  .cs-strip-item:hover .cs-strip-ann {
+    opacity: 1;
   }
 
   .cs-strip-btn {
@@ -1049,6 +1134,99 @@ const outcomeCounter = `[0${++_idx}]`;
     white-space: nowrap;
   }
 
+  /* ===== LIGHTBOX ANNOTATION ===== */
+  .lb-ann-overlay {
+    display: none;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.6) 60%, transparent 100%);
+    padding: 3rem 1.25rem 1rem;
+    pointer-events: none;
+    /* start position for the enter animation */
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 380ms ease, transform 380ms ease;
+  }
+
+  /* step 1: make it exist in the DOM (display: block) */
+  .lb-ann-overlay.is-visible {
+    display: block;
+  }
+
+  /* step 2: animate to final position */
+  .lb-ann-overlay.is-visible.is-in {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  .lb-ann-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+
+  .lb-ann-text {
+    flex: 1;
+    font-family: var(--font-body);
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  .lb-ann-collapse {
+    flex-shrink: 0;
+    width: 1.75rem;
+    height: 1.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.12);
+    border: none;
+    border-radius: 50%;
+    color: rgba(255, 255, 255, 0.7);
+    cursor: pointer;
+    margin-top: 2px;
+    transition: background 150ms, color 150ms;
+  }
+
+  .lb-ann-collapse:hover {
+    background: rgba(255, 255, 255, 0.22);
+    color: #fff;
+  }
+
+  .lb-ann-badge {
+    display: none;
+    position: absolute;
+    bottom: 0.625rem;
+    right: 0.625rem;
+    width: 1.75rem;
+    height: 1.75rem;
+  }
+
+  .lb-ann-badge.is-visible {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.65);
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    border-radius: 50%;
+    color: rgba(255, 255, 255, 0.65);
+    font-style: italic;
+    font-family: Georgia, serif;
+    font-size: 0.875rem;
+    cursor: pointer;
+    backdrop-filter: blur(6px);
+    transition: background 150ms, color 150ms;
+  }
+
+  .lb-ann-badge:hover {
+    background: rgba(0, 0, 0, 0.85);
+    color: #fff;
+  }
+
   @media (max-width: 640px) {
     .lb-stage {
       max-width: 100vw;
@@ -1070,14 +1248,58 @@ const outcomeCounter = `[0${++_idx}]`;
   var lbPrev  = document.getElementById('lb-prev');
   var lbNext  = document.getElementById('lb-next');
 
+  var lbAnnOverlay  = document.getElementById('lb-ann-overlay');
+  var lbAnnCollapse = document.getElementById('lb-ann-collapse');
+  var lbAnnBadge    = document.getElementById('lb-ann-badge');
+  var lbAnnText     = document.getElementById('lb-ann-text');
+
   var current = 0;
-  var sources = triggers.map(function (t) { return t.dataset.lbSrc; });
+  var sources     = triggers.map(function (t) { return t.dataset.lbSrc; });
+  var annotations = triggers.map(function (t) { return t.dataset.lbAnnotation || ''; });
+
+  function showOverlay() {
+    lbAnnOverlay.classList.add('is-visible');
+    requestAnimationFrame(function () {
+      requestAnimationFrame(function () {
+        lbAnnOverlay.classList.add('is-in');
+      });
+    });
+    lbAnnBadge.classList.remove('is-visible');
+  }
+
+  function hideOverlay() {
+    lbAnnOverlay.classList.remove('is-in');
+    lbAnnBadge.classList.add('is-visible');
+    // clean up display after transition
+    setTimeout(function () {
+      if (!lbAnnOverlay.classList.contains('is-in')) {
+        lbAnnOverlay.classList.remove('is-visible');
+      }
+    }, 400);
+  }
+
+  function updateAnnotation() {
+    var ann = annotations[current];
+    // reset state immediately (no transition during navigation)
+    lbAnnOverlay.classList.remove('is-visible', 'is-in');
+    lbAnnBadge.classList.remove('is-visible');
+    if (ann) {
+      lbAnnText.textContent = ann;
+      // start collapsed, then auto-expand
+      lbAnnBadge.classList.add('is-visible');
+      setTimeout(showOverlay, 280);
+    }
+  }
+
+  lbAnnCollapse.addEventListener('click', hideOverlay);
+  lbAnnBadge.addEventListener('click', showOverlay);
 
   function open(index) {
     current = index;
     lbImg.src = sources[current];
     lbImg.className = 'lb-img';
     updateCounter();
+    updateAnnotation();
     lb.classList.add('is-open');
     lb.removeAttribute('aria-hidden');
     lbClose.focus();
@@ -1100,6 +1322,7 @@ const outcomeCounter = `[0${++_idx}]`;
       lbImg.classList.add('is-enter');
       lbImg.src = sources[current];
       updateCounter();
+      updateAnnotation();
 
       requestAnimationFrame(function () {
         requestAnimationFrame(function () {
@@ -1112,6 +1335,7 @@ const outcomeCounter = `[0${++_idx}]`;
   function updateCounter() {
     lbCount.textContent = (current + 1) + ' / ' + sources.length;
   }
+
 
   triggers.forEach(function (t, i) {
     t.addEventListener('click', function () { open(i); });

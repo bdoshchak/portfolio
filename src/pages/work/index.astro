@@ -144,6 +144,16 @@ const works = [
   </section>
 </Layout>
 
+<script>
+  import { revealGroup } from '../../scripts/reveal';
+
+  function init() {
+    revealGroup('.work-list', '.work-item', 0.1);
+  }
+
+  document.addEventListener('astro:page-load', init);
+</script>
+
 <style>
   /* ================================================
      PAGE HEADER

@@ -288,6 +288,22 @@ const outcomeCounter = `[0${++_idx}]`;
   </div>
 </Layout>
 
+<script>
+  import { revealEach, revealGroup } from '../../scripts/reveal';
+
+  function init() {
+    revealEach('.section-header');
+    revealEach('.cs-body-text');
+    revealGroup('.cs-responsibilities', '.cs-responsibility', 0.06);
+    revealGroup('.cs-process-grid', '.cs-process-step', 0.1);
+    revealGroup('.cs-metrics-grid', '.cs-metric-item', 0.12);
+    revealEach('.cs-proto-inner');
+    revealEach('.cs-outcome');
+  }
+
+  document.addEventListener('astro:page-load', init);
+</script>
+
 <style>
   /* ================================================
      HERO

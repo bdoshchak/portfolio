@@ -194,6 +194,20 @@ const values = [
   </section>
 </Layout>
 
+<script>
+  import { revealEach, revealGroup } from '../scripts/reveal';
+
+  function init() {
+    revealEach('.section-header');
+    revealEach('.photo-wrap', 0.1);
+    revealGroup('.bio-body', '.bio-paragraph', 0.1);
+    revealGroup('.values-grid', '.value-item', 0.1);
+    revealGroup('.exp-list', '.exp-item', 0.1);
+  }
+
+  document.addEventListener('astro:page-load', init);
+</script>
+
 <style>
   /* ================================================
      PAGE HEADER

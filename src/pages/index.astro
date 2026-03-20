@@ -93,8 +93,8 @@ const capabilities = [
           <ArrowDown size={16} class="hero-cta-arrow" aria-hidden="true" />
         </a>
       </div>
-      <div class="hero-portrait" aria-hidden="true">
-        <img src={b + '/hero_photo.jpeg'} alt="" class="hero-portrait-img" />
+      <div class="hero-portrait animate-fade-in delay-4" aria-hidden="true">
+        <img src={b + '/portrait_color.jpg'} alt="" class="hero-portrait-img" />
       </div>
     </div>
     <div class="hero-scroll-hint" aria-hidden="true"></div>
@@ -298,6 +298,31 @@ const capabilities = [
     </div>
   </section>
 </Layout>
+
+<script>
+  import { revealEach, revealGroup } from '../scripts/reveal';
+
+  function init() {
+    // Section headings
+    revealEach('.section-header');
+
+    // Work cards — staggered
+    revealGroup('.work-grid', '.work-card');
+
+    // Signal bar numbers
+    revealGroup('.signal-grid', '.signal-item', 0.12);
+
+    // Capabilities
+    revealGroup('.cap-grid', '.cap-item', 0.12);
+
+    // About preview text + photo
+    revealEach('.about-body');
+    revealEach('.about-photo-wrap', 0.1);
+  }
+
+  // Fires on initial load and after every ViewTransitions navigation
+  document.addEventListener('astro:page-load', init);
+</script>
 
 <style>
   /* ================================================

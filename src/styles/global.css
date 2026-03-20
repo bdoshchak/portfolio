@@ -1,0 +1,228 @@
+/* ============================================================
+   BOHDAN DOSHCHAK — Design System
+   Tokens v1.1 | WCAG 2.1 AA validated
+   ============================================================ */
+
+/* --- Google Fonts --- */
+@import url('https://fonts.googleapis.com/css2?family=Barlow:wght@800;900&family=Inter:wght@400;500&display=swap');
+
+/* --- Base color tokens (sRGB fallbacks first) --- */
+:root {
+  --color-black:    oklch(8% 0 0);
+  --color-white:    oklch(98% 0 0);
+  --color-grey-100: oklch(96% 0 0);
+  --color-grey-200: oklch(90% 0 0);
+  --color-grey-400: oklch(70% 0 0);
+  --color-grey-450: oklch(60% 0 0);   /* muted on dark  — 5.2:1  AA ✓ */
+  --color-grey-500: oklch(52% 0 0);   /* muted on light — 5.5:1  AA ✓ */
+  --color-grey-600: oklch(50% 0 0);   /* secondary      — 5.66:1 AA ✓ */
+  --color-grey-800: oklch(25% 0 0);   /* borders only, NOT text */
+
+  /* Blue: sRGB fallback → upgrade via @supports */
+  --color-blue:     #1D4ED8;
+  --color-blue-dim: #4B8BFF;
+}
+
+@supports (color: oklch(55% 0.28 264)) {
+  :root {
+    --color-blue:     oklch(55% 0.28 264);
+    --color-blue-dim: oklch(68% 0.25 264);
+  }
+}
+
+/* --- Semantic tokens: light (default) --- */
+:root {
+  --bg-primary:      var(--color-white);
+  --bg-secondary:    var(--color-grey-100);
+  --bg-inverse:      var(--color-black);
+  --text-primary:    var(--color-black);
+  --text-secondary:  var(--color-grey-600);
+  --text-muted:      var(--color-grey-500);
+  --text-on-inverse: var(--color-white);
+  --border:          var(--color-grey-200);
+  --border-strong:   var(--color-black);
+  --accent:          var(--color-blue);
+  --accent-text:     var(--color-blue);
+}
+
+/* --- Semantic tokens: dark --- */
+[data-theme="dark"] {
+  --bg-primary:      oklch(10% 0 0);
+  --bg-secondary:    oklch(14% 0 0);
+  --bg-inverse:      var(--color-white);
+  --text-primary:    var(--color-white);
+  --text-secondary:  var(--color-grey-400);
+  --text-muted:      var(--color-grey-450);
+  --text-on-inverse: var(--color-black);
+  --border:          oklch(22% 0 0);
+  --border-strong:   var(--color-white);
+  --accent:          var(--color-blue-dim);
+  --accent-text:     var(--color-blue-dim);
+}
+
+/* --- Typography scale --- */
+:root {
+  --font-display: 'Barlow', 'Helvetica Neue', Arial, sans-serif;
+  --font-body:    'Inter', 'Helvetica Neue', Arial, sans-serif;
+
+  --fw-regular:   400;
+  --fw-medium:    500;
+  --fw-extrabold: 800;
+  --fw-black:     900;
+
+  --fs-hero:    clamp(3.5rem, 8vw, 8rem);
+  --fs-display: clamp(2.5rem, 5vw, 4.5rem);
+  --fs-h1:      clamp(2rem, 4vw, 3rem);
+  --fs-h2:      clamp(1.5rem, 3vw, 2.25rem);
+  --fs-h3:      1.5rem;
+  --fs-body-lg: 1.125rem;
+  --fs-body:    1rem;
+  --fs-caption: 0.875rem;
+  --fs-label:   0.75rem;
+
+  --lh-tight:  1.05;
+  --lh-snug:   1.25;
+  --lh-normal: 1.5;
+  --lh-loose:  1.75;
+
+  --ls-tight:  -0.03em;
+  --ls-normal: 0em;
+  --ls-wide:   0.08em;
+  --ls-widest: 0.15em;
+}
+
+/* --- Spacing --- */
+:root {
+  --sp-1:  0.25rem;
+  --sp-2:  0.5rem;
+  --sp-3:  0.75rem;
+  --sp-4:  1rem;
+  --sp-6:  1.5rem;
+  --sp-8:  2rem;
+  --sp-12: 3rem;
+  --sp-16: 4rem;
+  --sp-24: 6rem;
+  --sp-32: 8rem;
+}
+
+/* --- Motion --- */
+:root {
+  --dur-fast: 120ms;
+  --dur-base: 220ms;
+  --dur-slow: 400ms;
+  --ease:     cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-out: cubic-bezier(0, 0, 0.2, 1);
+}
+
+/* --- Grid --- */
+:root {
+  --grid-max:    1440px;
+  --grid-cols:   12;
+  --grid-gutter: 1.5rem;
+  --grid-margin: clamp(1.5rem, 5vw, 5rem);
+}
+
+/* ============================================================
+   RESET
+   ============================================================ */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-body);
+  font-weight: var(--fw-regular);
+  font-size: var(--fs-body);
+  line-height: var(--lh-normal);
+  color: var(--text-primary);
+  background: var(--bg-primary);
+  transition: background var(--dur-base) var(--ease),
+              color var(--dur-base) var(--ease);
+}
+
+img, svg { display: block; max-width: 100%; }
+
+/* Lucide icons used inline within text */
+svg.inline-icon {
+  display: inline;
+  vertical-align: middle;
+  position: relative;
+  top: -0.05em;
+}
+a { color: inherit; text-decoration: none; }
+ul, ol { list-style: none; }
+button { cursor: pointer; border: none; background: none; font: inherit; }
+
+/* ============================================================
+   GRID CONTAINER
+   ============================================================ */
+.container {
+  width: 100%;
+  max-width: var(--grid-max);
+  margin-inline: auto;
+  padding-inline: var(--grid-margin);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(var(--grid-cols), 1fr);
+  gap: var(--grid-gutter);
+}
+
+/* ============================================================
+   TYPOGRAPHY UTILITIES
+   ============================================================ */
+.font-display { font-family: var(--font-display); }
+.font-body    { font-family: var(--font-body); }
+
+.label {
+  font-family: var(--font-display);
+  font-weight: var(--fw-extrabold);
+  font-size: var(--fs-label);
+  letter-spacing: var(--ls-widest);
+  text-transform: uppercase;
+}
+
+/* ============================================================
+   ENTRY ANIMATIONS
+   ============================================================ */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.animate-fade-up  { animation: fadeUp var(--dur-slow) var(--ease-out) both; }
+.animate-fade-in  { animation: fadeIn var(--dur-slow) var(--ease-out) both; }
+.delay-1 { animation-delay: 100ms; }
+.delay-2 { animation-delay: 200ms; }
+.delay-3 { animation-delay: 350ms; }
+.delay-4 { animation-delay: 500ms; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ============================================================
+   FOCUS STATES (WCAG 2.1 - 2.4.7)
+   ============================================================ */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}

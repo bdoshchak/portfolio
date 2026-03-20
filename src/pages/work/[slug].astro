@@ -1,0 +1,1149 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { ArrowLeft, ArrowRight, ArrowUpRight, ChevronLeft, ChevronRight, X } from 'lucide-astro';
+import { projects } from '../../data/projects';
+import type { Project } from '../../data/projects';
+
+export function getStaticPaths() {
+  return projects.map((p) => ({
+    params: { slug: p.slug },
+    props: { project: p },
+  }));
+}
+
+interface Props { project: Project; }
+
+const { project } = Astro.props;
+const {
+  counter, clientDisplay, year, role, domains, nda, logoSrc,
+  cover, overviewImage, screens, protoUrl,
+  title, tagline, overview, challenge,
+  responsibilities, process, outcomes, metrics,
+  nextSlug, nextTitle,
+} = project;
+
+const next = projects.find((p) => p.slug === nextSlug)!;
+
+// Dynamic section counters (01–03 are fixed: Overview, Role, Process)
+let _idx = 3;
+const protoCounter  = protoUrl         ? `[0${++_idx}]` : null;
+const screensCounter = (screens && screens.length > 0) ? `[0${++_idx}]` : '[—]';
+const outcomeCounter = `[0${++_idx}]`;
+---
+
+<Layout
+  title={`${title} — Bohdan Doshchak`}
+  description={tagline}
+>
+  <!-- ================================================
+       HERO
+       ================================================ -->
+  <section class="cs-hero" aria-label="Project introduction">
+    <div class="container">
+      <a href="/work" class="cs-back label">
+        <ArrowLeft size={13} class="inline-icon" /> Work
+      </a>
+      <div class="cs-hero-grid">
+        <!-- top-left: kicker text -->
+        <div class="cs-hero-kicker">
+          <div class="cs-hero-eyebrow">
+            <span class="cs-counter label">{counter}</span>
+            <ul class="cs-domains" role="list">
+              {domains.map((d) => <li class="cs-domain-tag">{d}</li>)}
+            </ul>
+          </div>
+          <h1 class="cs-title">{title}</h1>
+          <p class="cs-tagline">{tagline}</p>
+          {nda && (
+            <p class="cs-nda-badge label">NDA — visuals withheld</p>
+          )}
+        </div>
+
+        <!-- top-right: logo / image -->
+        {logoSrc && (
+          <div class="cs-hero-logo" aria-hidden="true">
+            <img src={logoSrc} alt="" class="cs-logo-img" />
+          </div>
+        )}
+
+        <!-- bottom: full-width meta bar -->
+        <div class="cs-info-bar">
+          <div class="cs-info-item">
+            <span class="cs-info-label label">Client</span>
+            <span class="cs-info-value">{clientDisplay}</span>
+          </div>
+          <div class="cs-info-item">
+            <span class="cs-info-label label">Role</span>
+            <span class="cs-info-value">{role}</span>
+          </div>
+          <div class="cs-info-item">
+            <span class="cs-info-label label">Duration</span>
+            <span class="cs-info-value">{year}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================
+       [01] OVERVIEW
+       ================================================ -->
+  <section class="cs-section cs-section--light" aria-label="Overview">
+    <div class="container">
+      <header class="section-header">
+        <span class="section-counter label" aria-hidden="true">[01]</span>
+        <h2 class="section-title">Overview</h2>
+      </header>
+      <div class="cs-content-grid">
+        <div class="cs-body">
+          <p class="cs-body-text cs-body-lead">{overview}</p>
+          <div class="cs-challenge">
+            <p class="cs-challenge-label label">The challenge</p>
+            <p class="cs-body-text">{challenge}</p>
+          </div>
+        </div>
+        <div class="cs-visual-slot" aria-hidden="true">
+          {overviewImage
+            ? (
+              <div class={nda ? 'cs-overview-nda' : ''}>
+                <img src={overviewImage} alt="" class={`cs-overview-img${nda ? '' : ' lb-trigger'}`} data-lb-src={nda ? undefined : overviewImage} />
+                {nda && <span class="cs-placeholder-label label">Visuals under NDA</span>}
+              </div>
+            )
+            : nda
+              ? <div class="cs-placeholder"><span class="cs-placeholder-label label">Visuals under NDA</span></div>
+              : null
+          }
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================
+       [02] ROLE
+       ================================================ -->
+  <section class="cs-section cs-section--tint" aria-label="Role and responsibilities">
+    <div class="container">
+      <header class="section-header">
+        <span class="section-counter label" aria-hidden="true">[02]</span>
+        <h2 class="section-title">Role</h2>
+      </header>
+      <ul class="cs-responsibilities" role="list">
+        {responsibilities.map((r) => (
+          <li class="cs-responsibility">
+            <span class="cs-responsibility-dot" aria-hidden="true"></span>
+            <span>{r}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- ================================================
+       [03] PROCESS
+       ================================================ -->
+  <section class="cs-section cs-section--light" aria-label="Design process">
+    <div class="container">
+      <header class="section-header">
+        <span class="section-counter label" aria-hidden="true">[03]</span>
+        <h2 class="section-title">Process</h2>
+      </header>
+      <ol class="cs-process-grid" role="list">
+        {process.map((step, i) => (
+          <li class="cs-process-step">
+            <span class="cs-step-num label">{String(i + 1).padStart(2, '0')}</span>
+            <h3 class="cs-step-title">{step.title}</h3>
+            <p class="cs-step-body">{step.body}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!-- ================================================
+       AI SPRINT CALLOUT (only when protoUrl is set)
+       ================================================ -->
+  {protoUrl && (
+    <section class="cs-proto-callout" aria-label="AI sprint">
+      <div class="container">
+        <header class="section-header cs-proto-header">
+          <span class="section-counter label" aria-hidden="true">{protoCounter}</span>
+          <h2 class="section-title cs-proto-title">Fast prototyping with AI</h2>
+        </header>
+        <div class="cs-proto-inner">
+          <div class="cs-proto-row">
+            <p class="cs-proto-text">By client request, the AI-powered page builder was prototyped in 12 total working hours — a clickable prototype in Figma, a fully functional build in Google AI Studio, and a working version in Claude Code. The client confirmed development scope after the sprint.</p>
+            <a href={protoUrl} target="_blank" rel="noopener noreferrer" class="cs-proto-link">
+              See live prototype <ArrowUpRight size={14} class="inline-icon" />
+            </a>
+          </div>
+          <p class="cs-proto-metric">12 hours. 3 working prototypes.</p>
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- ================================================
+       SCREENS GALLERY
+       ================================================ -->
+  {screens && screens.length > 0 && (
+    <section class="cs-section cs-section--tint" aria-label="Screens">
+      <div class="container">
+        <header class="section-header">
+          <span class="section-counter label" aria-hidden="true">{screensCounter}</span>
+          <h2 class="section-title">Screens</h2>
+        </header>
+        <div class="cs-strip-wrap">
+          <button class="cs-strip-btn cs-strip-btn--prev" id="strip-prev" aria-label="Scroll left">
+            <ChevronLeft size={22} />
+          </button>
+          <ul class="cs-strip" id="cs-strip" role="list">
+            {screens.map((src) => (
+              <li class="cs-strip-item">
+                <img
+                  src={src}
+                  alt=""
+                  class="cs-strip-img lb-trigger"
+                  data-lb-src={src}
+                  loading="lazy"
+                />
+              </li>
+            ))}
+          </ul>
+          <button class="cs-strip-btn cs-strip-btn--next" id="strip-next" aria-label="Scroll right">
+            <ChevronRight size={22} />
+          </button>
+        </div>
+        <div class="cs-strip-dots" id="strip-dots" aria-hidden="true">
+          {screens.map((_, i) => (
+            <span class={`cs-strip-dot${i === 0 ? ' is-active' : ''}`} data-index={String(i)}></span>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- ================================================
+       METRICS (signal bar, hidden if empty)
+       ================================================ -->
+  {metrics.length > 0 && (
+    <section class="cs-metrics" aria-label="Key numbers">
+      <div class="container">
+        <ul class="cs-metrics-grid" role="list">
+          {metrics.map((m) => (
+            <li class="cs-metric-item">
+              <span class="cs-metric-value">{m.value}</span>
+              <span class="cs-metric-label">{m.label}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  )}
+
+  <!-- ================================================
+       [04] OUTCOME
+       ================================================ -->
+  <section class="cs-section cs-section--tint" aria-label="Outcome">
+    <div class="container">
+      <header class="section-header">
+        <span class="section-counter label" aria-hidden="true">{outcomeCounter}</span>
+        <h2 class="section-title">Outcome</h2>
+      </header>
+      <p class="cs-body-text cs-body-lead cs-outcome">{outcomes}</p>
+    </div>
+  </section>
+
+  <!-- ================================================
+       NEXT PROJECT
+       ================================================ -->
+  <nav class="cs-next" aria-label="Next project">
+    <a href={`/work/${nextSlug}`} class="cs-next-link">
+      <div class="container cs-next-inner">
+        <span class="cs-next-label label">Next project</span>
+        <span class="cs-next-title">{nextTitle}</span>
+        <ArrowRight size={20} class="cs-next-arrow inline-icon" aria-hidden="true" />
+      </div>
+    </a>
+  </nav>
+
+  <!-- ================================================
+       LIGHTBOX
+       ================================================ -->
+  <div class="lb" id="lb" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Image viewer">
+    <button class="lb-close" id="lb-close" aria-label="Close">
+      <X size={22} />
+    </button>
+    <button class="lb-prev" id="lb-prev" aria-label="Previous image">
+      <ChevronLeft size={32} />
+    </button>
+    <button class="lb-next" id="lb-next" aria-label="Next image">
+      <ChevronRight size={32} />
+    </button>
+    <div class="lb-stage" id="lb-stage">
+      <img class="lb-img" id="lb-img" src="" alt="" />
+    </div>
+    <div class="lb-counter label" id="lb-counter"></div>
+  </div>
+</Layout>
+
+<style>
+  /* ================================================
+     HERO
+     ================================================ */
+  .cs-hero {
+    background: var(--color-black);
+    padding-top: calc(60px + var(--sp-16));
+    padding-bottom: var(--sp-24);
+  }
+
+  .cs-back {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--sp-2);
+    color: var(--color-grey-400);
+    margin-bottom: var(--sp-12);
+    transition: color var(--dur-fast) var(--ease);
+  }
+  .cs-back:hover { color: var(--color-white); }
+
+  .cs-hero-eyebrow {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-4);
+    margin-bottom: var(--sp-8);
+    flex-wrap: wrap;
+  }
+
+  .cs-counter {
+    color: var(--color-grey-400);
+  }
+
+  .cs-domains {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--sp-2);
+  }
+
+  .cs-domain-tag {
+    font-family: var(--font-display);
+    font-weight: var(--fw-extrabold);
+    font-size: var(--fs-label);
+    letter-spacing: var(--ls-wide);
+    text-transform: uppercase;
+    color: var(--color-grey-400);
+    border: 1px solid oklch(28% 0 0);
+    padding: 2px var(--sp-2);
+  }
+
+  .cs-title {
+    font-family: var(--font-display);
+    font-weight: var(--fw-black);
+    font-size: var(--fs-display);
+    letter-spacing: var(--ls-tight);
+    line-height: var(--lh-tight);
+    color: var(--color-white);
+    max-width: 20ch;
+    margin-bottom: var(--sp-6);
+  }
+
+  .cs-tagline {
+    font-family: var(--font-body);
+    font-size: var(--fs-body-lg);
+    color: var(--color-grey-450);
+    max-width: 52ch;
+    line-height: var(--lh-loose);
+    margin-bottom: var(--sp-12);
+  }
+
+  .cs-info-item {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-1);
+  }
+
+  .cs-info-label {
+    color: var(--color-grey-450);
+  }
+
+  .cs-info-value {
+    font-family: var(--font-body);
+    font-size: var(--fs-body);
+    color: var(--color-white);
+  }
+
+  .cs-hero-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: auto auto;
+    gap: var(--grid-gutter);
+    align-items: end;
+  }
+
+  .cs-hero-kicker {
+    grid-column: 1 / 9;
+    grid-row: 1;
+  }
+
+  .cs-hero-logo {
+    grid-column: 9 / 13;
+    grid-row: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+  }
+
+  .cs-logo-img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+  }
+
+  .cs-info-bar {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    display: flex;
+    gap: var(--sp-12);
+    flex-wrap: wrap;
+    padding-top: var(--sp-8);
+    border-top: 1px solid oklch(22% 0 0);
+  }
+
+  @media (max-width: 768px) {
+    .cs-hero-grid {
+      grid-template-columns: 1fr;
+      grid-template-rows: auto auto auto;
+    }
+    .cs-hero-logo {
+      grid-column: 1 / -1;
+      grid-row: 1;
+      padding: 24px;
+      justify-content: flex-start;
+    }
+    .cs-hero-kicker {
+      grid-column: 1 / -1;
+      grid-row: 2;
+    }
+    .cs-info-bar {
+      grid-column: 1 / -1;
+      grid-row: 3;
+    }
+  }
+
+  .cs-nda-badge {
+    display: inline-block;
+    margin-top: var(--sp-8);
+    color: var(--color-grey-450);
+    border: 1px solid oklch(28% 0 0);
+    padding: var(--sp-2) var(--sp-4);
+  }
+
+  /* ================================================
+     SHARED SECTION STYLES
+     ================================================ */
+  .cs-section {
+    padding-bottom: var(--sp-24);
+  }
+
+  .cs-section--light { background: var(--bg-primary); }
+  .cs-section--tint  { background: var(--bg-secondary); }
+
+  /* reuse site-wide section-header pattern */
+  .section-header {
+    position: relative;
+    margin-bottom: var(--sp-12);
+    padding-top: var(--sp-24);
+  }
+
+  .section-counter {
+    position: absolute;
+    top: var(--sp-24);
+    right: 100%;
+    padding-right: var(--sp-4);
+    color: var(--accent-text);
+    white-space: nowrap;
+  }
+
+  .section-title {
+    font-family: var(--font-display);
+    font-weight: var(--fw-black);
+    font-size: var(--fs-display);
+    letter-spacing: var(--ls-tight);
+    line-height: var(--lh-tight);
+    color: var(--text-primary);
+  }
+
+  @media (max-width: 640px) {
+    .section-counter {
+      position: static;
+      display: block;
+      margin-bottom: var(--sp-2);
+    }
+  }
+
+  /* ================================================
+     OVERVIEW
+     ================================================ */
+  .cs-content-grid {
+    display: grid;
+    grid-template-columns: 3fr 2fr;
+    gap: var(--sp-16);
+    align-items: start;
+  }
+
+  .cs-body-text {
+    font-family: var(--font-body);
+    font-size: var(--fs-body-lg);
+    color: var(--text-secondary);
+    line-height: var(--lh-loose);
+    max-width: 64ch;
+  }
+
+  .cs-body-lead {
+    color: var(--text-primary);
+    margin-bottom: var(--sp-8);
+  }
+
+  .cs-challenge {
+    padding-top: var(--sp-8);
+  }
+
+  .cs-challenge-label {
+    color: var(--accent-text);
+    display: block;
+    margin-bottom: var(--sp-3);
+  }
+
+  .cs-visual-slot {
+    position: sticky;
+    top: calc(60px + var(--sp-8));
+  }
+
+  .cs-overview-nda {
+    position: relative;
+    display: block;
+  }
+
+  .cs-overview-nda .cs-overview-img {
+    display: block;
+    filter: blur(2px);
+  }
+
+  .cs-overview-nda .cs-placeholder-label {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.55);
+    color: var(--color-grey-400);
+  }
+
+  .cs-overview-img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .cs-placeholder {
+    background: var(--bg-secondary);
+    border: 1px dashed var(--border-strong);
+    aspect-ratio: 4 / 3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+
+  .cs-placeholder-label {
+    color: var(--text-muted);
+  }
+
+  @media (max-width: 768px) {
+    .cs-content-grid {
+      grid-template-columns: 1fr;
+    }
+    .cs-visual-slot {
+      position: static;
+    }
+  }
+
+  /* ================================================
+     ROLE
+     ================================================ */
+  .cs-responsibilities {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    max-width: 72ch;
+  }
+
+  .cs-responsibility {
+    display: flex;
+    align-items: baseline;
+    gap: var(--sp-4);
+    padding: var(--sp-4) 0;
+    font-family: var(--font-body);
+    font-size: var(--fs-body-lg);
+    color: var(--text-secondary);
+    line-height: var(--lh-snug);
+  }
+
+  .cs-responsibility-dot {
+    flex-shrink: 0;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--accent-text);
+    margin-top: 0.55em;
+  }
+
+  /* ================================================
+     PROCESS
+     ================================================ */
+  .cs-process-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr));
+    gap: 0;
+  }
+
+  .cs-process-step {
+    padding: var(--sp-8) var(--sp-8) var(--sp-8) 0;
+  }
+
+  .cs-process-step + .cs-process-step {
+    padding-left: var(--sp-8);
+  }
+
+  .cs-step-num {
+    color: var(--accent-text);
+    display: block;
+    margin-bottom: var(--sp-4);
+  }
+
+  .cs-step-title {
+    font-family: var(--font-display);
+    font-weight: var(--fw-extrabold);
+    font-size: var(--fs-h2);
+    letter-spacing: var(--ls-tight);
+    color: var(--text-primary);
+    margin-bottom: var(--sp-4);
+    line-height: var(--lh-snug);
+  }
+
+  .cs-step-body {
+    font-family: var(--font-body);
+    font-size: var(--fs-body);
+    color: var(--text-secondary);
+    line-height: var(--lh-loose);
+  }
+
+  /* ================================================
+     AI SPRINT CALLOUT
+     ================================================ */
+  .cs-proto-callout {
+    background: var(--color-black);
+    padding-bottom: var(--sp-24);
+  }
+
+  /* title and counter need to be light on dark bg */
+  .cs-proto-title { color: var(--color-white); }
+
+  .cs-proto-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .cs-proto-row {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: var(--sp-12);
+  }
+
+  .cs-proto-text {
+    font-family: var(--font-body);
+    font-size: var(--fs-body-lg);
+    color: var(--color-grey-400);
+    line-height: var(--lh-loose);
+    max-width: 60ch;
+  }
+
+  .cs-proto-metric {
+    font-family: var(--font-display);
+    font-weight: var(--fw-black);
+    font-size: var(--fs-h1);
+    letter-spacing: var(--ls-tight);
+    line-height: var(--lh-tight);
+    color: var(--color-white);
+    margin-top: var(--sp-16);
+  }
+
+  .cs-proto-link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--sp-2);
+    flex-shrink: 0;
+    font-family: var(--font-display);
+    font-weight: var(--fw-extrabold);
+    font-size: var(--fs-label);
+    letter-spacing: var(--ls-wide);
+    text-transform: uppercase;
+    color: var(--color-white);
+    background: oklch(50% 0.22 263);
+    padding: var(--sp-3) var(--sp-6);
+    transition: background 150ms;
+    white-space: nowrap;
+  }
+
+  .cs-proto-link:hover {
+    background: oklch(44% 0.22 263);
+  }
+
+  @media (max-width: 600px) {
+    .cs-proto-row {
+      flex-direction: column;
+    }
+  }
+
+  /* ================================================
+     SCREENS STRIP
+     ================================================ */
+  .cs-strip-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+    /* bleed out to full viewport width */
+    margin-inline: calc(-1 * var(--grid-margin));
+  }
+
+  .cs-strip {
+    display: flex;
+    gap: var(--sp-3);
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    /* padding aligns first/last image with grid content */
+    padding: var(--sp-6) var(--grid-margin);
+    /* fade edges over the padding zone */
+    mask-image: linear-gradient(
+      to right,
+      transparent 0,
+      black var(--grid-margin),
+      black calc(100% - var(--grid-margin)),
+      transparent 100%
+    );
+    -webkit-mask-image: linear-gradient(
+      to right,
+      transparent 0,
+      black var(--grid-margin),
+      black calc(100% - var(--grid-margin)),
+      transparent 100%
+    );
+  }
+
+  .cs-strip::-webkit-scrollbar { display: none; }
+
+  .cs-strip-item {
+    flex: 0 0 auto;
+  }
+
+  .cs-strip-img {
+    height: 220px;
+    width: auto;
+    display: block;
+    cursor: zoom-in;
+    transition: opacity 200ms, transform 200ms;
+  }
+
+  .cs-strip-img:hover {
+    opacity: 0.85;
+    transform: scale(1.02);
+  }
+
+  .cs-strip-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 2;
+    background: var(--bg-primary);
+    border: 1px solid var(--border);
+    color: var(--text-primary);
+    width: 2.5rem;
+    height: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 150ms, color 150ms, opacity 150ms;
+    border-radius: 2px;
+  }
+
+  .cs-strip-btn:hover {
+    background: var(--color-black);
+    color: var(--color-white);
+    border-color: var(--color-black);
+  }
+
+  .cs-strip-btn--prev { left:  var(--sp-2); }
+  .cs-strip-btn--next { right: var(--sp-2); }
+
+  /* dots: hidden on desktop */
+  .cs-strip-dots { display: none; }
+
+  @media (max-width: 600px) {
+    .cs-process-step + .cs-process-step {
+      padding-left: 0;
+      border-left: none;
+    }
+
+    /* strip: snap mode, no arrows, no fade */
+    .cs-strip-btn { display: none; }
+
+    .cs-strip {
+      scroll-snap-type: x mandatory;
+      mask-image: none;
+      -webkit-mask-image: none;
+    }
+
+    .cs-strip-item {
+      scroll-snap-align: start;
+      min-width: calc(100vw - 2 * var(--grid-margin));
+    }
+
+    .cs-strip-img {
+      width: 100%;
+      height: auto;
+      max-height: 260px;
+      object-fit: contain;
+    }
+
+    /* dots */
+    .cs-strip-dots {
+      display: flex;
+      justify-content: center;
+      gap: var(--sp-2);
+      padding-top: var(--sp-4);
+    }
+
+    .cs-strip-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--border);
+      transition: background 200ms, transform 200ms;
+      flex-shrink: 0;
+    }
+
+    .cs-strip-dot.is-active {
+      background: var(--accent-text);
+      transform: scale(1.3);
+    }
+  }
+
+  /* ================================================
+     METRICS
+     ================================================ */
+  .cs-metrics {
+    background: var(--color-black);
+    padding: var(--sp-16) 0;
+  }
+
+  .cs-metrics-grid {
+    display: flex;
+    gap: var(--sp-16);
+    flex-wrap: wrap;
+  }
+
+  .cs-metric-item {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-2);
+  }
+
+  .cs-metric-value {
+    font-family: var(--font-display);
+    font-weight: var(--fw-black);
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    letter-spacing: var(--ls-tight);
+    line-height: 1;
+    color: var(--color-white);
+  }
+
+  .cs-metric-label {
+    font-family: var(--font-body);
+    font-size: var(--fs-caption);
+    color: var(--color-grey-400);
+    line-height: var(--lh-snug);
+    max-width: 18ch;
+  }
+
+  /* ================================================
+     OUTCOME
+     ================================================ */
+  .cs-outcome {
+    max-width: 72ch;
+  }
+
+  /* ================================================
+     NEXT PROJECT
+     ================================================ */
+  .cs-next {
+    background: var(--bg-secondary);
+    border-top: 1px solid var(--border);
+  }
+
+  .cs-next-link {
+    display: block;
+    color: var(--text-primary);
+    transition: color var(--dur-fast) var(--ease);
+  }
+
+  .cs-next-link:hover { color: var(--accent-text); }
+
+  .cs-next-inner {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-6);
+    padding-top: var(--sp-12);
+    padding-bottom: var(--sp-12);
+  }
+
+  .cs-next-label {
+    color: var(--text-muted);
+    flex-shrink: 0;
+  }
+
+  .cs-next-title {
+    font-family: var(--font-display);
+    font-weight: var(--fw-black);
+    font-size: var(--fs-h2);
+    letter-spacing: var(--ls-tight);
+    flex: 1;
+  }
+
+  .cs-next-arrow {
+    flex-shrink: 0;
+    transition: transform var(--dur-fast) var(--ease);
+  }
+
+  .cs-next-link:hover .cs-next-arrow {
+    transform: translateX(4px);
+  }
+
+  /* ================================================
+     LIGHTBOX
+     ================================================ */
+  .lb-trigger {
+    cursor: zoom-in;
+  }
+
+  .lb {
+    position: fixed;
+    inset: 0;
+    z-index: 500;
+    background: rgba(0, 0, 0, 0.92);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 280ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .lb.is-open {
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  .lb-stage {
+    position: relative;
+    max-width: calc(100vw - 10rem);
+    max-height: calc(100vh - 6rem);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .lb-img {
+    max-width: 100%;
+    max-height: calc(100vh - 6rem);
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    display: block;
+    transition: opacity 220ms cubic-bezier(0.4, 0, 0.2, 1),
+                transform 220ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .lb-img.is-exit-left  { opacity: 0; transform: translateX(-48px); }
+  .lb-img.is-exit-right { opacity: 0; transform: translateX(48px); }
+  .lb-img.is-enter      { opacity: 0; transform: scale(0.97); }
+
+  .lb-close,
+  .lb-prev,
+  .lb-next {
+    position: fixed;
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.7);
+    cursor: pointer;
+    padding: var(--sp-3);
+    transition: color 150ms, background 150ms;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 2px;
+  }
+
+  .lb-close:hover,
+  .lb-prev:hover,
+  .lb-next:hover {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  .lb-close {
+    top: var(--sp-6);
+    right: var(--sp-6);
+  }
+
+  .lb-prev {
+    left: var(--sp-6);
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .lb-next {
+    right: var(--sp-6);
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .lb-counter {
+    position: fixed;
+    bottom: var(--sp-6);
+    left: 50%;
+    transform: translateX(-50%);
+    color: rgba(255, 255, 255, 0.45);
+    white-space: nowrap;
+  }
+
+  @media (max-width: 640px) {
+    .lb-stage {
+      max-width: 100vw;
+    }
+    .lb-prev { left: var(--sp-2); }
+    .lb-next { right: var(--sp-2); }
+  }
+</style>
+
+<script is:inline>
+(function () {
+  var triggers = Array.from(document.querySelectorAll('.lb-trigger'));
+  if (!triggers.length) return;
+
+  var lb      = document.getElementById('lb');
+  var lbImg   = document.getElementById('lb-img');
+  var lbCount = document.getElementById('lb-counter');
+  var lbClose = document.getElementById('lb-close');
+  var lbPrev  = document.getElementById('lb-prev');
+  var lbNext  = document.getElementById('lb-next');
+
+  var current = 0;
+  var sources = triggers.map(function (t) { return t.dataset.lbSrc; });
+
+  function open(index) {
+    current = index;
+    lbImg.src = sources[current];
+    lbImg.className = 'lb-img';
+    updateCounter();
+    lb.classList.add('is-open');
+    lb.removeAttribute('aria-hidden');
+    lbClose.focus();
+    document.body.style.overflow = 'hidden';
+  }
+
+  function close() {
+    lb.classList.remove('is-open');
+    lb.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+
+  function goTo(index, direction) {
+    var exitClass = direction > 0 ? 'is-exit-left' : 'is-exit-right';
+    lbImg.classList.add(exitClass);
+
+    setTimeout(function () {
+      current = (index + sources.length) % sources.length;
+      lbImg.classList.remove(exitClass);
+      lbImg.classList.add('is-enter');
+      lbImg.src = sources[current];
+      updateCounter();
+
+      requestAnimationFrame(function () {
+        requestAnimationFrame(function () {
+          lbImg.classList.remove('is-enter');
+        });
+      });
+    }, 200);
+  }
+
+  function updateCounter() {
+    lbCount.textContent = (current + 1) + ' / ' + sources.length;
+  }
+
+  triggers.forEach(function (t, i) {
+    t.addEventListener('click', function () { open(i); });
+  });
+
+  // Strip scroll buttons
+  var strip = document.getElementById('cs-strip');
+  var stripPrev = document.getElementById('strip-prev');
+  var stripNext = document.getElementById('strip-next');
+  if (strip && stripPrev && stripNext) {
+    var scrollAmt = 480;
+    stripPrev.addEventListener('click', function () {
+      strip.scrollBy({ left: -scrollAmt, behavior: 'smooth' });
+    });
+    stripNext.addEventListener('click', function () {
+      strip.scrollBy({ left: scrollAmt, behavior: 'smooth' });
+    });
+  }
+
+  // Strip dots (mobile snap indicator)
+  var dots = document.querySelectorAll('.cs-strip-dot');
+  if (strip && dots.length > 0) {
+    var stripItems = strip.querySelectorAll('.cs-strip-item');
+    strip.addEventListener('scroll', function () {
+      if (!stripItems.length) return;
+      // compute step from actual DOM positions
+      var step = stripItems.length > 1
+        ? stripItems[1].offsetLeft - stripItems[0].offsetLeft
+        : stripItems[0].offsetWidth;
+      var idx = Math.round(strip.scrollLeft / step);
+      dots.forEach(function (d, i) {
+        d.classList.toggle('is-active', i === idx);
+      });
+    }, { passive: true });
+  }
+
+  lbClose.addEventListener('click', close);
+  lbPrev.addEventListener('click',  function () { goTo(current - 1, -1); });
+  lbNext.addEventListener('click',  function () { goTo(current + 1,  1); });
+
+  lb.addEventListener('click', function (e) {
+    if (e.target === lb) close();
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (!lb.classList.contains('is-open')) return;
+    if (e.key === 'Escape')     close();
+    if (e.key === 'ArrowLeft')  goTo(current - 1, -1);
+    if (e.key === 'ArrowRight') goTo(current + 1,  1);
+  });
+})();
+</script>

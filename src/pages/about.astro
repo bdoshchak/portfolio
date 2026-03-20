@@ -1,0 +1,518 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { ArrowLeft, ArrowRight, ArrowUpRight } from 'lucide-astro';
+
+const experience = [
+  {
+    company: 'Master of Code Global',
+    roles: [
+      { title: 'Senior UI/UX Designer / Design Community Lead', period: '2020 – 2026' },
+      { title: 'UI/UX Designer', period: '2015 – 2020' },
+      { title: 'Web Designer', period: '2007 – 2015' },
+    ],
+    description: 'Full-service digital agency. 19 years of end-to-end product design ownership — from discovery and stakeholder workshops to production Figma specs and dev handoff. Clients range from funded startups to enterprise SaaS, NBA teams, top US luxury retail brands, healthcare platforms, and political campaigns. Led design community initiatives, mentored junior designers.',
+  },
+  {
+    company: 'Freelance',
+    roles: [
+      { title: 'Web Designer / UI Designer', period: '2001 – present' },
+    ],
+    description: 'Side projects and independent client work running in parallel with agency employment. Web design, identity, and UI for small businesses, non-commercial organisations, and personal projects.',
+  },
+];
+
+const values = [
+  {
+    label: 'Systems first',
+    body: 'Design that doesn\'t scale is just decoration. I build for the second screen, the third product, the team that inherits the work.',
+  },
+  {
+    label: 'Engineering mindset',
+    body: 'I treat technical constraints as information, not obstacles. My understanding of how digital products are built allows me to speak the language of implementation and design with execution in mind.',
+  },
+  {
+    label: 'Craft at every scale',
+    body: 'Whether it\'s a 1,000-icon library or a single empty state — attention to detail is not optional. It compounds.',
+  },
+];
+---
+
+<Layout title="About — Bohdan Doshchak" description="20+ years of product design experience. Lead UI/UX Designer & Design Manager specializing in design systems, enterprise SaaS, and multi-team design leadership.">
+  <!-- ================================================
+       PAGE HEADER
+       ================================================ -->
+  <section class="page-header" aria-label="About introduction">
+    <div class="container">
+      <div class="page-header-content">
+      <div class="page-header-grid">
+        <div class="page-header-text">
+          <a href="/" class="page-back label">
+            <ArrowLeft size={13} class="inline-icon" /> Home
+          </a>
+          <h1 class="page-title">I design systems,<br />not just screens.</h1>
+          <p class="page-intro">
+            Lead UI/UX Designer & Design Manager with 20+ years across agency
+            and in-house product teams. Specialise in design systems, multi-team
+            design leadership, and shipping complex SaaS products at scale.
+          </p>
+        </div>
+        <div class="page-header-photo">
+          <div class="photo-wrap">
+            <img
+              src="/photo.jpg"
+              alt="Bohdan Doshchak"
+              class="photo"
+              width="480"
+              height="600"
+              loading="eager"
+            />
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================
+       BIO
+       ================================================ -->
+  <section class="bio-section" aria-label="Biography">
+    <div class="container">
+      <header class="section-header">
+        <span class="section-counter label" aria-hidden="true">[01]</span>
+        <h2 class="section-title">Background</h2>
+      </header>
+      <div class="bio-body">
+          <p class="bio-paragraph bio-lead">
+            20 years means I've made the expensive mistakes already. The redesigns
+            that shipped but didn't stick. The component libraries built without
+            governance. The handoffs that weren't handoffs at all. I've been
+            through enough cycles to know what actually holds.
+          </p>
+          <p class="bio-paragraph">
+            I started freelancing in 2001 — websites for local businesses,
+            small NGOs, anything that needed a screen. By 2007 that became a
+            full-time role at Master of Code Global, a service agency with a
+            genuinely wide brief. Over the following 19 years I designed for
+            funded startups, healthcare platforms, luxury retail brands, sports
+            organisations, and political campaigns. That breadth is deliberate.
+            Working outside a single vertical forces rigour: you can't rely on
+            domain familiarity to fill the gaps in your thinking.
+          </p>
+          <p class="bio-paragraph">
+            The most complex engagement was LivePerson — a conversational AI
+            platform — where, as a contractor via MOCG, I was embedded across
+            four engineering teams simultaneously. Three parallel design systems.
+            A product undergoing architectural migration. The job was
+            coordination as much as creation — keeping quality consistent while
+            keeping teams moving. An engineering background made the translation
+            natural. I don't just hand off to developers; I work with them.
+          </p>
+          <p class="bio-paragraph">
+            Based in Cherkasy, Ukraine. Available for remote-first roles and
+            select consulting engagements.
+          </p>
+        </div>
+    </div>
+  </section>
+
+  <!-- ================================================
+       VALUES
+       ================================================ -->
+  <section class="values-section" aria-label="Professional values">
+    <div class="container">
+      <header class="section-header">
+        <span class="section-counter label" aria-hidden="true">[02]</span>
+        <h2 class="section-title">How I work</h2>
+      </header>
+      <ul class="values-grid" role="list">
+        {values.map((v) => (
+          <li class="value-item">
+            <p class="value-label label">{v.label}</p>
+            <p class="value-body">{v.body}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- ================================================
+       EXPERIENCE
+       ================================================ -->
+  <section class="exp-section" aria-label="Work experience">
+    <div class="container">
+      <header class="section-header">
+        <span class="section-counter label" aria-hidden="true">[03]</span>
+        <h2 class="section-title">Experience</h2>
+      </header>
+      <ul class="exp-list" role="list">
+        {experience.map((job) => (
+          <li class="exp-item">
+            <div class="exp-header">
+              <h3 class="exp-company">{job.company}</h3>
+              <ul class="exp-roles" role="list">
+                {job.roles.map((r) => (
+                  <li class="exp-role-row">
+                    <span class="exp-role">{r.title}</span>
+                    <span class="exp-period">{r.period}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <p class="exp-description">{job.description}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- ================================================
+       CONTACT CTA
+       ================================================ -->
+  <section class="contact-section" aria-label="Contact">
+    <div class="container">
+      <div class="contact-eyebrow">
+        <span class="contact-counter label">[04]</span>
+        <span class="contact-label label">Let's talk</span>
+      </div>
+      <h2 class="contact-heading">
+        Ready when<br />you are.
+      </h2>
+      <div class="contact-links">
+        <a href="mailto:doschak@gmail.com" class="contact-btn">
+          Contact me
+        </a>
+        <a href="https://www.linkedin.com/in/bdoshchak/" target="_blank" rel="noopener" class="contact-linkedin label">
+          LinkedIn <ArrowUpRight size={13} class="inline-icon" />
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  /* ================================================
+     PAGE HEADER
+     ================================================ */
+  .page-header {
+    background: var(--color-black);
+    padding-top: calc(60px + var(--sp-16));
+    padding-bottom: var(--sp-24);
+  }
+
+  .page-header-content {
+    /* wrapper for z-index stacking if needed */
+  }
+
+  .page-header-grid {
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    gap: var(--sp-16);
+    align-items: end;
+  }
+
+  .page-back {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--sp-2);
+    color: var(--color-grey-400);
+    margin-bottom: var(--sp-12);
+    transition: color var(--dur-fast) var(--ease);
+  }
+
+  .page-back:hover { color: var(--color-white); }
+
+  .page-title {
+    font-family: var(--font-display);
+    font-weight: var(--fw-black);
+    font-size: var(--fs-display);
+    letter-spacing: var(--ls-tight);
+    line-height: var(--lh-tight);
+    color: var(--color-white);
+    margin-bottom: var(--sp-8);
+  }
+
+  .page-intro {
+    font-family: var(--font-body);
+    font-size: var(--fs-body-lg);
+    color: var(--color-grey-450);
+    line-height: var(--lh-loose);
+    max-width: 52ch;
+  }
+
+  .photo-wrap {
+    position: relative;
+  }
+
+  .photo {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    object-position: top center;
+    filter: grayscale(30%) contrast(1.05);
+  }
+
+  @media (max-width: 768px) {
+    .page-header-grid {
+      grid-template-columns: 1fr;
+    }
+    .page-header-photo {
+      max-width: 260px;
+    }
+  }
+
+  /* ================================================
+     SECTION SHARED
+     ================================================ */
+  .section-header {
+    position: relative;
+    margin-bottom: var(--sp-12);
+    padding-top: var(--sp-24);
+  }
+
+  .section-counter {
+    position: absolute;
+    top: var(--sp-24);
+    right: 100%;
+    padding-right: var(--sp-4);
+    color: var(--accent-text);
+    white-space: nowrap;
+  }
+
+  @media (max-width: 640px) {
+    .section-counter {
+      position: static;
+      display: block;
+      margin-bottom: var(--sp-2);
+    }
+  }
+
+  .section-title {
+    font-family: var(--font-display);
+    font-weight: var(--fw-black);
+    font-size: var(--fs-h1);
+    letter-spacing: var(--ls-tight);
+    line-height: var(--lh-tight);
+    color: var(--text-primary);
+  }
+
+  /* ================================================
+     BIO
+     ================================================ */
+  .bio-section {
+    background: var(--bg-primary);
+    padding-top: 0;
+    padding-bottom: var(--sp-24);
+  }
+
+  .bio-body {
+    max-width: 68ch;
+  }
+
+  .bio-paragraph {
+    font-family: var(--font-body);
+    font-size: var(--fs-body-lg);
+    color: var(--text-secondary);
+    line-height: var(--lh-loose);
+    margin-bottom: var(--sp-6);
+  }
+
+  .bio-paragraph:last-child { margin-bottom: 0; }
+
+  .bio-lead {
+    color: var(--text-primary);
+    font-size: clamp(1.125rem, 2vw, 1.375rem);
+  }
+
+
+  /* ================================================
+     VALUES
+     ================================================ */
+  .values-section {
+    background: var(--bg-secondary);
+    padding-bottom: var(--sp-24);
+  }
+
+  .values-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+  }
+
+  .value-item {
+    padding: var(--sp-8) var(--sp-8) var(--sp-8) 0;
+  }
+
+  .value-item + .value-item {
+    padding-left: var(--sp-8);
+    border-left: 1px solid var(--border);
+  }
+
+  .value-label {
+    color: var(--accent-text);
+    margin-bottom: var(--sp-3);
+  }
+
+  .value-body {
+    font-family: var(--font-body);
+    font-size: var(--fs-body);
+    color: var(--text-secondary);
+    line-height: var(--lh-loose);
+  }
+
+  @media (max-width: 768px) {
+    .values-grid { grid-template-columns: 1fr; }
+    .value-item + .value-item {
+      padding-left: 0;
+      border-left: none;
+    }
+  }
+
+  /* ================================================
+     EXPERIENCE
+     ================================================ */
+  .exp-section {
+    background: var(--bg-primary);
+    padding-bottom: var(--sp-24);
+  }
+
+  .exp-list {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .exp-item {
+    padding: var(--sp-8) 0;
+  }
+
+  .exp-header {
+    margin-bottom: var(--sp-4);
+  }
+
+  .exp-company {
+    font-family: var(--font-display);
+    font-weight: var(--fw-black);
+    font-size: var(--fs-h2);
+    letter-spacing: var(--ls-tight);
+    color: var(--text-primary);
+    margin-bottom: var(--sp-2);
+  }
+
+  .exp-roles {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-1);
+    margin-top: var(--sp-2);
+  }
+
+  .exp-role-row {
+    display: flex;
+    align-items: baseline;
+    gap: var(--sp-4);
+    flex-wrap: wrap;
+  }
+
+  .exp-role {
+    color: var(--accent-text);
+    font-family: var(--font-display);
+    font-weight: var(--fw-extrabold);
+    font-size: var(--fs-label);
+    letter-spacing: var(--ls-wide);
+    text-transform: uppercase;
+  }
+
+  .exp-description {
+    font-family: var(--font-body);
+    font-size: var(--fs-body);
+    color: var(--text-secondary);
+    line-height: var(--lh-loose);
+    max-width: 72ch;
+    margin-bottom: var(--sp-6);
+  }
+
+  /* ================================================
+     CONTACT
+     ================================================ */
+  .contact-section {
+    background-image: url('/cutting_mat_bg.png');
+    background-size: cover;
+    background-position: center;
+    padding-top: var(--sp-24);
+    padding-bottom: var(--sp-24);
+  }
+
+  .contact-section > :global(.container) {
+    position: relative;
+    z-index: 1;
+  }
+
+  .contact-eyebrow {
+    position: relative;
+    margin-bottom: var(--sp-6);
+  }
+
+  .contact-counter {
+    position: absolute;
+    right: 100%;
+    top: 0;
+    padding-right: var(--sp-4);
+    white-space: nowrap;
+    color: var(--color-grey-400);
+  }
+
+  .contact-label {
+    color: var(--color-grey-400);
+  }
+
+  @media (max-width: 640px) {
+    .contact-counter {
+      position: static;
+      display: inline;
+      padding-right: var(--sp-2);
+    }
+  }
+
+  .contact-heading {
+    font-family: var(--font-display);
+    font-weight: var(--fw-black);
+    font-size: var(--fs-hero);
+    letter-spacing: var(--ls-tight);
+    line-height: var(--lh-tight);
+    color: var(--color-white);
+    margin-bottom: var(--sp-12);
+  }
+
+  .contact-links {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-8);
+    flex-wrap: wrap;
+  }
+
+  .contact-btn {
+    display: inline-block;
+    font-family: var(--font-display);
+    font-weight: var(--fw-extrabold);
+    font-size: var(--fs-label);
+    letter-spacing: var(--ls-widest);
+    text-transform: uppercase;
+    color: var(--color-white);
+    background: var(--color-blue);
+    padding: var(--sp-4) var(--sp-8);
+    transition: background var(--dur-fast) var(--ease),
+                color var(--dur-fast) var(--ease);
+  }
+
+  .contact-btn:hover {
+    background: var(--color-blue-dim);
+    color: var(--color-white);
+  }
+
+  .contact-linkedin {
+    color: var(--color-grey-400);
+    transition: color var(--dur-fast) var(--ease);
+  }
+
+  .contact-linkedin:hover { color: var(--color-white); }
+</style>

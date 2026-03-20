@@ -1,0 +1,391 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { ArrowLeft, ArrowRight, ArrowUpRight } from 'lucide-astro';
+
+const works = [
+  {
+    slug: 'liveperson',
+    counter: '01',
+    client: 'LivePerson',
+    title: 'SaaS Help Desk & Bot Builder Platform',
+    summary: 'Complex enterprise SaaS help desk and bot-builder platform. Contributed to 3 coexisting design systems, created 1,000+ icons in 3 sizes and 2 styles, developed 20+ new features, and kept 3–4 engineering teams supplied with design-ready work 2–3 weeks ahead — all while maintaining WCAG 2.0 compliance.',
+    domains: ['Enterprise SaaS', 'Design Systems', 'WCAG'],
+    year: '5+ years',
+    role: 'UI/UX Designer (via MOCG)',
+    outcome: '3 design systems · 1,000+ icons · 20+ features',
+    cover: '/work/liveperson/cover.png',
+  },
+  {
+    slug: 'nba-teams',
+    counter: '02',
+    client: 'NBA Teams · NDA',
+    title: 'Web Platform for NBA Teams',
+    summary: 'Redesign of high-impact digital platforms for 2 top NBA teams. Core UX challenge: improving fan experience while preserving each team\'s brand identity within the strict technical constraints of the NBA-provided website engine.',
+    domains: ['Sports', 'Web', 'UX Audit'],
+    year: '3 months',
+    role: 'Lead UI/UX Designer',
+    outcome: '2 team websites redesigned',
+    cover: '/work/nba/nbacover.png',
+  },
+  {
+    slug: 'healthcare-saas',
+    counter: '03',
+    client: 'Healthcare · NDA',
+    title: 'Hospital Asset Management SaaS',
+    summary: 'SaaS platform from scratch — real-time analytics and dashboards monitoring asset performance across ~20 hospitals. Full product suite: client-facing dashboard, admin area, and mobile app for field technicians. Led full migration from Photoshop to Figma.',
+    domains: ['Healthcare', 'SaaS', 'Mobile', 'Data Viz'],
+    year: '2 years',
+    role: 'Lead UI/UX Designer',
+    outcome: '~20 hospitals · web + mobile + admin',
+    cover: '/work/health/healthcover.png',
+  },
+  {
+    slug: 'jewelry-brand',
+    counter: '04',
+    client: 'Luxury Retail · NDA',
+    title: 'In-Store iOS Tool for Top US Jewelry Brand',
+    summary: 'Bespoke internal iOS tool for a top US jewelry brand, optimising in-store customer consultations. Mobile apps for iPhone and iPad enabling shop staff to guide diamond selection and manage luxury inventory seamlessly.',
+    domains: ['Luxury Retail', 'iOS', 'Mobile'],
+    year: '2 years',
+    role: 'UI/UX Designer',
+    outcome: 'iPhone + iPad · in-store retail tool',
+    cover: '/work/jewelry/jewelrycover.png',
+  },
+  {
+    slug: 'political-crm',
+    counter: '05',
+    client: 'Political · NDA',
+    title: 'Web CRM for Political Activists',
+    summary: 'Integrated digital platform for grassroots political activism in the US — website, mobile app, and CRM. AI-powered page builder prototyped in 12 working hours across 3 environments — Figma, Google AI Studio, and Claude Code.',
+    domains: ['CRM', 'Web', 'Mobile', 'AI Prototyping'],
+    year: '3+ years (ongoing)',
+    role: 'UI/UX Designer',
+    outcome: 'Website · mobile · CRM · AI page builder',
+    cover: '/work/political/politicalcover.png',
+  },
+];
+---
+
+<Layout title="Work — Bohdan Doshchak" description="Selected work by Bohdan Doshchak — Design systems, product design, and icon systems across SaaS, enterprise, and agency contexts.">
+  <!-- ================================================
+       PAGE HEADER
+       ================================================ -->
+  <section class="page-header" aria-label="Work overview">
+    <div class="container">
+      <a href="/" class="page-back label">
+        <ArrowLeft size={13} class="inline-icon" /> Home
+      </a>
+      <div class="page-header-inner">
+        <h1 class="page-title">Work</h1>
+        <p class="page-description">
+          20+ years. Startups to enterprise. Systems to pixels.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================
+       WORK LIST
+       ================================================ -->
+  <section class="work-section" aria-label="Case studies">
+    <div class="container">
+      <ul class="work-list" role="list">
+        {works.map((work) => (
+          <li class="work-item">
+            <a href={`/work/${work.slug}`} class="work-item-link" aria-label={`${work.title} — ${work.client}`}>
+              <div class="work-item-left">
+                <span class="work-counter label">{work.counter}</span>
+              </div>
+              <div class="work-item-main">
+                <div class="work-item-header">
+                  <div class="work-item-meta">
+                    <span class="work-client label">[{work.client}]</span>
+                    <span class="work-year">{work.year}</span>
+                  </div>
+                  <h2 class="work-title">{work.title}</h2>
+                  <p class="work-summary">{work.summary}</p>
+                </div>
+                <div class="work-item-footer">
+                  <span class="work-outcome label"><ArrowRight size={13} class="inline-icon" /> {work.outcome}</span>
+                  <ul class="work-tags" role="list">
+                    {work.domains.map((d) => (
+                      <li class="work-tag">{d}</li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+              <div class="work-item-right">
+                <div class="work-thumb" aria-hidden="true">
+                  {work.cover
+                    ? <img src={work.cover} alt="" class="work-thumb-img" />
+                    : <span class="work-thumb-counter">{work.counter}</span>
+                  }
+                </div>
+              </div>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- ================================================
+       CTA
+       ================================================ -->
+  <section class="cta-section" aria-label="Contact call to action">
+    <div class="container">
+      <div class="cta-inner">
+        <p class="cta-text">Have a project in mind?</p>
+        <a href="/#contact" class="cta-link label">Let's talk <ArrowRight size={13} class="inline-icon" /></a>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  /* ================================================
+     PAGE HEADER
+     ================================================ */
+  .page-back {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--sp-2);
+    color: var(--color-grey-400);
+    margin-bottom: var(--sp-12);
+    transition: color var(--dur-fast) var(--ease);
+  }
+
+  .page-back:hover { color: var(--color-white); }
+
+  .page-header {
+    background-image: url('/work/workbg.jpg');
+    background-size: cover;
+    background-position: center;
+    padding-top: calc(60px + var(--sp-24));
+    padding-bottom: var(--sp-24);
+  }
+
+.page-title {
+    font-family: var(--font-display);
+    font-weight: var(--fw-black);
+    font-size: var(--fs-hero);
+    letter-spacing: var(--ls-tight);
+    line-height: var(--lh-tight);
+    color: var(--color-white);
+    margin-bottom: var(--sp-6);
+  }
+
+  .page-description {
+    font-family: var(--font-body);
+    font-size: var(--fs-body-lg);
+    color: var(--color-grey-450);
+    max-width: 40ch;
+  }
+
+  /* ================================================
+     WORK LIST
+     ================================================ */
+  .work-section {
+    background: var(--bg-primary);
+    padding-bottom: var(--sp-24);
+  }
+
+  .work-list {
+    padding-top: var(--sp-16);
+  }
+
+  .work-item {
+  }
+
+  .work-item-link {
+    display: grid;
+    grid-template-columns: 3rem 1fr 280px;
+    gap: var(--sp-8);
+    padding: var(--sp-12) 0;
+    color: inherit;
+    align-items: start;
+    transition: background var(--dur-fast) var(--ease);
+  }
+
+  .work-item-link:hover .work-title {
+    color: var(--accent-text);
+  }
+
+  .work-item-link:hover .work-thumb {
+    background: oklch(12% 0 0);
+  }
+
+  .work-counter {
+    color: var(--accent-text);
+    padding-top: 4px;
+  }
+
+  .work-item-main {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-6);
+  }
+
+  .work-item-header {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-3);
+  }
+
+  .work-item-meta {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-4);
+  }
+
+  .work-client {
+    color: var(--accent-text);
+  }
+
+  .work-year {
+    font-family: var(--font-body);
+    font-size: var(--fs-caption);
+    color: var(--text-muted);
+  }
+
+  .work-title {
+    font-family: var(--font-display);
+    font-weight: var(--fw-black);
+    font-size: var(--fs-h1);
+    letter-spacing: var(--ls-tight);
+    line-height: var(--lh-snug);
+    color: var(--text-primary);
+    transition: color var(--dur-fast) var(--ease);
+  }
+
+  .work-summary {
+    font-family: var(--font-body);
+    font-size: var(--fs-body-lg);
+    color: var(--text-secondary);
+    line-height: var(--lh-normal);
+    max-width: 60ch;
+  }
+
+  .work-item-footer {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-6);
+    flex-wrap: wrap;
+    margin-top: var(--sp-2);
+  }
+
+  .work-outcome {
+    color: var(--accent-text);
+  }
+
+  .work-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--sp-2);
+  }
+
+  .work-tag {
+    font-family: var(--font-display);
+    font-weight: var(--fw-extrabold);
+    font-size: var(--fs-label);
+    letter-spacing: var(--ls-wide);
+    text-transform: uppercase;
+    color: var(--text-muted);
+    border: 1px solid var(--border);
+    padding: 2px var(--sp-2);
+  }
+
+  /* Thumbnail */
+  .work-thumb {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    background: var(--bg-secondary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    transition: background var(--dur-base) var(--ease);
+  }
+
+  .work-thumb-counter {
+    font-family: var(--font-display);
+    font-weight: var(--fw-black);
+    font-size: clamp(4rem, 8vw, 7rem);
+    letter-spacing: var(--ls-tight);
+    color: var(--border-strong);
+    opacity: 0.08;
+    line-height: 1;
+    user-select: none;
+  }
+
+  .work-thumb-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--dur-base) var(--ease);
+  }
+
+  .work-item-link:hover .work-thumb-img {
+    transform: scale(1.04);
+  }
+
+  /* ================================================
+     RESPONSIVE
+     ================================================ */
+  @media (max-width: 900px) {
+    .work-item-link {
+      grid-template-columns: 2.5rem 1fr;
+    }
+    .work-item-right { display: none; }
+  }
+
+  @media (max-width: 600px) {
+    .work-item-link {
+      display: flex;
+      flex-direction: column;
+      gap: var(--sp-4);
+    }
+    .work-item-left { display: none; }
+    .work-item-right {
+      display: block;
+      order: -1;
+      width: 100%;
+    }
+    .work-thumb {
+      aspect-ratio: 16 / 9;
+    }
+  }
+
+  /* ================================================
+     CTA
+     ================================================ */
+  .cta-section {
+    background: var(--bg-secondary);
+    padding: var(--sp-16) 0;
+    border-top: 1px solid var(--border);
+  }
+
+  .cta-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: var(--sp-4);
+  }
+
+  .cta-text {
+    font-family: var(--font-body);
+    font-size: var(--fs-body-lg);
+    color: var(--text-secondary);
+  }
+
+  .cta-link {
+    color: var(--accent-text);
+    transition: opacity var(--dur-fast) var(--ease);
+  }
+
+  .cta-link:hover { opacity: 0.7; }
+</style>

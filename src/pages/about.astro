@@ -4,22 +4,36 @@ import { ArrowLeft, ArrowRight, ArrowUpRight } from 'lucide-astro';
 
 const b = import.meta.env.BASE_URL.replace(/\/$/, '');
 
-const experience = [
+const periods = [
   {
+    size: 'hero',
+    period: '2020 – 2026',
+    role: 'Senior UI/UX Designer · Design Community Lead',
     company: 'Master of Code Global',
-    roles: [
-      { title: 'Senior UI/UX Designer / Design Community Lead', period: '2020 – 2026' },
-      { title: 'UI/UX Designer', period: '2015 – 2020' },
-      { title: 'Web Designer', period: '2007 – 2015' },
+    focus: 'Leadership · Enterprise SaaS · Design Systems · Mentorship',
+    description: 'Led design across concurrent enterprise engagements — LivePerson, healthcare SaaS, luxury retail, political platforms. Maintained three coexisting design systems while keeping four engineering teams supplied with production-ready specs. Promoted to Design Community Lead; scaled the internal design practice from the ground up.',
+    bullets: [
+      'Built and facilitated biweekly design community meetings, critique sessions, and skill-share workshops',
+      'Defined the team\'s Skill Matrix and career framework; ran 1:1s and growth planning with junior and mid-level designers',
+      'Introduced AI-augmented prototyping workflows — cutting proof-of-concept time from weeks to hours',
+      'Drove WCAG 2.0 AA adoption across all active client products',
     ],
-    description: 'Full-service digital agency. 19 years of end-to-end product design ownership — from discovery and stakeholder workshops to production Figma specs and dev handoff. Clients range from funded startups to enterprise SaaS, NBA teams, top US luxury retail brands, healthcare platforms, and political campaigns. Led design community initiatives, mentored junior designers.',
   },
   {
-    company: 'Freelance',
-    roles: [
-      { title: 'Web Designer / UI Designer', period: '2001 – present' },
-    ],
-    description: 'Side projects and independent client work running in parallel with agency employment. Web design, identity, and UI for small businesses, non-commercial organisations, and personal projects.',
+    size: 'standard',
+    period: '2015 – 2020',
+    role: 'UI/UX Designer',
+    company: 'Master of Code Global',
+    focus: 'Complexity & Systems · B2B CRM · Mobile Apps',
+    description: 'Took on progressively larger product scopes — multi-surface SaaS platforms, B2B CRM tools, and cross-platform mobile apps for enterprise clients. Shifted from screen-level execution to system-level thinking: information architecture, component design, and cross-team handoff at scale. Led migration from Photoshop to Figma for a major client engagement.',
+  },
+  {
+    size: 'compact',
+    period: '2007 – 2015',
+    role: 'Web Designer',
+    company: 'Master of Code Global',
+    focus: 'Web Evolution · Early Mobile',
+    description: 'Joined as a generalist web designer; grew through the transition from static web to responsive design and first-generation mobile experiences. Built the foundation in visual systems, typography, and cross-browser implementation that informs everything since.',
   },
 ];
 
@@ -149,24 +163,44 @@ const values = [
         <span class="section-counter label" aria-hidden="true">[03]</span>
         <h2 class="section-title">Experience</h2>
       </header>
-      <ul class="exp-list" role="list">
-        {experience.map((job) => (
-          <li class="exp-item">
-            <div class="exp-header">
-              <h3 class="exp-company">{job.company}</h3>
-              <ul class="exp-roles" role="list">
-                {job.roles.map((r) => (
-                  <li class="exp-role-row">
-                    <span class="exp-role">{r.title}</span>
-                    <span class="exp-period">{r.period}</span>
-                  </li>
-                ))}
-              </ul>
+
+      <p class="exp-company-label label">Master of Code Global</p>
+
+      <ol class="exp-timeline" role="list">
+        {periods.map((p) => (
+          <li class={`exp-period exp-period--${p.size}`}>
+            <div class="exp-period-meta">
+              <span class="exp-period-range label">{p.period}</span>
+              <span class="exp-period-focus">{p.focus}</span>
             </div>
-            <p class="exp-description">{job.description}</p>
+            <div class="exp-period-body">
+              <h3 class="exp-role-title">{p.role}</h3>
+              <p class="exp-description">{p.description}</p>
+              {p.bullets && (
+                <ul class="exp-bullets" role="list">
+                  {p.bullets.map((b) => (
+                    <li class="exp-bullet">{b}</li>
+                  ))}
+                </ul>
+              )}
+            </div>
           </li>
         ))}
-      </ul>
+      </ol>
+
+      <p class="exp-company-label label" style="margin-top: var(--sp-16);">Freelance</p>
+      <ol class="exp-timeline exp-timeline--secondary" role="list">
+        <li class="exp-period exp-period--compact">
+          <div class="exp-period-meta">
+            <span class="exp-period-range label">2001 – present</span>
+            <span class="exp-period-focus">Parallel to agency work</span>
+          </div>
+          <div class="exp-period-body">
+            <h3 class="exp-role-title">Web Designer / UI Designer</h3>
+            <p class="exp-description">Side projects and independent client work running in parallel with agency employment — web design, identity, and UI for small businesses and non-commercial organisations.</p>
+          </div>
+        </li>
+      </ol>
     </div>
   </section>
 
@@ -187,7 +221,7 @@ const values = [
           Get in touch
         </a>
         <a href={b + '/cv.pdf'} target="_blank" rel="noopener" class="contact-btn contact-btn--secondary">
-          Download CV
+          View CV
         </a>
         <a href="https://www.linkedin.com/in/bdoshchak/" target="_blank" rel="noopener" class="contact-linkedin label">
           LinkedIn <ArrowUpRight size={13} class="inline-icon" />
@@ -205,7 +239,7 @@ const values = [
     revealEach('.photo-wrap', 0.1);
     revealGroup('.bio-body', '.bio-paragraph', 0.1);
     revealGroup('.values-grid', '.value-item', 0.1);
-    revealGroup('.exp-list', '.exp-item', 0.1);
+    revealGroup('.exp-timeline', '.exp-period', 0.1);
   }
 
   document.addEventListener('astro:page-load', init);
@@ -400,58 +434,147 @@ const values = [
     padding-bottom: var(--sp-24);
   }
 
-  .exp-list {
+  .exp-company-label {
+    color: var(--text-muted);
+    margin-bottom: var(--sp-8);
+    display: block;
+  }
+
+  /* Timeline */
+  .exp-timeline {
     display: flex;
     flex-direction: column;
+    border-left: 1px solid var(--border);
+    margin-bottom: var(--sp-16);
   }
 
-  .exp-item {
-    padding: var(--sp-8) 0;
+  .exp-period {
+    display: grid;
+    grid-template-columns: 14rem 1fr;
+    gap: var(--sp-8);
+    padding: var(--sp-8) 0 var(--sp-8) var(--sp-8);
+    position: relative;
   }
 
-  .exp-header {
-    margin-bottom: var(--sp-4);
+  /* dot on the timeline */
+  .exp-period::before {
+    content: '';
+    position: absolute;
+    left: -4px;
+    top: calc(var(--sp-8) + 0.4em);
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--border-strong);
   }
 
-  .exp-company {
+  .exp-period--hero::before {
+    background: var(--accent-text);
+    width: 9px;
+    height: 9px;
+    left: -5px;
+  }
+
+  .exp-period + .exp-period {
+    border-top: 1px solid var(--border);
+  }
+
+  /* Meta column */
+  .exp-period-meta {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-2);
+    padding-top: 2px;
+  }
+
+  .exp-period-range {
+    color: var(--accent-text);
+  }
+
+  .exp-period-focus {
+    font-family: var(--font-body);
+    font-size: var(--fs-caption);
+    color: var(--text-muted);
+    line-height: var(--lh-snug);
+  }
+
+  /* Body column */
+  .exp-period-body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-3);
+  }
+
+  /* Hero period — larger title */
+  .exp-period--hero .exp-role-title {
+    font-size: var(--fs-h1);
+    letter-spacing: var(--ls-tight);
+  }
+
+  .exp-role-title {
     font-family: var(--font-display);
     font-weight: var(--fw-black);
     font-size: var(--fs-h2);
     letter-spacing: var(--ls-tight);
+    line-height: var(--lh-snug);
     color: var(--text-primary);
-    margin-bottom: var(--sp-2);
-  }
-
-  .exp-roles {
-    display: flex;
-    flex-direction: column;
-    gap: var(--sp-1);
-    margin-top: var(--sp-2);
-  }
-
-  .exp-role-row {
-    display: flex;
-    align-items: baseline;
-    gap: var(--sp-4);
-    flex-wrap: wrap;
-  }
-
-  .exp-role {
-    color: var(--accent-text);
-    font-family: var(--font-display);
-    font-weight: var(--fw-extrabold);
-    font-size: var(--fs-label);
-    letter-spacing: var(--ls-wide);
-    text-transform: uppercase;
   }
 
   .exp-description {
     font-family: var(--font-body);
-    font-size: var(--fs-body);
     color: var(--text-secondary);
     line-height: var(--lh-loose);
-    max-width: 72ch;
-    margin-bottom: var(--sp-6);
+    max-width: 68ch;
+  }
+
+  /* Hero: regular body size */
+  .exp-period--hero .exp-description {
+    font-size: var(--fs-body-lg);
+  }
+
+  /* Standard: regular body */
+  .exp-period--standard .exp-description {
+    font-size: var(--fs-body);
+  }
+
+  /* Compact: smaller, muted */
+  .exp-period--compact .exp-role-title {
+    font-size: var(--fs-body-lg);
+    font-weight: var(--fw-extrabold);
+  }
+
+  .exp-period--compact .exp-description {
+    font-size: var(--fs-caption);
+    color: var(--text-muted);
+  }
+
+  /* Bullets */
+  .exp-bullets {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-2);
+    margin-top: var(--sp-1);
+    padding-left: var(--sp-4);
+    border-left: 2px solid var(--border);
+  }
+
+  .exp-bullet {
+    font-family: var(--font-body);
+    font-size: var(--fs-body);
+    color: var(--text-secondary);
+    line-height: var(--lh-normal);
+  }
+
+  /* Secondary (freelance) timeline — same border as primary */
+  .exp-timeline--secondary .exp-period::before {
+    background: var(--border-strong);
+  }
+
+  @media (max-width: 640px) {
+    .exp-period {
+      grid-template-columns: 1fr;
+      gap: var(--sp-3);
+    }
   }
 
   /* ================================================

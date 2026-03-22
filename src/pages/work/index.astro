@@ -57,13 +57,25 @@ const works = [
     slug: 'jewelry-brand',
     counter: '05',
     client: 'Luxury Retail · NDA',
-    title: 'In-Store iOS Tool for Top US Jewelry Brand',
+    title: 'In-Store iOS Suite for Top US Jewelry Brand',
     summary: 'Bespoke internal iOS tool for a top US jewelry brand, optimising in-store customer consultations. Mobile apps for iPhone and iPad enabling shop staff to guide diamond selection and manage luxury inventory seamlessly.',
     domains: ['Luxury Retail', 'iOS', 'Mobile'],
     year: '2 years',
     role: 'UI/UX Designer',
     outcome: 'iPhone + iPad · in-store retail tool',
     cover: '/work/jewelry/jewelrycover.png',
+  },
+  {
+    slug: 'portfolio-site',
+    counter: '06',
+    client: 'Personal Project',
+    title: 'This Portfolio',
+    summary: 'Built with Claude Code, Claude Sonnet 4.6, and Gemini in 5 days. Four custom AI agents — Orchestrator, Brand Architect, Front-End Architect, and Logo Designer. Three succeeded. The logo I had to draw myself.',
+    domains: ['AI-Assisted', 'Astro', 'Portfolio'],
+    year: '5 days',
+    role: 'Designer · AI Director',
+    outcome: '5 days · 4 agents · 1 logo drawn by hand',
+    cover: '/work/portfolio/portfolio_project_cover.png',
   },
 ];
 ---
@@ -118,7 +130,7 @@ const works = [
                 </div>
               </div>
               <div class="work-item-right">
-                <div class="work-thumb" aria-hidden="true">
+                <div class="work-thumb" data-slug={work.slug} aria-hidden="true">
                   {work.cover
                     ? <img src={b + work.cover} alt="" class="work-thumb-img" />
                     : <span class="work-thumb-counter">{work.counter}</span>
@@ -350,6 +362,7 @@ const works = [
   .work-item-link:hover .work-thumb-img {
     transform: scale(1.04);
   }
+
 
   /* ================================================
      RESPONSIVE

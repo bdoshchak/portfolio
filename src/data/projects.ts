@@ -268,7 +268,6 @@ export const projects: Project[] = [
       'Mapped and designed volunteer workflows: sign-ups, phone banking, canvassing logging, petition flows',
       'Designed the internal CRM for campaign staff — volunteer management, outreach tracking, phone banking queues',
       'Prototyped an AI-powered page builder: 3 working prototypes in 12 total hours (Figma, Google AI Studio, Claude Code)',
-      'Conducted iterative usability testing with volunteer users',
     ],
     process: [
       {

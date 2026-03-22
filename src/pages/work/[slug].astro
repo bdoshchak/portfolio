@@ -1243,155 +1243,166 @@ const outcomeCounter = `[0${++_idx}]`;
   }
 </style>
 
-<script is:inline>
+<script>
 (function () {
-  var triggers = Array.from(document.querySelectorAll('.lb-trigger'));
-  if (!triggers.length) return;
+  var docController = null;
 
-  var lb      = document.getElementById('lb');
-  var lbImg   = document.getElementById('lb-img');
-  var lbCount = document.getElementById('lb-counter');
-  var lbClose = document.getElementById('lb-close');
-  var lbPrev  = document.getElementById('lb-prev');
-  var lbNext  = document.getElementById('lb-next');
-
-  var lbAnnOverlay  = document.getElementById('lb-ann-overlay');
-  var lbAnnCollapse = document.getElementById('lb-ann-collapse');
-  var lbAnnBadge    = document.getElementById('lb-ann-badge');
-  var lbAnnText     = document.getElementById('lb-ann-text');
-
-  var current = 0;
-  var sources     = triggers.map(function (t) { return t.dataset.lbSrc; });
-  var annotations = triggers.map(function (t) { return t.dataset.lbAnnotation || ''; });
-
-  function showOverlay() {
-    lbAnnOverlay.classList.add('is-visible');
-    requestAnimationFrame(function () {
-      requestAnimationFrame(function () {
-        lbAnnOverlay.classList.add('is-in');
-      });
-    });
-    lbAnnBadge.classList.remove('is-visible');
-  }
-
-  function hideOverlay() {
-    lbAnnOverlay.classList.remove('is-in');
-    lbAnnBadge.classList.add('is-visible');
-    // clean up display after transition
-    setTimeout(function () {
-      if (!lbAnnOverlay.classList.contains('is-in')) {
-        lbAnnOverlay.classList.remove('is-visible');
-      }
-    }, 400);
-  }
-
-  function updateAnnotation() {
-    var ann = annotations[current];
-    // reset state immediately (no transition during navigation)
-    lbAnnOverlay.classList.remove('is-visible', 'is-in');
-    lbAnnBadge.classList.remove('is-visible');
-    if (ann) {
-      lbAnnText.textContent = ann;
-      // start collapsed, then auto-expand
-      lbAnnBadge.classList.add('is-visible');
-      setTimeout(showOverlay, 280);
-    }
-  }
-
-  lbAnnCollapse.addEventListener('click', hideOverlay);
-  lbAnnBadge.addEventListener('click', showOverlay);
-
-  function open(index) {
-    current = index;
-    lbImg.src = sources[current];
-    lbImg.className = 'lb-img';
-    updateCounter();
-    updateAnnotation();
-    lb.classList.add('is-open');
-    lb.removeAttribute('aria-hidden');
-    lbClose.focus();
-    document.body.style.overflow = 'hidden';
-  }
-
-  function close() {
-    lb.classList.remove('is-open');
-    lb.setAttribute('aria-hidden', 'true');
+  // Restore body scroll when navigating away mid-lightbox
+  document.addEventListener('astro:before-swap', function () {
     document.body.style.overflow = '';
-  }
+    if (docController) { docController.abort(); docController = null; }
+  });
 
-  function goTo(index, direction) {
-    var exitClass = direction > 0 ? 'is-exit-left' : 'is-exit-right';
-    lbImg.classList.add(exitClass);
+  function initLightbox() {
+    var triggers = Array.from(document.querySelectorAll('.lb-trigger'));
+    if (!triggers.length) return;
 
-    setTimeout(function () {
-      current = (index + sources.length) % sources.length;
-      lbImg.classList.remove(exitClass);
-      lbImg.classList.add('is-enter');
-      lbImg.src = sources[current];
-      updateCounter();
-      updateAnnotation();
+    var lb      = document.getElementById('lb');
+    var lbImg   = document.getElementById('lb-img');
+    var lbCount = document.getElementById('lb-counter');
+    var lbClose = document.getElementById('lb-close');
+    var lbPrev  = document.getElementById('lb-prev');
+    var lbNext  = document.getElementById('lb-next');
 
+    var lbAnnOverlay  = document.getElementById('lb-ann-overlay');
+    var lbAnnCollapse = document.getElementById('lb-ann-collapse');
+    var lbAnnBadge    = document.getElementById('lb-ann-badge');
+    var lbAnnText     = document.getElementById('lb-ann-text');
+
+    var current = 0;
+    var sources     = triggers.map(function (t) { return t.dataset.lbSrc; });
+    var annotations = triggers.map(function (t) { return t.dataset.lbAnnotation || ''; });
+
+    // AbortController for document-level listeners — cleaned up on next navigation
+    if (docController) docController.abort();
+    docController = new AbortController();
+    var signal = docController.signal;
+
+    function showOverlay() {
+      lbAnnOverlay.classList.add('is-visible');
       requestAnimationFrame(function () {
         requestAnimationFrame(function () {
-          lbImg.classList.remove('is-enter');
+          lbAnnOverlay.classList.add('is-in');
         });
       });
-    }, 200);
-  }
+      lbAnnBadge.classList.remove('is-visible');
+    }
 
-  function updateCounter() {
-    lbCount.textContent = (current + 1) + ' / ' + sources.length;
-  }
+    function hideOverlay() {
+      lbAnnOverlay.classList.remove('is-in');
+      lbAnnBadge.classList.add('is-visible');
+      setTimeout(function () {
+        if (!lbAnnOverlay.classList.contains('is-in')) {
+          lbAnnOverlay.classList.remove('is-visible');
+        }
+      }, 400);
+    }
 
+    function updateAnnotation() {
+      var ann = annotations[current];
+      lbAnnOverlay.classList.remove('is-visible', 'is-in');
+      lbAnnBadge.classList.remove('is-visible');
+      if (ann) {
+        lbAnnText.textContent = ann;
+        lbAnnBadge.classList.add('is-visible');
+        setTimeout(showOverlay, 280);
+      }
+    }
 
-  triggers.forEach(function (t, i) {
-    t.addEventListener('click', function () { open(i); });
-  });
+    lbAnnCollapse.addEventListener('click', hideOverlay);
+    lbAnnBadge.addEventListener('click', showOverlay);
 
-  // Strip scroll buttons
-  var strip = document.getElementById('cs-strip');
-  var stripPrev = document.getElementById('strip-prev');
-  var stripNext = document.getElementById('strip-next');
-  if (strip && stripPrev && stripNext) {
-    var scrollAmt = 480;
-    stripPrev.addEventListener('click', function () {
-      strip.scrollBy({ left: -scrollAmt, behavior: 'smooth' });
+    function open(index) {
+      current = index;
+      lbImg.src = sources[current];
+      lbImg.className = 'lb-img';
+      updateCounter();
+      updateAnnotation();
+      lb.classList.add('is-open');
+      lb.removeAttribute('aria-hidden');
+      lbClose.focus();
+      document.body.style.overflow = 'hidden';
+    }
+
+    function close() {
+      lb.classList.remove('is-open');
+      lb.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+
+    function goTo(index, direction) {
+      var exitClass = direction > 0 ? 'is-exit-left' : 'is-exit-right';
+      lbImg.classList.add(exitClass);
+      setTimeout(function () {
+        current = (index + sources.length) % sources.length;
+        lbImg.classList.remove(exitClass);
+        lbImg.classList.add('is-enter');
+        lbImg.src = sources[current];
+        updateCounter();
+        updateAnnotation();
+        requestAnimationFrame(function () {
+          requestAnimationFrame(function () {
+            lbImg.classList.remove('is-enter');
+          });
+        });
+      }, 200);
+    }
+
+    function updateCounter() {
+      lbCount.textContent = (current + 1) + ' / ' + sources.length;
+    }
+
+    triggers.forEach(function (t, i) {
+      t.addEventListener('click', function () { open(i); });
     });
-    stripNext.addEventListener('click', function () {
-      strip.scrollBy({ left: scrollAmt, behavior: 'smooth' });
-    });
-  }
 
-  // Strip dots (mobile snap indicator)
-  var dots = document.querySelectorAll('.cs-strip-dot');
-  if (strip && dots.length > 0) {
-    var stripItems = strip.querySelectorAll('.cs-strip-item');
-    strip.addEventListener('scroll', function () {
-      if (!stripItems.length) return;
-      // compute step from actual DOM positions
-      var step = stripItems.length > 1
-        ? stripItems[1].offsetLeft - stripItems[0].offsetLeft
-        : stripItems[0].offsetWidth;
-      var idx = Math.round(strip.scrollLeft / step);
-      dots.forEach(function (d, i) {
-        d.classList.toggle('is-active', i === idx);
+    // Strip scroll buttons
+    var strip = document.getElementById('cs-strip');
+    var stripPrev = document.getElementById('strip-prev');
+    var stripNext = document.getElementById('strip-next');
+    if (strip && stripPrev && stripNext) {
+      var scrollAmt = 480;
+      stripPrev.addEventListener('click', function () {
+        strip.scrollBy({ left: -scrollAmt, behavior: 'smooth' });
       });
-    }, { passive: true });
+      stripNext.addEventListener('click', function () {
+        strip.scrollBy({ left: scrollAmt, behavior: 'smooth' });
+      });
+    }
+
+    // Strip dots
+    var dots = document.querySelectorAll('.cs-strip-dot');
+    if (strip && dots.length > 0) {
+      var stripItems = strip.querySelectorAll('.cs-strip-item');
+      strip.addEventListener('scroll', function () {
+        if (!stripItems.length) return;
+        var step = stripItems.length > 1
+          ? stripItems[1].offsetLeft - stripItems[0].offsetLeft
+          : stripItems[0].offsetWidth;
+        var idx = Math.round(strip.scrollLeft / step);
+        dots.forEach(function (d, i) {
+          d.classList.toggle('is-active', i === idx);
+        });
+      }, { passive: true });
+    }
+
+    lbClose.addEventListener('click', close);
+    lbPrev.addEventListener('click',  function () { goTo(current - 1, -1); });
+    lbNext.addEventListener('click',  function () { goTo(current + 1,  1); });
+
+    lb.addEventListener('click', function (e) {
+      if (e.target === lb) close();
+    });
+
+    // Document-level listener tied to AbortController
+    document.addEventListener('keydown', function (e) {
+      if (!lb.classList.contains('is-open')) return;
+      if (e.key === 'Escape')     close();
+      if (e.key === 'ArrowLeft')  goTo(current - 1, -1);
+      if (e.key === 'ArrowRight') goTo(current + 1,  1);
+    }, { signal: signal });
   }
 
-  lbClose.addEventListener('click', close);
-  lbPrev.addEventListener('click',  function () { goTo(current - 1, -1); });
-  lbNext.addEventListener('click',  function () { goTo(current + 1,  1); });
-
-  lb.addEventListener('click', function (e) {
-    if (e.target === lb) close();
-  });
-
-  document.addEventListener('keydown', function (e) {
-    if (!lb.classList.contains('is-open')) return;
-    if (e.key === 'Escape')     close();
-    if (e.key === 'ArrowLeft')  goTo(current - 1, -1);
-    if (e.key === 'ArrowRight') goTo(current + 1,  1);
-  });
+  document.addEventListener('astro:page-load', initLightbox);
 })();
 </script>

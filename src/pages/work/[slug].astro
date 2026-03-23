@@ -33,7 +33,7 @@ const outcomeCounter = `[0${++_idx}]`;
 ---
 
 <Layout
-  title={`${title} — Bohdan Doshchak`}
+  title={`${title} – Bohdan Doshchak`}
   description={tagline}
 >
   <!-- ================================================
@@ -56,7 +56,7 @@ const outcomeCounter = `[0${++_idx}]`;
           <h1 class="cs-title">{title}</h1>
           <p class="cs-tagline">{tagline}</p>
           {nda && (
-            <p class="cs-nda-badge label">NDA — visuals withheld</p>
+            <p class="cs-nda-badge label">NDA – visuals withheld</p>
           )}
         </div>
 
@@ -173,7 +173,7 @@ const outcomeCounter = `[0${++_idx}]`;
               <span class="section-counter label" aria-hidden="true">{protoCounter}</span>
               <h2 class="section-title cs-proto-title">Fast Prototyping with AI</h2>
             </header>
-            <p class="cs-proto-text">By client request, the AI-powered page builder was prototyped in 12 total working hours — a clickable prototype in Figma, a fully functional build in Google AI Studio, and a working version in Claude Code. The client confirmed development scope after the sprint.</p>
+            <p class="cs-proto-text">By client request, the AI-powered page builder was prototyped in 12 total working hours – a clickable prototype in Figma, a fully functional build in Google AI Studio, and a working version in Claude Code. The client confirmed development scope after the sprint.</p>
             <p class="cs-proto-metric">12 hours. 3 working prototypes.</p>
           </div>
           <div class="cs-proto-col-right">
@@ -296,7 +296,7 @@ const outcomeCounter = `[0${++_idx}]`;
     </button>
     <div class="lb-stage" id="lb-stage">
       <img class="lb-img" id="lb-img" src="" alt="" />
-      <!-- annotation overlay — visible by default when annotation exists -->
+      <!-- annotation overlay – visible by default when annotation exists -->
       <div class="lb-ann-overlay" id="lb-ann-overlay">
         <div class="lb-ann-row">
           <p class="lb-ann-text" id="lb-ann-text"></p>
@@ -1274,7 +1274,7 @@ const outcomeCounter = `[0${++_idx}]`;
     var sources     = triggers.map(function (t) { return t.dataset.lbSrc; });
     var annotations = triggers.map(function (t) { return t.dataset.lbAnnotation || ''; });
 
-    // AbortController for document-level listeners — cleaned up on next navigation
+    // AbortController for document-level listeners – cleaned up on next navigation
     if (docController) docController.abort();
     docController = new AbortController();
     var signal = docController.signal;

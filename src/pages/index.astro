@@ -392,10 +392,13 @@ const capabilities = [
   }
 
   @media (max-width: 768px) {
+    .hero {
+      height: auto;
+      min-height: 100svh;
+    }
     .hero-inner {
       grid-template-columns: 1fr;
       height: auto;
-      min-height: calc(100svh - 60px);
     }
     .hero-left {
       order: 2;
@@ -403,13 +406,40 @@ const capabilities = [
     .hero-portrait {
       order: 1;
       margin-right: 0;
-      height: 50vw;
-      min-height: 220px;
+      height: auto;
+      min-height: 0;
+      overflow: hidden;
+    }
+    .hero-portrait-img {
+      width: 100%;
+      height: auto;
+      object-fit: initial;
+      margin-top: -30%;
+      margin-left: -5%;
     }
     .hero-content {
       justify-content: flex-start;
-      padding-top: var(--sp-8);
-      padding-bottom: var(--sp-6);
+      padding-top: var(--sp-6);
+      padding-bottom: var(--sp-4);
+    }
+    .hero-name {
+      font-size: clamp(2rem, 10vw, 3.5rem);
+      margin-bottom: var(--sp-2);
+    }
+    .hero-label {
+      margin-bottom: var(--sp-1);
+    }
+    .hero-statement {
+      margin-bottom: var(--sp-3);
+    }
+    .hero-metrics {
+      padding: var(--sp-4) 0;
+    }
+    .signal-grid {
+      gap: 32px;
+    }
+    .signal-number {
+      font-size: clamp(1.25rem, 5vw, 2rem);
     }
   }
 

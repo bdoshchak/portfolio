@@ -50,7 +50,7 @@ export const projects: Project[] = [
     role: 'UI/UX Designer (via MOCG)',
     domains: ['Enterprise SaaS', 'Design Systems', 'WCAG'],
     nda: false,
-    logoSrc: '/LivePerson_logo.svg',
+    logoSrc: '/work/liveperson/LivePerson_logo.svg',
     cover: '/work/liveperson/cover.png',
     overviewImage: '/work/liveperson/01.png',
     screens: [

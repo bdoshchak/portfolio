@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mastering UX Research & Testing: Full Course</title>
+        <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #e67e22;
+            --bg: #f8f9fa;
+            --text: #2d3436;
+            --white: #ffffff;
+        }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            line-height: 1.8;
+            color: var(--text);
+            background-color: var(--bg);
+            margin: 0;
+            padding: 0;
+        }
+        .sidebar {
+            position: fixed;
+            width: 300px;
+            height: 100vh;
+            background: var(--primary);
+            color: white;
+            padding: 30px;
+            overflow-y: auto;
+            box-sizing: border-box;
+        }
+        .sidebar h2 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: var(--secondary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+        .sidebar ul li {
+            margin-bottom: 15px;
+        }
+        .sidebar ul li a {
+            color: #bdc3c7;
+            text-decoration: none;
+            transition: 0.3s;
+            font-size: 0.95rem;
+        }
+        .sidebar ul li a:hover {
+            color: var(--white);
+            padding-left: 5px;
+        }
+        .content {
+            margin-left: 300px;
+            padding: 60px 80px;
+            max-width: 1000px;
+        }
+        article {
+            background: var(--white);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            margin-bottom: 40px;
+        }
+        h1 { font-size: 2.5rem; color: var(--primary); margin-bottom: 10px; }
+        h2 { font-size: 1.8rem; color: var(--primary); border-bottom: 2px solid var(--secondary); padding-bottom: 10px; margin-top: 40px; }
+        h3 { font-size: 1.4rem; color: var(--secondary); margin-top: 30px; }
+        p { margin-bottom: 20px; font-size: 1.1rem; }
+        .concept-card {
+            background: #e1f5fe;
+            border-left: 5px solid var var(--secondary);
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .pro-tip {
+            background: #fff3e0;
+            border-left: 5px solid var(--accent);
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .example {
+            background: #f1f2f6;
+            padding: 20px;
+            border-radius: 8px;
+            font-style: italic;
+            border: 1px dashed #ccc;
+        }
+        code {
+            background: #eee;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: monospace;
+        }
+        @media (max-width: 1000px) {
+            .sidebar { width: 100%; height: auto; position: relative; }
+            .content { margin-left: 0; padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="sidebar">
+    <h2>Зміст курсу</h2>
+    <ul style="list-style: none; padding: 0;">
+        <li style="margin-bottom: 15px;"><a href="#intro">Вступ: Нова роль дизайнера</a></li>
+        <li style="margin-bottom: 15px;"><a href="#ch1">Розділ 1: Основи UX-досліджень</a></li>
+        <li style="margin-bottom: 15px;"><a href="#ch2">Розділ 2: Generative Research</a></li>
+        <li style="margin-bottom: 15px;"><a href="#ch3">Розділ 3: Evaluative Research</a></li>
+        <li style="margin-bottom: 15px;"><a href="#ch4">Розділ 4: Метрики та Дані</a></li>
+        <li style="margin-bottom: 15px;"><a href="#ch5">Розділ 5: Senior Level: Стратегія</a></li>
+    </ul>
+
+</div>
+
+<div class="content">
+    
+    <section id="intro">
+        <h1>Від UI до UX-стратега</h1>
+        <p><em>Цей курс розроблений для професіоналів, які вже володіють інструментами візуалізації, але прагнуть перетворити дизайн з "мистецтва створення інтерфейсів" на "науку вирішення проблем".</em></p>
+        <div class="concept-card">
+            <strong>Ваша мета:</strong> Перестати ставити питання "Як це виглядає?" і почати ставити питання "Чому ми це робимо?" та "Як ми знаємо, що це працює?".
+        </div>
+    </section>
+
+    <article id="ch1">
+        <h2>Розділ 1: Основи UX-досліджень та зміна мислення</h2>
+        
+        <p>Перший крок до рівня Senior — це розуміння того, що дизайн — це лише кінцева точка довгого процесу збору та аналізу даних. Якщо ви малюєте без дослідження, ви не дизайнер, ви — ілюстратор інтерфейсів.</p>
+
+        <h3>1.1. Простір Проблеми vs Простір Рішення</h3>
+        <p>Більшість UI-дизайнерів одразу переходять у <strong>Solution Space</strong> (Простір рішення). Вони думають про колір кнопок, розміри шрифтів та анімацію. Проте Senior-дизайнер проводить 70% часу у <strong>Problem Space</strong> (Простір проблеми).</p>
+        
+        <div class="example">
+            <strong>Приклад:</strong> 
+            Клієнт каже: "Нам потрібна нова кнопка 'Купити' на головній сторінці". 
+            <br>— <strong>UI-підхід:</strong> Зробити кнопку яскравою та помітною.
+            <br>— <strong>UX-підхід:</strong> Дослідити, чому користувачі не купують зараз. Можливо, проблема не в кнопці, а в складному процесі реєстрації або відсутності методів оплати.
+        </div>
+
+        <h3>1.2. Класифікація досліджень: Generative vs Evaluative</h3>
+        <p>Для того, щоб не потонути в методах, ви повинні розділяти всі свої дії на два типи:</p>
+        
+        <ul>
+            <li><strong>Generative (Генеративні) дослідження:</strong> Проводяться на етапі ідеї. Їхня мета — зрозуміти потреби, знайти "болі" та сформувати гіпотези. Ви шукаєте <em>що</em> будувати.</li>
+            <li><strong>Evaluative (Евалюативні) дослідження:</strong> Проводяться, коли у вас вже є прототип або готовий продукт. Їхня мета — перевірити, чи працює ваше рішення. Ви перевіряєте, <em>як</em> працює те, що ви побудували.</li>
+        </ul>
+
+        <div class="concept-card">
+            <strong>Золоте правило:</strong> Ніколи не робіть Evaluative дослідження (тестування), поки не завершили Generative (вивчення потреб). Ви ризикуєте ідеально протестувати безглузде рішення.
+        </div>
+
+        <h3>1.3. Якісні vs Кількісні дані (Qualitative vs Quantitative)</h3>
+        <p>Це критично важливий поділ для розуміння метрик, які ми розберемо пізніше.</p>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th style="text-align: left;">Тип даних</th>
+                    <th style="text</strong>align: left;">Питання</th>
+                    <th style="text-align: left;">Метод</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Якісні (Qual)</strong></td>
+                    <td>"Чому?" та "Як?"</td>
+                    <td>Інтерв'ю, спостереження</td>
+                </tr>
+                <tr>
+                    <td><strong>Кількісні (Quant)</strong></td>
+                    <td>"Скільки?" та "Як часто?"</td>
+                    <td>Аналітика, A/B тести, опитування</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <p>Senior-дизайнер використовує <strong>Triangulation</strong> (Тріангуляцію) — поєднання обох типів. Наприклад: Google Analytics каже вам, що 50% користувачів покидають кошик (Кількісні дані). Ви проводите інтерв'ю, щоб зрозуміти, що вони роблять це через страх прихованих витрат на доставку (Якісні дані).</p>
+
+        <div class="pro-tip">
+            <strong>Pro-Tip для Senior:</strong> Коли ви презентуєте дизайн стейкхолдерам, не кажіть "Я так вирішив". Кажіть: "Кількісні дані показали падіння конверсії, а якісні дослідження підтвердили проблему з логікою доставки, тому я змінив цей флоу".
+        </div>
+    </article>
+
+
+    <article id="ch2">
+        <h2>Розділ 2: Generative Research — Пошук "невідомих невідомих"</h2>
+        
+        <p>Якщо Evaluative Research — це перевірка того, чи правильно ви зрозуміли завдання, то <strong>Generative Research</strong> — це процес визначення самого завдання. Його мета — знайти "невідомі невідомі": проблеми, про які ви навіть не підозрювали, та можливості, які ви не бачили.</p>
+
+        <h3 id="2.1">2.1. Глибинні інтерв'ю: Мистецтво слухати</h3>
+        <p>Це найпотужніший інструмент. Проте Senior-дизайнер знає: інтерв'ю — це не розмова, це структурований збір даних.</p>
+        
+        <div class="concept-card">
+            <strong>Головна пастка: Навідні питання (Leading Questions).</strong>
+            <p>Якщо ви запитаєте: "Чи зручно вам користуватися нашим кошиком?", ви вже підштовхуєте людину до відповіді "Так". Ви отримаєте упереджені дані.</p>
+            <p><strong>Замість цього питайте:</strong> "Розкажіть про свій останній досвід покупки онлайн. Що було найскладнішим у цьому процесі?"</p>
+        </div>
+
+        <h3 id="2.2">2.2. Методи дослідження в Generative Phase</h3>
+        
+        <h4 style="color: var(--primary);">A. Contextual Inquiry (Контекстне дослідження)</h4>
+        <p>Ви не просто питаєте користувача, ви спостерігаєте за ним у його природному середовищі. Наприклад, якщо ви проектуєте застосунок для кур'єрів, ви повинні поїхати з ними на доставку. Ви побачите, що їм незручно натискати на маленькі кнопки, коли вони в рукавичках або на ходу.</p>
+
+        <h4 style="color: var(--primary);">B. Card Sorting (Сортування карток)</h4>
+        <p>Цей метод використовується для побудови <strong>Information Architecture (IA)</strong>. Ви даєте користувачам набори термінів (назви функцій, категорій) і просите згрупувати їх так, як це здається логічним їм.</p>
+        <ul>
+            <li><strong>Open Card Sorting:</strong> Користувачі самі придумують назви для груп. (Допомагає зрозуміти ментальну модель).</li>
+            <li><strong>Closed Card Sorting:</strong> Користувачі розкладають картки по вже існуючих категоріях. (Допомагає перевірити існуючу структуру).</li>
+        </ul>
+
+        <h3 id="2.3">2.3. Синтез даних: Від хаосу до інсайтів</h3>
+        <p>Після 10 інтерв'ю у вас буде 10 годин записів і сотні нотаток. Senior-дизайнер не просто переказує їх, він проводить <strong>Affinity Diagramming (Афінітне картографування)</strong>.</p>
+        
+        <div class="example">
+            <strong>Процес синтезу:</strong>
+            <ol>
+                <li><strong>Екстракція:</strong> Випишіть кожну окрему думку, проблему або цитату на окрему картку (в Miro або FigJam).</li>
+                <li><strong>Групування:</strong> Починайте збирати схожі картки в кластери (наприклад, кластер "проблеми з оплатою", кластер "страх втратити дані").</li>
+                <li><strong>Формулювання інсайтів:</strong> Кожен кластер має перетворитися на твердження. Не просто "проблема з оплатою", а "користувачі відчувають тривогу, бо не бачать підтвердження успішної транзакції".</li>
+            </ol>
+        </div>
+
+        <h3 id="2.4">2.4. Результати етапу (Deliverables)</h3>
+        <p>Результатом цього розділу не є макет. Результатом є:</p>
+        <ul>
+            <li><strong>User Personas:</strong> Не вигадані персонажі, а портрети реальних людей з їхніми цілями, мотиваціями та бар'єрами.</li>
+            <li><strong>Customer Journey Map (CJM):</strong> Візуальна карта шляху користувача, де позначені емоційні піки та "провали" (pain points).</li>
+            <li><strong>Problem Statements:</strong> Чіткі формулювання проблем, які ми будемо вирішувати в наступних ітераціях.</li>
+        </ul>
+
+        <div class="pro-tip">
+            <strong>Pro-Tip для Senior:</strong> Дослідження — це завжди обмежений ресурс (час і гроші). Ваша задача — вміти сказати: "Нам не потрібні 20 інтерв'ю, 5 якісних інтерв'ю з правильними респондентами дадуть нам 80% необхідної інформації". Це демонструє вашу зрілість як управлінця процесом.
+        </div>
+    </article>
+
+    <article id="ch3">
+        <h2 id="ch3">Розділот 3: Evaluative Research — Перевірка гіпотез</h2>
+        
+        <p>На цьому етапі у вас вже є щось, що можна протестувати: низькодеталізований варфрейм, інтерактивний прототип у Figma або навіть готовий функціонал. Мета Evaluative Research — знайти розрив між вашим <strong class="accent">дизайнерським задумом</strong> та <strong class="accent">реальною поведінкою</strong> користувача.</p>
+
+        <h3 id="3.1">3.1. Два основні шляхи: Модероване vs Немодероване</h3>
+        <p>Вибір методу залежить від вашого бюджету, часу та того, на якому етапі знаходиться продукт.</p>
+        
+        <div class="concept-card">
+            <h4 style="margin-top:0;">1. Moderated Testing (Модероване)</h4>
+            <p>Ви (або дослідник) присутні під час тесту. Ви можете ставити уточнювальні питання, спостерігати за мімікою та реагувати на завади.</p>
+            <ul>
+                <li><strong>Плюси:</strong> Глибокі інсайти, можливість "копати" вглиб, виявлення причин помилок.</li>
+                <li><strong>Мінуси:</strong> Дорого, довго, високий ризик вплинути на результат (bias).</li>
+                <li><strong>Коли використовувати:</strong> На етапі прототипів (Low/Mid Fidelity) для розуміння логіки.</li>
+            </ul>
+        </div>
+
+        <div class="concept-card">
+            <h4 style="margin-top:0;">2. Unmoderated Testing (Немодероване)</h4>
+            <p>Користувач виконує завдання самостійно через спеціальні платформи (Maze, Useberry, UserTesting). Ви лише отримуєте записаний результат.</p>
+            <ul>
+                <li><strong>Плюси:</strong> Швидко, дешево, велика вибірка (Quantitative data), об'єктивність.</li>
+                <li><strong>Мінуси:</strong> Ви не знаєте "чому" сталася помилка, не можете поставити уточнювальне питання.</li>
+                <li><strong>Коли використовувати:</strong> На етапі High Fidelity або готового продукту для збору статистики.</li>
+            </em>
+            </ul>
+        </div>
+
+        <h3 id="3.2">3.2. Heuristic Evaluation (Експертний аудит)</h3>
+        <p>Це метод, де роль "користувача" виконуєте <strong>ви</strong> або інші дизайнери. Ви перевіряєте інтерфейс на відповідність встановленим принципам (наприклад, 10 евристикам Якоба Нільсена).</p>
+        
+        <div class="example">
+            <strong>Приклад евристики:</strong> 
+            "Зв'язок між системою та реальним світом". 
+            Якщо в застосунку для доставки їжі замість "Кошик" написано "Сховище ресурсів", це порушення евристики. Користувач має розуміти інтерфейс без додаткових зусиль.
+        </div>
+        <p><em>Senior-порада:</em> Не використовуйте аудит як єдиний метод. Це лише перший рівень фільтрації помилок перед тим, як витрачати бюджет на реальних людей.</p>
+
+        <h3 id="3.3">3.3. Дизайн сценарію: Як не зіпсувати тест</h3>
+        <p>Найбільша помилка — давати прямі інструкції. Тестування — це не навчання користувача вашому застосунку.</p>
+        
+        <table style="width:100%; border-collapse: collapse; margin: 20px 0;">
+            <tr style="background: var(--primary); color: white;">
+                <th style="padding: 10px; border: 1px solid #ddd;">Погано (Інструкція)</th>
+                <th style="padding: 10px; border: 1px solid #ddd;">Добре (Сценарій/Завдання)</th>
+            </tr>
+            <tr>
+                <td style="padding: 10px; border: 1px solid #ddd;">"Натисніть на іконку профілю, потім оберіть налаштування та змініть пароль."</td>
+                <td style="padding: 10px; border: 1px solid #ddd;">"Уявіть, що ви хочете зробити свій акаунт більш безпечним. Знайдіть, де це можна зробити."</td>
+            </tr>
+            <tr style="background: #f9f9f9;">
+                <td style="padding: 10px; border: 1px solid #ddd;">"Подивіться, чи помітна ця кнопка оплати."</td>
+                <td style="padding: 10px; border: 1px solid #ddd;">"Ви готові зробити покупку. Пройдіть процес до моменту підтвердження оплати."</td>
+            </tr>
+        </table>
+
+        <h3 id="3.4">3.4. Think Aloud Protocol (Метод відкритого роздуму)</h3>
+        <p>Це золотий стандарт. Ви просите користувача озвучувати все, що він думає, відчуває та бачить у процесі. </p>
+        <p><strong>Що це дає:</strong> Ви чуєте внутрішній монолог користувача. Коли він каже: "Так, я натиснув сюди, сподіваюся, зараз відкриється меню...", — ви розумієте його очікування (Mental Model), які можуть не збігатися з вашим дизайном.</p>
+
+        <div class="pro-tip">
+            <strong style="font-size: 1.2rem;">Senior Deliverable:</strong> 
+            Результатом розділу 3 має бути не просто "користувачам сподобалося", а <strong>Usability Report</strong>. 
+            Він має містити:
+            <ol>
+                <li>Перелік виявлених проблем (Issues).</li>
+                <li>Рівень критичності кожної проблеми (Critical, Major, Minor).</li>
+                <li>Рекомендації щодо виправлення (Design Recommendations).</li>
+            </ol>
+        </div>
+    </article>
+
+    <article id="ch4">
+        <h2 id="ch4">Розділ 4: Метрики та Дані — Мова бізнесу</h2>
+        
+        <p>Найбільша помилка дизайнера — вважати, що метрики — це тільки для продукт-менеджерів чи аналітиків. <strong class="accent">Метрики — це інструмент вашої аргументації.</strong> Без цифр ваші найкращі UX-рішення — це лише ваша особиста думка.</p>
+
+        <h3 id="4.1">4.1. Google HEART Framework: Як вимірявати досвід</h3>
+        <p>Як зрозуміти, чи став продукт кращим? Google розробила фреймке <strong>HEART</strong>, щоб структурувати вимірювання досвіду користувача через конкретні метрики:</p>
+        
+        <div class="concept-card">
+            <ul style="list-style: none; padding: 0;">
+                <li><strong style="color: var(--secondary);">H (Happiness) — Щастя:</strong> Суб'єктивне задоволення. <br><em>Метрики:</em> CSAT (Customer Satisfaction Score), NPS (Net Promoter Score), опитування після взаємодії.</li>
+                <br>
+                <li><strong style="color: var(--secondary);">E (Engagement) — Залученість:</strong> Наскільки активно люди використовують функцію. <br><em>Метрики:</em> Кількість подій на користувача, частота запусків застосунку.</li>
+                <br>
+                <li><strong style="color: var(--secondary);">A (Adoption) — Освоєння:</strong> Скільки нових користувачів почали користуватися новою фічею. <br><em>Метрики:</em> Відсоток користувачів, що перейшли з "не знають" у "використовують".</li>
+                <br>
+                <li><strong style="color: var(--secondary);">R (Retention) — Утримання:</strong> Чи повертаються користувачі. <br><em>Метрики:</strong> Churn Rate (відсоток відтоку), Retention Rate (відсоток повернення).</li>
+                <br>
+                <li><strong style="color: var(--secondary);">T (Task Success) — Успішність завдань:</strong> Чи можуть вони робити те, що потрібно. <br><em>Метрики:</em> Completion Rate (відсоток успішних завершень), Error Rate (кількість помилок).</li>
+            </ul>
+        </div>
+
+        <h3 id="4.2">4.2. Micro-level Metrics: Юзабіліті-метрики</h3>
+        <p>Це те, що ви вимірюєте під час <strong>Evaluative Research</strong> (тестування прототипів). Ці метрики показують "摩擦" (friction) — те, що заважає користувачу.</p>
+        
+        <div class="example">
+            <ul style="list-style: none; padding: 0;">
+                <li><strong>1. Task Success Rate (TSR):</strong> Відсоток користувачів, які успішно завершили сценарій. (Це база).</li>
+                <br>
+                <li><strong>2. Time on Task:</strong> Скільки секунд/хвилин витрачено на дію. <br><em>Senior Insight:</em> Для складних форм менше часу — це добре. Для навчальних екранів менше часу — це погано (це означає, що людина не прочитала інструкцію).</li>
+                <br>
+                <li><strong></em>3. Error Rate:</strong> Скільки разів користувач натиснув не ту кнопку або ввів невірні дані.</li>
+                <br>
+                <li><strong>4. SUS (System Usability Scale):</strong> Швидкий опитувальник з 10 питань. Він дає одну цифру (від 0 до 100), яка описує загальну зручність системи. Скор вище 68 вважається прийнятним.</li>
+            </ul>
+        </div>
+
+        <h3 id="4.3">4.3. Macro-level Metrics: Бізнес-метрики</h3>
+        <p>Це метрики, які дивляться стейкхолдери. Ваша задача — пов'язати UX-покращення з цими показниками.</p>
+        
+        <table style="width:100%; border-collapse: collapse; margin: 20px 0;">
+            <thead style="background: var(--primary); color: white;">
+                <tr>
+                    <th style="padding: 12px; border: 1px solid #ddd;">Бізнес-метрика</th>
+                    <th style="padding: 12px; border: 1px solid #ddd;">Що вона означає</th>
+                    <th style="padding: 12px; border: 1px solid #ddd;">Як UX на неї впливає</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="padding: 12px; border: 1px solid #ddd;"><strong>Conversion Rate (CR)</strong></td>
+                    <td style="padding: 12px; border: 1px solid #ddd;">Відсоток людей, що зробили покупку/реєстрацію.</td>
+                    <td style="padding: 12px; border: 1px solid #ddd;">Прибиття перешкод у Checkout флоу.</td>
+                </tr>
+                <tr style="background: #f9f9f9;">
+                    <td style="padding: 12px; border: 1px solid #ddd;"><strong>Churn Rate</strong></td>
+                    <td style="padding: 12px; border: 1px solid #ddd;">Відсоток користувачів, що пішли з продукту.</td>
+                    <td style="padding: 12px; border: 1px solid #ddd;">Покращення Retention через зрозумілі Onboarding-процеси.</td>
+                </tr>
+                <tr>
+                    <td style="padding: 12px; border: 1px solid #ddd;"><strong>Bounce Rate</strong></td>
+                    <td style="padding: 12px; border: 1px solid #ddd;">Відсоток відвідувачів, що пішли з першої сторінки.</td>
+                    <td style="padding: 12px; border: 1px solid #ddd;">Покращення релевантності контенту та візуальної ієрархії.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3 id="4.4">4.4. A/B Тестування: Дизайн як експеримент</h3>
+        <p>Вершина кількісного дослідження. Ви створюєте дві версії сторінки (A — контроль, B — варіант з вашим дизайном) і направляєте на них трафік.</p>
+        
+        <div class="pro-tip">
+            <strong style="font-size: 1.2rem;">Senior Rule: Statistical Significance (Статистична значущість).</strong>
+            Ніколи не кажіть "Версія B краща", якщо ви не перевірили <em>p-value</em>. Якщо у вас було лише 10 користувачів, різниця в 2 покупки — це випадковість, а не результат вашого дизайну. Senior завжди чекає на достатню вибірку, щоб результат був математично доведеним.
+        </div>
+
+        <h3 id="4.5">4.6. Data Triangulation (Тріангуляція)</h3>
+        <p>Найвищий рівень майстерності — це поєднання всього вищесказаного. 
+        <br><em>Приклад:</em> 
+        1. <strong>Quant (Analytics):</strong> Бачимо, що Conversion Rate впав. 
+        <br>2. <strong>Quant (Unmoderated Test):</strong> Бачимо, що люди часто помиляються в полі "Індекс". 
+        <br>3. <strong>Qual (Interview):</strong> Розуміємо, що вони не знають, що формат має бути 5 цифр. 
+        <br><strong>Результат:</strong> Ми виправляємо маску поля, і конверсія зростає.</p>
+    </article>
+
+    <article id="ch5">
+        <h2 id="ch5">Розділ 5: Senior Level — Стратегія та Лідерство</h2>
+        
+        <p>Рівень Senior визначається не кількістю знань про інструменти, а вашою здатністю інтегрувати дизайн у бізнес-процеси компанії. Ваша мета — зробити дизайн не просто "гарним", а "стратегічно важливим".</p>
+
+        <h3 id="5.1">5.1. Continuous Discovery: Дизайн як безперервний процес</h3>
+        <p>Багато компаній роблять помилку "Big Bang Research": проводять одне велике дослідження раз на рік. Senior-дизайнер впроваджує <strong class="accent">Continuous Discovery</strong> (підхід Терези Торрес).</p>
+        
+        <div class="concept-card">
+            <p><strong>Суть:</strong> Замість того, щоб чекати на велике дослідження, ви створюєте петлю (loop) щотижневих мікро-досліджень. Ви щотижня спілкуєтесь з 1-2 клієнтами та перевіряєте маленькі гіпотези.</p>
+            <p><strong>Інструмент:</strong> <em style="color: var(--primary);">Opportunity Solution Tree</em>. Це дерево, де корінь — ваша бізнес-ціль, гілки — можливості (проблеми користувачів), а листя — ваші дизайнерські рішення.</p>
+        </div>
+
+        <h3 id="5.2">5.2. Stakeholder Management: Мистецтво переконання</h3>
+        <p>Ваш головний суперник — не поганий дизайн, а недовіра стейкхолдерів (CEO, PM, CTO). Senior-дизайнер знає, як говорити з кожним.</p>
+        
+        <div class="example">
+            <ul style="list-style: none; padding: 0;">
+                <li style="margin-bottom: 15px;"><strong style="color: var(--primary);">Для CEO:</strong> Говоріть про ризики, прибуток, частку ринку та утримання клієнтів. (<em>"Цей флоу зменшить відтік клієнтів на 5%"</em>).</li>
+                <li style="margin-bottom: 15px;"><strong style="color: var(--primary);">Для Product Manager:</strong> Говоріть про пріоритети, швидкість розробки та досягнення KPI. (<em>"Ця зміна дозволить нам швидше вийти на ринок, бо ми використовуємо готові компоненти"</em>).</li>
+                <li style="margin-bottom: 15px;"><strong style="color: var(--primary);">Для Developers:</strong> Говоріть про складність реалізації, стани системи (edge cases) та технічну можливість. (<em>"Я продумав стани помилки та порожні сторінки, щоб це було легше розробляти"</em>).</li>
+            </ul>
+        </div>
+
+        <h3 id="5.3">5.3. Design Maturity: Розвиток культури дизайну</h3>
+        <p>Senior-дизайнер працює над підвищенням <strong class="accent">Design Maturity</strong> (зрілості дизайну) у компанії. Це шлях від:</p>
+        <ol>
+            <li><strong>Design as a Service:</strong> Ви — "малювальник", який чекає на вказівки.</li>
+            <li><strong>Design as a Part of Process:</strong> Ви берете участь у плануванні спринтів.</li>
+            <li><strong>Design as a Strategic Driver:</strong> Ви приносите ідеї, які змінюють вектор розвитку продукту.</li>
+        </ol>
+
+        <h3 id="5.4">5.4. Етика та Доступність (Accessibility & Ethics)</h3>
+        <p>Високий рівень професіоналізму включає відповідальність за те, що ви створюєте.</p>
+        
+        <div class="concept-card">
+            <ul style="list-style: none; padding: 0;">
+                <li style="margin-bottom: 10px;"><strong>Accessibility (a11y):</strong> Ви не просто знаєте про контрастність, ви впроваджуєте стандарти <strong class="accent">WCAG</strong> у дизайн-систему компанії. Ви дбаєте про людей з порушеннями зору, моторики чи когнітивних функцій.</li>
+                <br>
+                <li><strong>Ethical Design:</strong> Ви виступаєте голосом користувача проти "темних патернів" (dark patterns), які маніпулюють вибором людини заради короткострокового прибутку.</li>
+            </ul>
+        </div>
+
+        <div style="background: #f4f4f4; padding: 20px; border-left: 5px solid #333; font-syle: italic;">
+            <em>"Дизайн — це не те, як предмет виглядає, а те, як він працює." — Стів Джобс.</em>
+        </div>
+    </div>
+    <div style="margin-top: 30px; text-align: center; color: #888; font-size: 0.8em;">
+        Кінець курсу. Бажаємо успіхів у проектах!
+    </div>
+
+
+    <!-- Сюди ми будемо додавати наступні розділи -->
+
+</div>
+
+</body>
+</html>

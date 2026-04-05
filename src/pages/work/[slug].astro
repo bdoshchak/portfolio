@@ -265,6 +265,14 @@ const outcomeCounter = `[0${++_idx}]`;
         <h2 class="section-title">Outcome</h2>
       </header>
       <p class="cs-body-text cs-body-lead cs-outcome">{outcomes}</p>
+      {project.slug === 'portfolio-site' && (
+        <p class="cs-outcome-link">
+          <a href={b + '/work/portfolio/design-system.html'} target="_blank" rel="noopener noreferrer" class="cs-ds-link">
+            View the Design System documentation ↗
+          </a>
+          <span class="cs-ds-link-desc">Full token reference, type scale, spacing, components, and form elements – generated as part of this project.</span>
+        </p>
+      )}
     </div>
   </section>
 
@@ -996,6 +1004,34 @@ const outcomeCounter = `[0${++_idx}]`;
      ================================================ */
   .cs-outcome {
     max-width: 72ch;
+  }
+
+  .cs-outcome-link {
+    margin-top: var(--sp-8);
+  }
+
+  .cs-ds-link {
+    font-family: var(--font-display);
+    font-weight: var(--fw-extrabold);
+    font-size: var(--fs-label);
+    letter-spacing: var(--ls-widest);
+    text-transform: uppercase;
+    color: var(--accent-text);
+    border-bottom: 1px solid var(--accent-text);
+    padding-bottom: 2px;
+    transition: color var(--dur-fast) var(--ease), border-color var(--dur-fast) var(--ease);
+  }
+
+  .cs-ds-link:hover {
+    color: var(--text-primary);
+    border-color: var(--text-primary);
+  }
+
+  .cs-ds-link-desc {
+    display: block;
+    margin-top: var(--sp-2);
+    font-size: var(--fs-caption);
+    color: var(--text-muted);
   }
 
   /* ================================================

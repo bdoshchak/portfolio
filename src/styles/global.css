@@ -21,6 +21,11 @@
   /* Blue: sRGB fallback → upgrade via @supports */
   --color-blue:     #1D4ED8;
   --color-blue-dim: #4B8BFF;
+
+  /* Status */
+  --color-success:  oklch(72% 0.19 145);
+  --color-warning:  oklch(78% 0.16 75);
+  --color-error:    oklch(65% 0.25 25);
 }
 
 @supports (color: oklch(55% 0.28 264)) {

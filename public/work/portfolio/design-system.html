@@ -1,0 +1,2490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Design System — Bohdan Doshchak Portfolio</title>
+  <link rel="icon" type="image/svg+xml" href="/portfolio/favicon.svg" />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@800;900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet" />
+  <style>
+    /* ============================================================
+       DESIGN SYSTEM DOC — Self-contained styles
+       ============================================================ */
+    :root {
+      --doc-bg: #0a0a0a;
+      --doc-surface: #141414;
+      --doc-surface-2: #1a1a1a;
+      --doc-border: #2a2a2a;
+      --doc-text: #fafafa;
+      --doc-text-muted: #8a8a8a;
+      --doc-accent: #4B8BFF;
+      --doc-success: oklch(72% 0.19 145);
+      --doc-warning: oklch(78% 0.16 75);
+      --doc-error: oklch(65% 0.25 25);
+      --doc-mono: 'JetBrains Mono', monospace;
+      --doc-body: 'Inter', sans-serif;
+      --doc-display: 'Barlow', sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+
+    body {
+      font-family: var(--doc-body);
+      font-size: 15px;
+      line-height: 1.6;
+      color: var(--doc-text);
+      background: var(--doc-bg);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* --- NAV --- */
+    .doc-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 260px;
+      height: 100vh;
+      overflow-y: auto;
+      background: var(--doc-surface);
+      border-right: 1px solid var(--doc-border);
+      padding: 32px 24px;
+      z-index: 100;
+    }
+
+    .doc-nav-logo {
+      font-family: var(--doc-display);
+      font-weight: 900;
+      font-size: 14px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--doc-text);
+      margin-bottom: 8px;
+    }
+
+    .doc-nav-sub {
+      font-size: 11px;
+      color: var(--doc-text-muted);
+      letter-spacing: 0.05em;
+      margin-bottom: 32px;
+    }
+
+    .doc-nav-group {
+      margin-bottom: 24px;
+    }
+
+    .doc-nav-group-title {
+      font-family: var(--doc-display);
+      font-weight: 800;
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--doc-text-muted);
+      margin-bottom: 8px;
+    }
+
+    .doc-nav-link {
+      display: block;
+      color: var(--doc-text-muted);
+      text-decoration: none;
+      font-size: 13px;
+      padding: 4px 0;
+      transition: color 150ms;
+    }
+
+    .doc-nav-link:hover,
+    .doc-nav-link.is-active {
+      color: var(--doc-text);
+    }
+
+    /* --- MAIN --- */
+    .doc-main {
+      margin-left: 260px;
+      max-width: 960px;
+      padding: 48px 48px 120px;
+    }
+
+    /* --- SECTIONS --- */
+    .doc-section {
+      margin-bottom: 80px;
+    }
+
+    .doc-section-title {
+      font-family: var(--doc-display);
+      font-weight: 900;
+      font-size: 32px;
+      letter-spacing: -0.02em;
+      margin-bottom: 8px;
+      color: var(--doc-text);
+    }
+
+    .doc-section-desc {
+      color: var(--doc-text-muted);
+      font-size: 15px;
+      margin-bottom: 32px;
+      max-width: 60ch;
+    }
+
+    .doc-subsection {
+      margin-bottom: 48px;
+    }
+
+    .doc-subsection-title {
+      font-family: var(--doc-display);
+      font-weight: 800;
+      font-size: 18px;
+      margin-bottom: 16px;
+      color: var(--doc-text);
+    }
+
+    .doc-label {
+      font-family: var(--doc-display);
+      font-weight: 800;
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--doc-text-muted);
+      margin-bottom: 12px;
+    }
+
+    /* --- TABLES --- */
+    .doc-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+      margin-bottom: 24px;
+    }
+
+    .doc-table th {
+      text-align: left;
+      font-family: var(--doc-display);
+      font-weight: 800;
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--doc-text-muted);
+      padding: 8px 12px;
+      border-bottom: 1px solid var(--doc-border);
+    }
+
+    .doc-table td {
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--doc-border);
+      vertical-align: middle;
+    }
+
+    .doc-table tr:last-child td { border-bottom: none; }
+
+    .doc-table code {
+      font-family: var(--doc-mono);
+      font-size: 12px;
+      color: var(--doc-accent);
+      background: rgba(75, 139, 255, 0.1);
+      padding: 2px 6px;
+      border-radius: 3px;
+    }
+
+    /* --- COLOR SWATCHES --- */
+    .swatch-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 12px;
+      margin-bottom: 32px;
+    }
+
+    .swatch {
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid var(--doc-border);
+    }
+
+    .swatch-color {
+      height: 72px;
+      position: relative;
+    }
+
+    .swatch-color::after {
+      content: attr(data-contrast);
+      position: absolute;
+      bottom: 6px;
+      right: 8px;
+      font-family: var(--doc-mono);
+      font-size: 10px;
+      color: rgba(255,255,255,0.6);
+    }
+
+    .swatch-info {
+      padding: 10px 12px;
+      background: var(--doc-surface);
+    }
+
+    .swatch-name {
+      font-size: 12px;
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
+
+    .swatch-value {
+      font-family: var(--doc-mono);
+      font-size: 11px;
+      color: var(--doc-text-muted);
+    }
+
+    /* --- SPACING SCALE --- */
+    .spacing-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 8px;
+    }
+
+    .spacing-label {
+      font-family: var(--doc-mono);
+      font-size: 12px;
+      color: var(--doc-accent);
+      width: 60px;
+      flex-shrink: 0;
+    }
+
+    .spacing-bar {
+      height: 24px;
+      background: var(--doc-accent);
+      border-radius: 4px;
+      opacity: 0.3;
+      transition: opacity 150ms;
+    }
+
+    .spacing-bar:hover { opacity: 0.6; }
+
+    .spacing-px {
+      font-family: var(--doc-mono);
+      font-size: 11px;
+      color: var(--doc-text-muted);
+      width: 50px;
+      flex-shrink: 0;
+      text-align: right;
+    }
+
+    /* --- TYPE SPECIMENS --- */
+    .type-specimen {
+      margin-bottom: 32px;
+      padding: 24px;
+      background: var(--doc-surface);
+      border: 1px solid var(--doc-border);
+      border-radius: 8px;
+    }
+
+    .type-specimen-meta {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 12px;
+      flex-wrap: wrap;
+    }
+
+    .type-specimen-tag {
+      font-family: var(--doc-mono);
+      font-size: 11px;
+      color: var(--doc-accent);
+      background: rgba(75, 139, 255, 0.1);
+      padding: 3px 8px;
+      border-radius: 3px;
+    }
+
+    .type-specimen-sample {
+      color: var(--doc-text);
+      word-break: break-word;
+    }
+
+    /* --- COMPONENT EXAMPLES --- */
+    .example-box {
+      padding: 32px;
+      background: var(--doc-surface);
+      border: 1px solid var(--doc-border);
+      border-radius: 8px;
+      margin-bottom: 16px;
+    }
+
+    .example-box--light {
+      background: #fafafa;
+      color: #141414;
+    }
+
+    .example-box--dark {
+      background: #141414;
+    }
+
+    .example-code {
+      font-family: var(--doc-mono);
+      font-size: 12px;
+      color: var(--doc-text-muted);
+      background: var(--doc-surface-2);
+      border: 1px solid var(--doc-border);
+      border-radius: 6px;
+      padding: 16px;
+      overflow-x: auto;
+      margin-bottom: 24px;
+      white-space: pre;
+      line-height: 1.7;
+    }
+
+    /* --- GRID DEMO --- */
+    .grid-demo {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .grid-demo-col {
+      height: 48px;
+      background: rgba(75, 139, 255, 0.15);
+      border: 1px solid rgba(75, 139, 255, 0.3);
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--doc-mono);
+      font-size: 11px;
+      color: var(--doc-accent);
+    }
+
+    /* --- SEMANTIC MAP --- */
+    .semantic-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+
+    .semantic-card {
+      border: 1px solid var(--doc-border);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .semantic-card-header {
+      font-family: var(--doc-display);
+      font-weight: 800;
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--doc-border);
+      color: var(--doc-text-muted);
+    }
+
+    .semantic-card-body {
+      padding: 20px 16px;
+    }
+
+    .semantic-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 10px;
+      font-size: 13px;
+    }
+
+    .semantic-row:last-child { margin-bottom: 0; }
+
+    .semantic-dot {
+      width: 20px;
+      height: 20px;
+      border-radius: 4px;
+      flex-shrink: 0;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .semantic-token {
+      font-family: var(--doc-mono);
+      font-size: 12px;
+      color: var(--doc-accent);
+    }
+
+    .semantic-arrow {
+      color: var(--doc-text-muted);
+      font-size: 11px;
+    }
+
+    .semantic-ref {
+      font-family: var(--doc-mono);
+      font-size: 11px;
+      color: var(--doc-text-muted);
+    }
+
+    /* --- MOTION --- */
+    .motion-demo {
+      display: flex;
+      gap: 24px;
+      margin-bottom: 24px;
+    }
+
+    .motion-card {
+      flex: 1;
+      padding: 20px;
+      background: var(--doc-surface);
+      border: 1px solid var(--doc-border);
+      border-radius: 8px;
+      text-align: center;
+    }
+
+    .motion-card-label {
+      font-family: var(--doc-mono);
+      font-size: 12px;
+      color: var(--doc-accent);
+      margin-bottom: 8px;
+    }
+
+    .motion-card-value {
+      font-size: 24px;
+      font-weight: 900;
+      font-family: var(--doc-display);
+      margin-bottom: 4px;
+    }
+
+    .motion-card-desc {
+      font-size: 12px;
+      color: var(--doc-text-muted);
+    }
+
+    .motion-bar-track {
+      height: 4px;
+      background: var(--doc-border);
+      border-radius: 2px;
+      margin-top: 16px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .motion-bar-fill {
+      position: absolute;
+      left: 0; top: 0;
+      height: 100%;
+      width: 0;
+      background: var(--doc-accent);
+      border-radius: 2px;
+      animation: motionFill 2s infinite;
+    }
+
+    .motion-card:nth-child(1) .motion-bar-fill { animation-duration: 0.12s; animation-timing-function: cubic-bezier(0.4,0,0.2,1); }
+    .motion-card:nth-child(2) .motion-bar-fill { animation-duration: 0.22s; animation-timing-function: cubic-bezier(0.4,0,0.2,1); }
+    .motion-card:nth-child(3) .motion-bar-fill { animation-duration: 0.4s; animation-timing-function: cubic-bezier(0,0,0.2,1); }
+
+    @keyframes motionFill {
+      0% { width: 0; }
+      50% { width: 100%; }
+      100% { width: 0; }
+    }
+
+    /* --- FOCUS EXAMPLE --- */
+    .focus-demo {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .focus-demo-btn {
+      padding: 10px 24px;
+      font-family: var(--doc-display);
+      font-weight: 800;
+      font-size: 12px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      border: none;
+      background: transparent;
+      color: var(--doc-accent);
+      border-bottom: 1px solid var(--doc-accent);
+      cursor: pointer;
+      transition: color 150ms, border-color 150ms;
+    }
+
+    .focus-demo-btn:hover {
+      color: var(--doc-text);
+      border-color: var(--doc-text);
+    }
+
+    .focus-demo-btn--light {
+      color: oklch(55% 0.28 264);
+      border-color: oklch(55% 0.28 264);
+    }
+
+    .focus-demo-btn--light:hover {
+      color: #141414;
+      border-color: #141414;
+    }
+
+    .focus-demo-btn:focus-visible {
+      outline: 2px solid var(--doc-accent);
+      outline-offset: 3px;
+    }
+
+    /* --- COMPONENT PREVIEWS --- */
+    .comp-label-example {
+      font-family: var(--doc-display);
+      font-weight: 800;
+      font-size: 12px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--doc-text-muted);
+    }
+
+    .comp-section-header {
+      margin-bottom: 0;
+    }
+
+    .comp-counter {
+      font-family: var(--doc-display);
+      font-weight: 800;
+      font-size: 12px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--doc-text-muted);
+      margin-bottom: 12px;
+    }
+
+    .comp-h2 {
+      font-family: var(--doc-display);
+      font-weight: 900;
+      font-size: 36px;
+      letter-spacing: -0.03em;
+      line-height: 1.05;
+    }
+
+    .comp-signal {
+      display: flex;
+      gap: 48px;
+    }
+
+    .comp-signal-item {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .comp-signal-number {
+      font-family: var(--doc-display);
+      font-weight: 900;
+      font-size: 48px;
+      line-height: 1;
+      color: var(--doc-text);
+    }
+
+    .comp-signal-label {
+      font-size: 14px;
+      color: #a3a3a3;
+      max-width: 18ch;
+      line-height: 1.25;
+    }
+
+    .comp-info-bar {
+      display: flex;
+      gap: 48px;
+      padding: 16px 0;
+      border-top: 1px solid var(--doc-border);
+      border-bottom: 1px solid var(--doc-border);
+    }
+
+    .comp-info-item-label {
+      font-family: var(--doc-display);
+      font-weight: 800;
+      font-size: 12px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--doc-text-muted);
+      margin-bottom: 4px;
+    }
+
+    .comp-info-item-value {
+      font-size: 15px;
+      color: var(--doc-text);
+    }
+
+    .comp-tag {
+      display: inline-block;
+      font-size: 12px;
+      padding: 4px 12px;
+      border: 1px solid var(--doc-border);
+      border-radius: 100px;
+      color: var(--doc-text-muted);
+      margin-right: 6px;
+      margin-bottom: 6px;
+    }
+
+    /* --- BUTTONS --- */
+    .ds-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-family: var(--doc-display);
+      font-weight: 800;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      border: none;
+      cursor: pointer;
+      transition: background 120ms, color 120ms, border-color 120ms, box-shadow 120ms;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .ds-btn:focus-visible {
+      outline: 2px solid var(--doc-accent);
+      outline-offset: 3px;
+    }
+
+    /* Sizes */
+    .ds-btn--sm {
+      font-size: 11px;
+      padding: 8px 16px;
+      letter-spacing: 0.12em;
+    }
+
+    .ds-btn--md {
+      font-size: 12px;
+      padding: 16px 32px;
+    }
+
+    .ds-btn--lg {
+      font-size: 14px;
+      padding: 20px 48px;
+      letter-spacing: 0.12em;
+    }
+
+    /* Primary */
+    .ds-btn--primary {
+      background: oklch(55% 0.28 264);
+      color: #fff;
+    }
+
+    .ds-btn--primary:hover {
+      background: oklch(68% 0.25 264);
+    }
+
+    .ds-btn--primary:active {
+      background: oklch(48% 0.28 264);
+    }
+
+    .ds-btn--primary:disabled {
+      background: oklch(30% 0.08 264);
+      color: oklch(55% 0 0);
+      cursor: not-allowed;
+    }
+
+    /* Secondary */
+    .ds-btn--secondary {
+      background: transparent;
+      color: #fafafa;
+      border: 1px solid oklch(45% 0 0);
+    }
+
+    .ds-btn--secondary:hover {
+      background: oklch(18% 0 0);
+      border-color: oklch(60% 0 0);
+    }
+
+    .ds-btn--secondary:active {
+      background: oklch(14% 0 0);
+    }
+
+    .ds-btn--secondary:disabled {
+      color: oklch(40% 0 0);
+      border-color: oklch(25% 0 0);
+      cursor: not-allowed;
+    }
+
+    /* Ghost */
+    .ds-btn--ghost {
+      background: transparent;
+      color: oklch(68% 0.25 264);
+      border: none;
+    }
+
+    .ds-btn--ghost:hover {
+      background: rgba(75, 139, 255, 0.1);
+    }
+
+    .ds-btn--ghost:active {
+      background: rgba(75, 139, 255, 0.18);
+    }
+
+    /* Light-mode variants */
+    .ds-btn--primary-light {
+      background: oklch(55% 0.28 264);
+      color: #fff;
+    }
+
+    .ds-btn--primary-light:hover {
+      background: oklch(48% 0.28 264);
+    }
+
+    .ds-btn--secondary-light {
+      background: transparent;
+      color: #141414;
+      border: 1px solid oklch(80% 0 0);
+    }
+
+    .ds-btn--secondary-light:hover {
+      background: oklch(96% 0 0);
+      border-color: oklch(60% 0 0);
+    }
+
+    .ds-btn--ghost-light {
+      background: transparent;
+      color: oklch(55% 0.28 264);
+      border: none;
+    }
+
+    .ds-btn--ghost-light:hover {
+      background: rgba(29, 78, 216, 0.08);
+    }
+
+    .ds-btn--primary-light:disabled {
+      background: oklch(80% 0.06 264);
+      color: rgba(255,255,255,0.6);
+      cursor: not-allowed;
+    }
+
+    .ds-btn--secondary-light:disabled {
+      color: oklch(75% 0 0);
+      border-color: oklch(88% 0 0);
+      cursor: not-allowed;
+    }
+
+    .ds-btn--ghost-light:disabled {
+      color: oklch(75% 0 0);
+      cursor: not-allowed;
+    }
+
+    /* Button row helper */
+    .btn-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+    }
+
+    .btn-row-label {
+      font-family: var(--doc-mono);
+      font-size: 11px;
+      color: var(--doc-text-muted);
+      width: 80px;
+      flex-shrink: 0;
+    }
+
+    /* --- FORM ELEMENTS --- */
+    .ds-form-group {
+      margin-bottom: 24px;
+    }
+
+    .ds-form-label {
+      display: block;
+      font-family: var(--doc-display);
+      font-weight: 800;
+      font-size: 12px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .ds-form-hint {
+      font-size: 12px;
+      color: var(--doc-text-muted);
+      margin-top: 6px;
+    }
+
+    .ds-input,
+    .ds-textarea,
+    .ds-select {
+      width: 100%;
+      max-width: 400px;
+      font-family: var(--doc-body);
+      font-size: 15px;
+      line-height: 1.5;
+      color: var(--doc-text);
+      background: var(--doc-surface-2);
+      border: 1px solid var(--doc-border);
+      border-radius: 4px;
+      padding: 12px 16px;
+      transition: border-color 120ms, box-shadow 120ms;
+      outline: none;
+    }
+
+    .ds-input::placeholder,
+    .ds-textarea::placeholder {
+      color: oklch(45% 0 0);
+    }
+
+    .ds-input:hover,
+    .ds-textarea:hover,
+    .ds-select:hover {
+      border-color: oklch(45% 0 0);
+    }
+
+    .ds-input:focus,
+    .ds-textarea:focus,
+    .ds-select:focus {
+      border-color: var(--doc-accent);
+      box-shadow: 0 0 0 3px rgba(75, 139, 255, 0.2);
+    }
+
+    .ds-input:disabled,
+    .ds-textarea:disabled,
+    .ds-select:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+
+    .ds-input--error,
+    .ds-textarea--error {
+      border-color: oklch(65% 0.25 25);
+    }
+
+    .ds-input--error:focus,
+    .ds-textarea--error:focus {
+      box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.2);
+    }
+
+    .ds-error-text {
+      font-size: 12px;
+      color: oklch(65% 0.25 25);
+      margin-top: 6px;
+    }
+
+    /* Input sizes */
+    .ds-input--sm {
+      font-size: 13px;
+      padding: 8px 12px;
+    }
+
+    .ds-input--lg {
+      font-size: 17px;
+      padding: 16px 20px;
+    }
+
+    .ds-textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    .ds-select {
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%238a8a8a' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 12px center;
+      padding-right: 40px;
+      cursor: pointer;
+    }
+
+    /* Light-mode form variants */
+    .ds-input--light,
+    .ds-textarea--light,
+    .ds-select--light {
+      background: #fff;
+      color: #141414;
+      border-color: oklch(80% 0 0);
+    }
+
+    .ds-input--light::placeholder,
+    .ds-textarea--light::placeholder {
+      color: oklch(65% 0 0);
+    }
+
+    .ds-input--light:hover,
+    .ds-textarea--light:hover,
+    .ds-select--light:hover {
+      border-color: oklch(60% 0 0);
+    }
+
+    .ds-input--light:focus,
+    .ds-textarea--light:focus,
+    .ds-select--light:focus {
+      border-color: oklch(55% 0.28 264);
+      box-shadow: 0 0 0 3px rgba(29, 78, 216, 0.15);
+    }
+
+    .ds-input--light:disabled,
+    .ds-textarea--light:disabled {
+      background: oklch(96% 0 0);
+      color: oklch(65% 0 0);
+      border-color: oklch(88% 0 0);
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    .ds-select--light:disabled {
+      background-color: oklch(96% 0 0);
+      color: oklch(65% 0 0);
+      border-color: oklch(88% 0 0);
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    .ds-input--light.ds-input--error {
+      border-color: oklch(65% 0.25 25);
+    }
+
+    .ds-input--light.ds-input--error:focus {
+      box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.15);
+    }
+
+    .ds-select--light {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23555555' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 12px center;
+    }
+
+    /* Checkbox & Radio */
+    .ds-check-group {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .ds-check-label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 15px;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .ds-checkbox,
+    .ds-radio {
+      appearance: none;
+      width: 20px;
+      height: 20px;
+      border: 2px solid oklch(45% 0 0);
+      background: var(--doc-surface-2);
+      cursor: pointer;
+      transition: border-color 120ms, background 120ms;
+      flex-shrink: 0;
+      position: relative;
+    }
+
+    .ds-checkbox {
+      border-radius: 4px;
+    }
+
+    .ds-radio {
+      border-radius: 50%;
+    }
+
+    .ds-checkbox:hover,
+    .ds-radio:hover {
+      border-color: oklch(60% 0 0);
+    }
+
+    .ds-checkbox:focus-visible,
+    .ds-radio:focus-visible {
+      outline: 2px solid var(--doc-accent);
+      outline-offset: 2px;
+    }
+
+    .ds-checkbox:checked {
+      background: oklch(55% 0.28 264);
+      border-color: oklch(55% 0.28 264);
+    }
+
+    .ds-checkbox:checked::after {
+      content: '';
+      position: absolute;
+      left: 5px;
+      top: 2px;
+      width: 6px;
+      height: 10px;
+      border: solid #fff;
+      border-width: 0 2px 2px 0;
+      transform: rotate(45deg);
+    }
+
+    .ds-radio:checked {
+      border-color: oklch(55% 0.28 264);
+    }
+
+    .ds-radio:checked::after {
+      content: '';
+      position: absolute;
+      left: 4px;
+      top: 4px;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: oklch(55% 0.28 264);
+    }
+
+    .ds-checkbox:disabled,
+    .ds-radio:disabled {
+      opacity: 0.35;
+      cursor: not-allowed;
+    }
+
+    .ds-checkbox:checked:disabled {
+      background: oklch(55% 0.28 264);
+      border-color: oklch(55% 0.28 264);
+      opacity: 0.35;
+    }
+
+    /* Light checkbox/radio */
+    .ds-checkbox--light,
+    .ds-radio--light {
+      background: #fff;
+      border-color: oklch(75% 0 0);
+    }
+
+    .ds-checkbox--light:hover,
+    .ds-radio--light:hover {
+      border-color: oklch(55% 0 0);
+    }
+
+    .ds-checkbox--light:checked {
+      background: oklch(55% 0.28 264);
+      border-color: oklch(55% 0.28 264);
+    }
+
+    .ds-radio--light:checked {
+      border-color: oklch(55% 0.28 264);
+    }
+
+    .ds-checkbox--light:disabled,
+    .ds-radio--light:disabled {
+      background: oklch(96% 0 0);
+      border-color: oklch(85% 0 0);
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .ds-checkbox--light:checked:disabled {
+      background: oklch(55% 0.28 264);
+      border-color: oklch(55% 0.28 264);
+      opacity: 0.4;
+    }
+
+    /* Toggle switch */
+    .ds-toggle-label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 15px;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .ds-toggle {
+      appearance: none;
+      width: 44px;
+      height: 24px;
+      background: oklch(30% 0 0);
+      border-radius: 12px;
+      border: none;
+      cursor: pointer;
+      position: relative;
+      transition: background 150ms;
+      flex-shrink: 0;
+    }
+
+    .ds-toggle::after {
+      content: '';
+      position: absolute;
+      left: 3px;
+      top: 3px;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: oklch(65% 0 0);
+      transition: transform 150ms, background 150ms;
+    }
+
+    .ds-toggle:checked {
+      background: oklch(55% 0.28 264);
+    }
+
+    .ds-toggle:checked::after {
+      transform: translateX(20px);
+      background: #fff;
+    }
+
+    .ds-toggle:focus-visible {
+      outline: 2px solid var(--doc-accent);
+      outline-offset: 2px;
+    }
+
+    .ds-toggle:disabled {
+      opacity: 0.35;
+      cursor: not-allowed;
+    }
+
+    /* Light toggle */
+    .ds-toggle--light {
+      background: oklch(82% 0 0);
+    }
+
+    .ds-toggle--light::after {
+      background: #fff;
+    }
+
+    .ds-toggle--light:checked {
+      background: oklch(55% 0.28 264);
+    }
+
+    .ds-toggle--light:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+
+    /* Form grid for side-by-side */
+    .form-demo-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-bottom: 24px;
+    }
+
+    @media (max-width: 700px) {
+      .form-demo-grid { grid-template-columns: 1fr; }
+    }
+
+    /* --- RESPONSIVE --- */
+    @media (max-width: 900px) {
+      .doc-nav { display: none; }
+      .doc-main { margin-left: 0; padding: 24px 20px 80px; }
+      .semantic-grid { grid-template-columns: 1fr; }
+      .motion-demo { flex-direction: column; }
+      .comp-signal { gap: 24px; }
+      .comp-info-bar { flex-direction: column; gap: 16px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ====== NAVIGATION ====== -->
+  <nav class="doc-nav">
+    <div class="doc-nav-logo">BD Design System</div>
+    <div class="doc-nav-sub">Portfolio v1.1 &middot; WCAG 2.1 AA</div>
+
+    <div class="doc-nav-group">
+      <div class="doc-nav-group-title">Foundation</div>
+      <a href="#colors" class="doc-nav-link">Colors</a>
+      <a href="#semantic" class="doc-nav-link">Semantic Tokens</a>
+      <a href="#typography" class="doc-nav-link">Typography</a>
+      <a href="#spacing" class="doc-nav-link">Spacing</a>
+      <a href="#grid" class="doc-nav-link">Grid</a>
+      <a href="#motion" class="doc-nav-link">Motion</a>
+    </div>
+
+    <div class="doc-nav-group">
+      <div class="doc-nav-group-title">Components</div>
+      <a href="#comp-label" class="doc-nav-link">Label</a>
+      <a href="#comp-section-header" class="doc-nav-link">Section Header</a>
+      <a href="#comp-cta" class="doc-nav-link">CTA Link</a>
+      <a href="#comp-signal" class="doc-nav-link">Signal / Metric</a>
+      <a href="#comp-info-bar" class="doc-nav-link">Info Bar</a>
+      <a href="#comp-tags" class="doc-nav-link">Tags</a>
+      <a href="#comp-buttons" class="doc-nav-link">Buttons</a>
+      <a href="#comp-forms" class="doc-nav-link">Form Elements</a>
+    </div>
+
+    <div class="doc-nav-group">
+      <div class="doc-nav-group-title">Accessibility</div>
+      <a href="#a11y" class="doc-nav-link">WCAG 2.1 AA</a>
+      <a href="#focus" class="doc-nav-link">Focus States</a>
+    </div>
+  </nav>
+
+  <!-- ====== MAIN CONTENT ====== -->
+  <main class="doc-main">
+
+    <!-- HERO -->
+    <div style="margin-bottom: 64px;">
+      <div class="doc-label">Design System Documentation</div>
+      <h1 style="font-family: var(--doc-display); font-weight: 900; font-size: 48px; letter-spacing: -0.02em; line-height: 1.1; margin-bottom: 12px;">
+        Bohdan Doshchak<br>Portfolio Theme
+      </h1>
+      <p style="color: var(--doc-text-muted); font-size: 16px; max-width: 50ch;">
+        Complete token reference, type scale, spacing system, and component library.
+        All values WCAG 2.1 AA validated. Built with OKLCH color space.
+      </p>
+    </div>
+
+    <!-- ====== COLORS ====== -->
+    <section class="doc-section" id="colors">
+      <h2 class="doc-section-title">Colors</h2>
+      <p class="doc-section-desc">
+        Base palette uses OKLCH color space for perceptual uniformity.
+        sRGB hex fallbacks provided for legacy browsers.
+      </p>
+
+      <div class="doc-subsection">
+        <div class="doc-label">Neutrals</div>
+        <div class="swatch-grid">
+          <div class="swatch">
+            <div class="swatch-color" style="background: oklch(8% 0 0);"></div>
+            <div class="swatch-info"><div class="swatch-name">Black</div><div class="swatch-value">oklch(8% 0 0)</div></div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background: oklch(25% 0 0);"></div>
+            <div class="swatch-info"><div class="swatch-name">Grey 800</div><div class="swatch-value">oklch(25% 0 0)</div></div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background: oklch(50% 0 0);"></div>
+            <div class="swatch-info"><div class="swatch-name">Grey 600</div><div class="swatch-value">oklch(50% 0 0)</div></div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background: oklch(52% 0 0);"></div>
+            <div class="swatch-info"><div class="swatch-name">Grey 500</div><div class="swatch-value">oklch(52% 0 0)</div></div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background: oklch(60% 0 0);"></div>
+            <div class="swatch-info"><div class="swatch-name">Grey 450</div><div class="swatch-value">oklch(60% 0 0)</div></div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background: oklch(70% 0 0);"></div>
+            <div class="swatch-info"><div class="swatch-name">Grey 400</div><div class="swatch-value">oklch(70% 0 0)</div></div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background: oklch(90% 0 0);"></div>
+            <div class="swatch-info"><div class="swatch-name">Grey 200</div><div class="swatch-value">oklch(90% 0 0)</div></div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background: oklch(96% 0 0);"></div>
+            <div class="swatch-info"><div class="swatch-name">Grey 100</div><div class="swatch-value">oklch(96% 0 0)</div></div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background: oklch(98% 0 0); border-bottom: 1px solid var(--doc-border);"></div>
+            <div class="swatch-info"><div class="swatch-name">White</div><div class="swatch-value">oklch(98% 0 0)</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="doc-subsection">
+        <div class="doc-label">Accent Palette</div>
+        <div class="swatch-grid">
+          <div class="swatch">
+            <div class="swatch-color" style="background: oklch(95% 0.04 264);"></div>
+            <div class="swatch-info"><div class="swatch-name">Blue 50</div><div class="swatch-value">oklch(95% 0.04 264)</div></div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background: oklch(88% 0.10 264);"></div>
+            <div class="swatch-info"><div class="swatch-name">Blue 100</div><div class="swatch-value">oklch(88% 0.10 264)</div></div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background: oklch(80% 0.16 264);"></div>
+            <div class="swatch-info"><div class="swatch-name">Blue 200</div><div class="swatch-value">oklch(80% 0.16 264)</div></div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background: oklch(68% 0.25 264);" data-contrast="Dark mode"></div>
+            <div class="swatch-info"><div class="swatch-name">Blue 300 (Dim)</div><div class="swatch-value">oklch(68% 0.25 264)</div></div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background: oklch(55% 0.28 264);" data-contrast="Light mode"></div>
+            <div class="swatch-info"><div class="swatch-name">Blue 500 (Base)</div><div class="swatch-value">oklch(55% 0.28 264)</div></div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background: oklch(48% 0.28 264);"></div>
+            <div class="swatch-info"><div class="swatch-name">Blue 600</div><div class="swatch-value">oklch(48% 0.28 264)</div></div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background: oklch(40% 0.24 264);"></div>
+            <div class="swatch-info"><div class="swatch-name">Blue 700</div><div class="swatch-value">oklch(40% 0.24 264)</div></div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background: oklch(32% 0.18 264);"></div>
+            <div class="swatch-info"><div class="swatch-name">Blue 800</div><div class="swatch-value">oklch(32% 0.18 264)</div></div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background: oklch(24% 0.12 264);"></div>
+            <div class="swatch-info"><div class="swatch-name">Blue 900</div><div class="swatch-value">oklch(24% 0.12 264)</div></div>
+          </div>
+        </div>
+
+        <table class="doc-table">
+          <thead><tr><th>Token</th><th>Shade</th><th>Usage</th></tr></thead>
+          <tbody>
+            <tr><td><code>--color-blue-50</code></td><td>50</td><td>Tinted backgrounds, hover fills</td></tr>
+            <tr><td><code>--color-blue-100</code></td><td>100</td><td>Light badges, selected row bg</td></tr>
+            <tr><td><code>--color-blue-200</code></td><td>200</td><td>Borders, focus rings (light mode)</td></tr>
+            <tr><td><code>--color-blue-dim</code></td><td>300</td><td>Accent text on dark surfaces, CTA links</td></tr>
+            <tr><td><code>--color-blue</code></td><td>500</td><td>Primary buttons, accent on light surfaces</td></tr>
+            <tr><td><code>--color-blue-600</code></td><td>600</td><td>Hover state for primary buttons (light)</td></tr>
+            <tr><td><code>--color-blue-700</code></td><td>700</td><td>Active/pressed state</td></tr>
+            <tr><td><code>--color-blue-800</code></td><td>800</td><td>Dark accents, emphasis on dark bg</td></tr>
+            <tr><td><code>--color-blue-900</code></td><td>900</td><td>Deepest accent, dark UI chrome</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="doc-subsection">
+        <div class="doc-label">Success Palette</div>
+        <div class="swatch-grid">
+          <div class="swatch">
+            <div class="swatch-color" style="background: oklch(95% 0.05 145);"></div>
+            <div class="swatch-info"><div class="swatch-name">Success 50</div><div class="swatch-value">oklch(95% 0.05 145)</div></div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background: oklch(88% 0.12 145);"></div>
+            <div class="swatch-info"><div class="swatch-name">Success 100</div><div class="swatch-value">oklch(88% 0.12 145)</div></div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background: oklch(80% 0.16 145);"></div>
+            <div class="swatch-info"><div class="swatch-name">Success 200</div><div class="swatch-value">oklch(80% 0.16 145)</div></div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background: oklch(72% 0.19 145);"></div>
+            <div class="swatch-info"><div class="swatch-name">Success 400</div><div class="swatch-value">oklch(72% 0.19 145)</div></div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background: oklch(58% 0.19 145);"></div>
+            <div class="swatch-info"><div class="swatch-name">Success 600</div><div class="swatch-value">oklch(58% 0.19 145)</div></div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background: oklch(42% 0.16 145);"></div>
+            <div class="swatch-info"><div class="swatch-name">Success 800</div><div class="swatch-value">oklch(42% 0.16 145)</div></div>
+          </div>
+        </div>
+
+        <div class="doc-label">Warning Palette</div>
+        <div class="swatch-grid">
+          <div class="swatch">
+            <div class="swatch-color" style="background: oklch(95% 0.04 75);"></div>
+            <div class="swatch-info"><div class="swatch-name">Warning 50</div><div class="swatch-value">oklch(95% 0.04 75)</div></div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background: oklch(90% 0.10 75);"></div>
+            <div class="swatch-info"><div class="swatch-name">Warning 100</div><div class="swatch-value">oklch(90% 0.10 75)</div></div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background: oklch(84% 0.14 75);"></div>
+            <div class="swatch-info"><div class="swatch-name">Warning 200</div><div class="swatch-value">oklch(84% 0.14 75)</div></div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background: oklch(78% 0.16 75);"></div>
+            <div class="swatch-info"><div class="swatch-name">Warning 400</div><div class="swatch-value">oklch(78% 0.16 75)</div></div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background: oklch(62% 0.16 75);"></div>
+            <div class="swatch-info"><div class="swatch-name">Warning 600</div><div class="swatch-value">oklch(62% 0.16 75)</div></div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background: oklch(45% 0.12 75);"></div>
+            <div class="swatch-info"><div class="swatch-name">Warning 800</div><div class="swatch-value">oklch(45% 0.12 75)</div></div>
+          </div>
+        </div>
+
+        <div class="doc-label">Error Palette</div>
+        <div class="swatch-grid">
+          <div class="swatch">
+            <div class="swatch-color" style="background: oklch(93% 0.05 25);"></div>
+            <div class="swatch-info"><div class="swatch-name">Error 50</div><div class="swatch-value">oklch(93% 0.05 25)</div></div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background: oklch(85% 0.12 25);"></div>
+            <div class="swatch-info"><div class="swatch-name">Error 100</div><div class="swatch-value">oklch(85% 0.12 25)</div></div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background: oklch(76% 0.18 25);"></div>
+            <div class="swatch-info"><div class="swatch-name">Error 200</div><div class="swatch-value">oklch(76% 0.18 25)</div></div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background: oklch(65% 0.25 25);"></div>
+            <div class="swatch-info"><div class="swatch-name">Error 400</div><div class="swatch-value">oklch(65% 0.25 25)</div></div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background: oklch(52% 0.22 25);"></div>
+            <div class="swatch-info"><div class="swatch-name">Error 600</div><div class="swatch-value">oklch(52% 0.22 25)</div></div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background: oklch(38% 0.16 25);"></div>
+            <div class="swatch-info"><div class="swatch-name">Error 800</div><div class="swatch-value">oklch(38% 0.16 25)</div></div>
+          </div>
+        </div>
+
+        <table class="doc-table">
+          <thead><tr><th>Token</th><th>Base (400)</th><th>Usage</th></tr></thead>
+          <tbody>
+            <tr><td><code>--color-success</code></td><td>oklch(72% 0.19 145)</td><td>Success messages, valid states, confirmations</td></tr>
+            <tr><td><code>--color-warning</code></td><td>oklch(78% 0.16 75)</td><td>Caution alerts, pending states, attention cues</td></tr>
+            <tr><td><code>--color-error</code></td><td>oklch(65% 0.25 25)</td><td>Error messages, invalid inputs, destructive actions</td></tr>
+          </tbody>
+        </table>
+
+        <table class="doc-table" style="margin-top: 16px;">
+          <thead><tr><th>Shade</th><th>Lightness</th><th>Usage</th></tr></thead>
+          <tbody>
+            <tr><td><code>50</code></td><td>93–95%</td><td>Tinted backgrounds</td></tr>
+            <tr><td><code>100</code></td><td>85–90%</td><td>Light fills, badges</td></tr>
+            <tr><td><code>200</code></td><td>76–84%</td><td>Borders, subtle emphasis</td></tr>
+            <tr><td><code>400</code></td><td>65–78%</td><td>Primary usage (text, icons, borders)</td></tr>
+            <tr><td><code>600</code></td><td>52–62%</td><td>Hover states, dark-mode text</td></tr>
+            <tr><td><code>800</code></td><td>38–45%</td><td>Dark backgrounds, pressed states</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="doc-subsection">
+        <div class="doc-label">Contrast Ratios (AA validated)</div>
+        <table class="doc-table">
+          <thead>
+            <tr><th>Pair</th><th>Ratio</th><th>Level</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Grey 450 on Black</td><td><code>5.2 : 1</code></td><td>AA &check;</td></tr>
+            <tr><td>Grey 500 on White</td><td><code>5.5 : 1</code></td><td>AA &check;</td></tr>
+            <tr><td>Grey 600 on White</td><td><code>5.66 : 1</code></td><td>AA &check;</td></tr>
+            <tr><td>White on Black</td><td><code>17.4 : 1</code></td><td>AAA &check;</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ====== SEMANTIC TOKENS ====== -->
+    <section class="doc-section" id="semantic">
+      <h2 class="doc-section-title">Semantic Tokens</h2>
+      <p class="doc-section-desc">
+        Semantic aliases map base colors to functional roles. Two modes: light (default) and dark.
+      </p>
+
+      <div class="semantic-grid">
+        <div class="semantic-card">
+          <div class="semantic-card-header">Light Mode</div>
+          <div class="semantic-card-body" style="background: #fafafa; color: #141414;">
+            <div class="semantic-row"><div class="semantic-dot" style="background: #fafafa;"></div><span class="semantic-token">bg-primary</span><span class="semantic-arrow">&rarr;</span><span class="semantic-ref">white</span></div>
+            <div class="semantic-row"><div class="semantic-dot" style="background: #f2f2f2;"></div><span class="semantic-token">bg-secondary</span><span class="semantic-arrow">&rarr;</span><span class="semantic-ref">grey-100</span></div>
+            <div class="semantic-row"><div class="semantic-dot" style="background: #141414;"></div><span class="semantic-token">bg-inverse</span><span class="semantic-arrow">&rarr;</span><span class="semantic-ref">black</span></div>
+            <div class="semantic-row"><div class="semantic-dot" style="background: #141414;"></div><span class="semantic-token">text-primary</span><span class="semantic-arrow">&rarr;</span><span class="semantic-ref">black</span></div>
+            <div class="semantic-row"><div class="semantic-dot" style="background: #6e6e6e;"></div><span class="semantic-token">text-secondary</span><span class="semantic-arrow">&rarr;</span><span class="semantic-ref">grey-600</span></div>
+            <div class="semantic-row"><div class="semantic-dot" style="background: #757575;"></div><span class="semantic-token">text-muted</span><span class="semantic-arrow">&rarr;</span><span class="semantic-ref">grey-500</span></div>
+            <div class="semantic-row"><div class="semantic-dot" style="background: #e0e0e0;"></div><span class="semantic-token">border</span><span class="semantic-arrow">&rarr;</span><span class="semantic-ref">grey-200</span></div>
+            <div class="semantic-row"><div class="semantic-dot" style="background: #1d4ed8;"></div><span class="semantic-token">accent</span><span class="semantic-arrow">&rarr;</span><span class="semantic-ref">blue</span></div>
+            <div class="semantic-row"><div class="semantic-dot" style="background: oklch(72% 0.19 145);"></div><span class="semantic-token">success</span><span class="semantic-arrow">&rarr;</span><span class="semantic-ref">oklch(72% .19 145)</span></div>
+            <div class="semantic-row"><div class="semantic-dot" style="background: oklch(78% 0.16 75);"></div><span class="semantic-token">warning</span><span class="semantic-arrow">&rarr;</span><span class="semantic-ref">oklch(78% .16 75)</span></div>
+            <div class="semantic-row"><div class="semantic-dot" style="background: oklch(65% 0.25 25);"></div><span class="semantic-token">error</span><span class="semantic-arrow">&rarr;</span><span class="semantic-ref">oklch(65% .25 25)</span></div>
+          </div>
+        </div>
+
+        <div class="semantic-card">
+          <div class="semantic-card-header">Dark Mode</div>
+          <div class="semantic-card-body" style="background: #1a1a1a;">
+            <div class="semantic-row"><div class="semantic-dot" style="background: oklch(10% 0 0);"></div><span class="semantic-token">bg-primary</span><span class="semantic-arrow">&rarr;</span><span class="semantic-ref">oklch(10%)</span></div>
+            <div class="semantic-row"><div class="semantic-dot" style="background: oklch(14% 0 0);"></div><span class="semantic-token">bg-secondary</span><span class="semantic-arrow">&rarr;</span><span class="semantic-ref">oklch(14%)</span></div>
+            <div class="semantic-row"><div class="semantic-dot" style="background: #fafafa;"></div><span class="semantic-token">bg-inverse</span><span class="semantic-arrow">&rarr;</span><span class="semantic-ref">white</span></div>
+            <div class="semantic-row"><div class="semantic-dot" style="background: #fafafa;"></div><span class="semantic-token">text-primary</span><span class="semantic-arrow">&rarr;</span><span class="semantic-ref">white</span></div>
+            <div class="semantic-row"><div class="semantic-dot" style="background: #a3a3a3;"></div><span class="semantic-token">text-secondary</span><span class="semantic-arrow">&rarr;</span><span class="semantic-ref">grey-400</span></div>
+            <div class="semantic-row"><div class="semantic-dot" style="background: #8a8a8a;"></div><span class="semantic-token">text-muted</span><span class="semantic-arrow">&rarr;</span><span class="semantic-ref">grey-450</span></div>
+            <div class="semantic-row"><div class="semantic-dot" style="background: oklch(22% 0 0);"></div><span class="semantic-token">border</span><span class="semantic-arrow">&rarr;</span><span class="semantic-ref">oklch(22%)</span></div>
+            <div class="semantic-row"><div class="semantic-dot" style="background: #4b8bff;"></div><span class="semantic-token">accent</span><span class="semantic-arrow">&rarr;</span><span class="semantic-ref">blue-dim</span></div>
+            <div class="semantic-row"><div class="semantic-dot" style="background: oklch(72% 0.19 145);"></div><span class="semantic-token">success</span><span class="semantic-arrow">&rarr;</span><span class="semantic-ref">oklch(72% .19 145)</span></div>
+            <div class="semantic-row"><div class="semantic-dot" style="background: oklch(78% 0.16 75);"></div><span class="semantic-token">warning</span><span class="semantic-arrow">&rarr;</span><span class="semantic-ref">oklch(78% .16 75)</span></div>
+            <div class="semantic-row"><div class="semantic-dot" style="background: oklch(65% 0.25 25);"></div><span class="semantic-token">error</span><span class="semantic-arrow">&rarr;</span><span class="semantic-ref">oklch(65% .25 25)</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====== TYPOGRAPHY ====== -->
+    <section class="doc-section" id="typography">
+      <h2 class="doc-section-title">Typography</h2>
+      <p class="doc-section-desc">
+        Two-font system. Barlow for display and UI labels, Inter for body text. Both from Google Fonts.
+      </p>
+
+      <div class="doc-subsection">
+        <div class="doc-label">Fonts</div>
+        <table class="doc-table">
+          <thead><tr><th>Role</th><th>Family</th><th>Weights</th></tr></thead>
+          <tbody>
+            <tr><td>Display</td><td><code>Barlow</code></td><td>800 (Extra Bold), 900 (Black)</td></tr>
+            <tr><td>Body</td><td><code>Inter</code></td><td>400 (Regular), 500 (Medium)</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="doc-subsection">
+        <div class="doc-label">Type Scale</div>
+
+        <div class="type-specimen">
+          <div class="type-specimen-meta">
+            <span class="type-specimen-tag">Hero</span>
+            <span class="type-specimen-tag">Barlow 900</span>
+            <span class="type-specimen-tag">128px / 1.05</span>
+            <span class="type-specimen-tag">ls: 0.01em</span>
+          </div>
+          <div class="type-specimen-sample" style="font-family: 'Barlow'; font-weight: 900; font-size: 72px; line-height: 1.05; letter-spacing: 0.01em;">BOHDAN</div>
+        </div>
+
+        <div class="type-specimen">
+          <div class="type-specimen-meta">
+            <span class="type-specimen-tag">Display</span>
+            <span class="type-specimen-tag">Barlow 900</span>
+            <span class="type-specimen-tag">72px / 1.05</span>
+            <span class="type-specimen-tag">ls: -0.03em</span>
+          </div>
+          <div class="type-specimen-sample" style="font-family: 'Barlow'; font-weight: 900; font-size: 56px; line-height: 1.05; letter-spacing: -0.03em;">Section Display</div>
+        </div>
+
+        <div class="type-specimen">
+          <div class="type-specimen-meta">
+            <span class="type-specimen-tag">H1</span>
+            <span class="type-specimen-tag">Barlow 900</span>
+            <span class="type-specimen-tag">48px / 1.05</span>
+            <span class="type-specimen-tag">ls: -0.03em</span>
+          </div>
+          <div class="type-specimen-sample" style="font-family: 'Barlow'; font-weight: 900; font-size: 48px; line-height: 1.05; letter-spacing: -0.03em;">Page Heading</div>
+        </div>
+
+        <div class="type-specimen">
+          <div class="type-specimen-meta">
+            <span class="type-specimen-tag">H2</span>
+            <span class="type-specimen-tag">Barlow 900</span>
+            <span class="type-specimen-tag">36px / 1.05</span>
+            <span class="type-specimen-tag">ls: -0.03em</span>
+          </div>
+          <div class="type-specimen-sample" style="font-family: 'Barlow'; font-weight: 900; font-size: 36px; line-height: 1.05; letter-spacing: -0.03em;">Subsection Title</div>
+        </div>
+
+        <div class="type-specimen">
+          <div class="type-specimen-meta">
+            <span class="type-specimen-tag">H3</span>
+            <span class="type-specimen-tag">Barlow 800</span>
+            <span class="type-specimen-tag">24px / 1.25</span>
+          </div>
+          <div class="type-specimen-sample" style="font-family: 'Barlow'; font-weight: 800; font-size: 24px; line-height: 1.25;">Card Title</div>
+        </div>
+
+        <div class="type-specimen">
+          <div class="type-specimen-meta">
+            <span class="type-specimen-tag">Body Large</span>
+            <span class="type-specimen-tag">Inter 400</span>
+            <span class="type-specimen-tag">18px / 1.5</span>
+          </div>
+          <div class="type-specimen-sample" style="font-family: 'Inter'; font-weight: 400; font-size: 18px; line-height: 1.5;">Lead paragraph text used for overview sections and introductory copy. Designed for comfortable reading at medium length.</div>
+        </div>
+
+        <div class="type-specimen">
+          <div class="type-specimen-meta">
+            <span class="type-specimen-tag">Body</span>
+            <span class="type-specimen-tag">Inter 400</span>
+            <span class="type-specimen-tag">16px / 1.5</span>
+          </div>
+          <div class="type-specimen-sample" style="font-family: 'Inter'; font-weight: 400; font-size: 16px; line-height: 1.5;">Standard body text for descriptions, process explanations, and general content. The workhorse of the type system.</div>
+        </div>
+
+        <div class="type-specimen">
+          <div class="type-specimen-meta">
+            <span class="type-specimen-tag">Caption</span>
+            <span class="type-specimen-tag">Inter 400</span>
+            <span class="type-specimen-tag">14px / 1.25</span>
+          </div>
+          <div class="type-specimen-sample" style="font-family: 'Inter'; font-weight: 400; font-size: 14px; line-height: 1.25;">Captions, annotations, and secondary information.</div>
+        </div>
+
+        <div class="type-specimen">
+          <div class="type-specimen-meta">
+            <span class="type-specimen-tag">Label</span>
+            <span class="type-specimen-tag">Barlow 800</span>
+            <span class="type-specimen-tag">12px / 1.25</span>
+            <span class="type-specimen-tag">ls: 0.15em</span>
+            <span class="type-specimen-tag">UPPERCASE</span>
+          </div>
+          <div class="type-specimen-sample" style="font-family: 'Barlow'; font-weight: 800; font-size: 12px; line-height: 1.25; letter-spacing: 0.15em; text-transform: uppercase;">Section Counter &middot; Tags &middot; Metadata</div>
+        </div>
+      </div>
+
+      <div class="doc-subsection">
+        <div class="doc-label">Letter Spacing Reference</div>
+        <table class="doc-table">
+          <thead><tr><th>Token</th><th>Value</th><th>Usage</th></tr></thead>
+          <tbody>
+            <tr><td><code>ls-tight</code></td><td>-0.03em</td><td>Display headings</td></tr>
+            <tr><td><code>ls-normal</code></td><td>0em</td><td>Body text</td></tr>
+            <tr><td><code>ls-wide</code></td><td>0.08em</td><td>Subtle emphasis</td></tr>
+            <tr><td><code>ls-widest</code></td><td>0.15em</td><td>Labels, uppercase UI</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ====== SPACING ====== -->
+    <section class="doc-section" id="spacing">
+      <h2 class="doc-section-title">Spacing</h2>
+      <p class="doc-section-desc">
+        4px base unit. 10-step scale from 4px to 128px. Used for padding, margin, and gap values throughout.
+      </p>
+
+      <div class="doc-subsection">
+        <div class="spacing-row"><span class="spacing-label">sp-1</span><div class="spacing-bar" style="width: 4px;"></div><span class="spacing-px">4px</span></div>
+        <div class="spacing-row"><span class="spacing-label">sp-2</span><div class="spacing-bar" style="width: 8px;"></div><span class="spacing-px">8px</span></div>
+        <div class="spacing-row"><span class="spacing-label">sp-3</span><div class="spacing-bar" style="width: 12px;"></div><span class="spacing-px">12px</span></div>
+        <div class="spacing-row"><span class="spacing-label">sp-4</span><div class="spacing-bar" style="width: 16px;"></div><span class="spacing-px">16px</span></div>
+        <div class="spacing-row"><span class="spacing-label">sp-6</span><div class="spacing-bar" style="width: 24px;"></div><span class="spacing-px">24px</span></div>
+        <div class="spacing-row"><span class="spacing-label">sp-8</span><div class="spacing-bar" style="width: 32px;"></div><span class="spacing-px">32px</span></div>
+        <div class="spacing-row"><span class="spacing-label">sp-12</span><div class="spacing-bar" style="width: 48px;"></div><span class="spacing-px">48px</span></div>
+        <div class="spacing-row"><span class="spacing-label">sp-16</span><div class="spacing-bar" style="width: 64px;"></div><span class="spacing-px">64px</span></div>
+        <div class="spacing-row"><span class="spacing-label">sp-24</span><div class="spacing-bar" style="width: 96px;"></div><span class="spacing-px">96px</span></div>
+        <div class="spacing-row"><span class="spacing-label">sp-32</span><div class="spacing-bar" style="width: 128px;"></div><span class="spacing-px">128px</span></div>
+      </div>
+
+      <div class="example-code">--sp-1:  0.25rem;    /*  4px */
+--sp-2:  0.5rem;     /*  8px */
+--sp-3:  0.75rem;    /* 12px */
+--sp-4:  1rem;       /* 16px */
+--sp-6:  1.5rem;     /* 24px */
+--sp-8:  2rem;       /* 32px */
+--sp-12: 3rem;       /* 48px */
+--sp-16: 4rem;       /* 64px */
+--sp-24: 6rem;       /* 96px */
+--sp-32: 8rem;       /* 128px */</div>
+    </section>
+
+    <!-- ====== GRID ====== -->
+    <section class="doc-section" id="grid">
+      <h2 class="doc-section-title">Grid</h2>
+      <p class="doc-section-desc">
+        12-column grid with 24px gutters. Max width 1440px. Responsive margins via clamp().
+      </p>
+
+      <div class="grid-demo">
+        <div class="grid-demo-col">1</div>
+        <div class="grid-demo-col">2</div>
+        <div class="grid-demo-col">3</div>
+        <div class="grid-demo-col">4</div>
+        <div class="grid-demo-col">5</div>
+        <div class="grid-demo-col">6</div>
+        <div class="grid-demo-col">7</div>
+        <div class="grid-demo-col">8</div>
+        <div class="grid-demo-col">9</div>
+        <div class="grid-demo-col">10</div>
+        <div class="grid-demo-col">11</div>
+        <div class="grid-demo-col">12</div>
+      </div>
+
+      <table class="doc-table">
+        <thead><tr><th>Property</th><th>Token</th><th>Value</th></tr></thead>
+        <tbody>
+          <tr><td>Max width</td><td><code>--grid-max</code></td><td>1440px</td></tr>
+          <tr><td>Columns</td><td><code>--grid-cols</code></td><td>12</td></tr>
+          <tr><td>Gutter</td><td><code>--grid-gutter</code></td><td>1.5rem (24px)</td></tr>
+          <tr><td>Margin</td><td><code>--grid-margin</code></td><td>clamp(1.5rem, 5vw, 5rem)</td></tr>
+        </tbody>
+      </table>
+
+      <div class="example-code">.container {
+  width: 100%;
+  max-width: var(--grid-max);     /* 1440px */
+  margin-inline: auto;
+  padding-inline: var(--grid-margin);  /* 24px–80px */
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: var(--grid-gutter);        /* 24px */
+}</div>
+    </section>
+
+    <!-- ====== MOTION ====== -->
+    <section class="doc-section" id="motion">
+      <h2 class="doc-section-title">Motion</h2>
+      <p class="doc-section-desc">
+        Three duration tiers with two easing curves. Respects <code>prefers-reduced-motion</code>.
+      </p>
+
+      <div class="motion-demo">
+        <div class="motion-card">
+          <div class="motion-card-label">dur-fast</div>
+          <div class="motion-card-value">120ms</div>
+          <div class="motion-card-desc">Micro-interactions</div>
+          <div class="motion-bar-track"><div class="motion-bar-fill"></div></div>
+        </div>
+        <div class="motion-card">
+          <div class="motion-card-label">dur-base</div>
+          <div class="motion-card-value">220ms</div>
+          <div class="motion-card-desc">Standard transitions</div>
+          <div class="motion-bar-track"><div class="motion-bar-fill"></div></div>
+        </div>
+        <div class="motion-card">
+          <div class="motion-card-label">dur-slow</div>
+          <div class="motion-card-value">400ms</div>
+          <div class="motion-card-desc">Entry animations</div>
+          <div class="motion-bar-track"><div class="motion-bar-fill"></div></div>
+        </div>
+      </div>
+
+      <table class="doc-table">
+        <thead><tr><th>Token</th><th>Value</th><th>Usage</th></tr></thead>
+        <tbody>
+          <tr><td><code>--ease</code></td><td>cubic-bezier(0.4, 0, 0.2, 1)</td><td>General transitions</td></tr>
+          <tr><td><code>--ease-out</code></td><td>cubic-bezier(0, 0, 0.2, 1)</td><td>Entry / exit animations</td></tr>
+        </tbody>
+      </table>
+
+      <div class="example-code">@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}</div>
+    </section>
+
+    <!-- ====== COMPONENTS ====== -->
+
+    <!-- Label -->
+    <section class="doc-section" id="comp-label">
+      <h2 class="doc-section-title">Label</h2>
+      <p class="doc-section-desc">
+        Used for counters, metadata tags, section identifiers. Always uppercase.
+      </p>
+
+      <div class="example-box example-box--dark">
+        <span class="comp-label-example">[01] Enterprise SaaS</span>
+      </div>
+
+      <div class="example-box example-box--light">
+        <span class="comp-label-example" style="color: #757575;">[02] Design Systems</span>
+      </div>
+
+      <div class="example-code">.label {
+  font-family: 'Barlow', sans-serif;
+  font-weight: 800;
+  font-size: 12px;           /* --fs-label */
+  letter-spacing: 0.15em;    /* --ls-widest */
+  text-transform: uppercase;
+}</div>
+    </section>
+
+    <!-- Section Header -->
+    <section class="doc-section" id="comp-section-header">
+      <h2 class="doc-section-title">Section Header</h2>
+      <p class="doc-section-desc">Counter above title, sp-3 (12px) gap between them.</p>
+
+      <div class="example-box example-box--dark">
+        <div class="comp-section-header">
+          <div class="comp-counter">[02]</div>
+          <div class="comp-h2">Work</div>
+        </div>
+      </div>
+
+      <div class="example-box example-box--light">
+        <div class="comp-section-header">
+          <div class="comp-counter" style="color: #757575;">[01]</div>
+          <div class="comp-h2" style="color: #141414;">Overview</div>
+        </div>
+      </div>
+
+      <div class="example-code">&lt;header class="section-header"&gt;
+  &lt;span class="section-counter label"&gt;[01]&lt;/span&gt;
+  &lt;h2 class="section-title"&gt;Overview&lt;/h2&gt;
+&lt;/header&gt;</div>
+    </section>
+
+    <!-- CTA Link -->
+    <section class="doc-section" id="comp-cta">
+      <h2 class="doc-section-title">CTA Link</h2>
+      <p class="doc-section-desc">
+        Primary call-to-action. Label style with accent color and bottom border. Arrow icon shifts on hover.
+      </p>
+
+      <div class="doc-label">Dark Surface</div>
+      <div class="example-box example-box--dark">
+        <div class="focus-demo">
+          <button class="focus-demo-btn">Selected Work &darr;</button>
+          <button class="focus-demo-btn">See Live Prototype &nearr;</button>
+        </div>
+      </div>
+
+      <div class="doc-label">Light Surface</div>
+      <div class="example-box example-box--light">
+        <div class="focus-demo">
+          <button class="focus-demo-btn focus-demo-btn--light">Selected Work &darr;</button>
+          <button class="focus-demo-btn focus-demo-btn--light">View Design System &nearr;</button>
+        </div>
+      </div>
+
+      <div class="example-code">/* Uses --accent-text: maps to --color-blue on light, --color-blue-dim on dark */
+
+.cta-link {
+  font-family: 'Barlow';
+  font-weight: 800;
+  font-size: 12px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--accent-text);
+  border-bottom: 1px solid var(--accent-text);
+  padding-bottom: 2px;
+}
+
+/* Dark surface: hover to white */
+.cta-link:hover {
+  color: var(--color-white);
+  border-color: var(--color-white);
+}
+
+/* Light surface: hover to black (--text-primary) */
+.cta-link:hover {
+  color: var(--text-primary);
+  border-color: var(--text-primary);
+}
+
+.cta-link:hover .arrow {
+  transform: translateY(4px);
+}</div>
+    </section>
+
+    <!-- Signal / Metric -->
+    <section class="doc-section" id="comp-signal">
+      <h2 class="doc-section-title">Signal / Metric</h2>
+      <p class="doc-section-desc">
+        Large number + small label. Used in hero metrics bar and project outcomes.
+      </p>
+
+      <div class="example-box example-box--dark">
+        <div class="comp-signal">
+          <div class="comp-signal-item">
+            <div class="comp-signal-number">20+</div>
+            <div class="comp-signal-label">Years in commercial design</div>
+          </div>
+          <div class="comp-signal-item">
+            <div class="comp-signal-number">UP TO 12</div>
+            <div class="comp-signal-label">direct reports</div>
+          </div>
+          <div class="comp-signal-item">
+            <div class="comp-signal-number">3</div>
+            <div class="comp-signal-label">platforms designed</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="example-code">.signal-number {
+  font-family: 'Barlow';
+  font-weight: 900;
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  letter-spacing: -0.03em;
+  line-height: 1;
+  color: var(--color-white);
+}
+
+.signal-label {
+  font-family: 'Inter';
+  font-size: 14px;           /* --fs-caption */
+  color: var(--color-grey-400);
+  line-height: 1.25;
+  max-width: 18ch;
+}</div>
+    </section>
+
+    <!-- Info Bar -->
+    <section class="doc-section" id="comp-info-bar">
+      <h2 class="doc-section-title">Info Bar</h2>
+      <p class="doc-section-desc">
+        Project metadata row in case study hero. Three items: Client, Role, Duration.
+      </p>
+
+      <div class="example-box example-box--dark">
+        <div class="comp-info-bar">
+          <div>
+            <div class="comp-info-item-label">Client</div>
+            <div class="comp-info-item-value">LivePerson</div>
+          </div>
+          <div>
+            <div class="comp-info-item-label">Role</div>
+            <div class="comp-info-item-value">Lead UI/UX Designer & Design Manager</div>
+          </div>
+          <div>
+            <div class="comp-info-item-label">Duration</div>
+            <div class="comp-info-item-value">5+ years</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tags -->
+    <section class="doc-section" id="comp-tags">
+      <h2 class="doc-section-title">Tags</h2>
+      <p class="doc-section-desc">Domain and skill tags. Pill-shaped, border only.</p>
+
+      <div class="example-box example-box--dark">
+        <span class="comp-tag">Enterprise SaaS</span>
+        <span class="comp-tag">Design Systems</span>
+        <span class="comp-tag">CRM</span>
+        <span class="comp-tag">Mobile</span>
+        <span class="comp-tag">AI Prototyping</span>
+        <span class="comp-tag">Healthcare</span>
+      </div>
+
+      <div class="example-code">.work-card-tag {
+  font-size: 12px;
+  padding: 4px 12px;
+  border: 1px solid var(--border);
+  border-radius: 100px;
+  color: var(--text-muted);
+}</div>
+    </section>
+
+    <!-- ====== BUTTONS ====== -->
+    <section class="doc-section" id="comp-buttons">
+      <h2 class="doc-section-title">Buttons</h2>
+      <p class="doc-section-desc">
+        Three variants (Primary, Secondary, Ghost) across three sizes (Small, Medium, Large).
+        Designed for both dark and light surface contexts.
+      </p>
+
+      <div class="doc-subsection">
+        <div class="doc-label">Dark Surface</div>
+        <div class="example-box example-box--dark">
+          <div class="doc-label" style="margin-bottom: 16px;">Primary</div>
+          <div class="btn-row">
+            <span class="btn-row-label">Small</span>
+            <button class="ds-btn ds-btn--sm ds-btn--primary">Action</button>
+            <button class="ds-btn ds-btn--sm ds-btn--primary" disabled>Disabled</button>
+          </div>
+          <div class="btn-row">
+            <span class="btn-row-label">Medium</span>
+            <button class="ds-btn ds-btn--md ds-btn--primary">Get in Touch</button>
+            <button class="ds-btn ds-btn--md ds-btn--primary" disabled>Disabled</button>
+          </div>
+          <div class="btn-row">
+            <span class="btn-row-label">Large</span>
+            <button class="ds-btn ds-btn--lg ds-btn--primary">View Selected Work</button>
+            <button class="ds-btn ds-btn--lg ds-btn--primary" disabled>Disabled</button>
+          </div>
+
+          <div class="doc-label" style="margin-top: 32px; margin-bottom: 16px;">Secondary</div>
+          <div class="btn-row">
+            <span class="btn-row-label">Small</span>
+            <button class="ds-btn ds-btn--sm ds-btn--secondary">Action</button>
+            <button class="ds-btn ds-btn--sm ds-btn--secondary" disabled>Disabled</button>
+          </div>
+          <div class="btn-row">
+            <span class="btn-row-label">Medium</span>
+            <button class="ds-btn ds-btn--md ds-btn--secondary">View CV</button>
+            <button class="ds-btn ds-btn--md ds-btn--secondary" disabled>Disabled</button>
+          </div>
+          <div class="btn-row">
+            <span class="btn-row-label">Large</span>
+            <button class="ds-btn ds-btn--lg ds-btn--secondary">Download Resume</button>
+            <button class="ds-btn ds-btn--lg ds-btn--secondary" disabled>Disabled</button>
+          </div>
+
+          <div class="doc-label" style="margin-top: 32px; margin-bottom: 16px;">Ghost</div>
+          <div class="btn-row">
+            <span class="btn-row-label">Small</span>
+            <button class="ds-btn ds-btn--sm ds-btn--ghost">Learn More</button>
+          </div>
+          <div class="btn-row">
+            <span class="btn-row-label">Medium</span>
+            <button class="ds-btn ds-btn--md ds-btn--ghost">See Live Prototype</button>
+          </div>
+          <div class="btn-row">
+            <span class="btn-row-label">Large</span>
+            <button class="ds-btn ds-btn--lg ds-btn--ghost">Explore Case Study</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="doc-subsection">
+        <div class="doc-label">Light Surface</div>
+        <div class="example-box example-box--light">
+          <div class="doc-label" style="color:#757575; margin-bottom: 16px;">Primary</div>
+          <div class="btn-row">
+            <span class="btn-row-label" style="color:#757575;">Small</span>
+            <button class="ds-btn ds-btn--sm ds-btn--primary-light">Action</button>
+            <button class="ds-btn ds-btn--sm ds-btn--primary-light" disabled>Disabled</button>
+          </div>
+          <div class="btn-row">
+            <span class="btn-row-label" style="color:#757575;">Medium</span>
+            <button class="ds-btn ds-btn--md ds-btn--primary-light">Get in Touch</button>
+            <button class="ds-btn ds-btn--md ds-btn--primary-light" disabled>Disabled</button>
+          </div>
+          <div class="btn-row">
+            <span class="btn-row-label" style="color:#757575;">Large</span>
+            <button class="ds-btn ds-btn--lg ds-btn--primary-light">View Selected Work</button>
+            <button class="ds-btn ds-btn--lg ds-btn--primary-light" disabled>Disabled</button>
+          </div>
+
+          <div class="doc-label" style="color:#757575; margin-top: 32px; margin-bottom: 16px;">Secondary</div>
+          <div class="btn-row">
+            <span class="btn-row-label" style="color:#757575;">Small</span>
+            <button class="ds-btn ds-btn--sm ds-btn--secondary-light">Action</button>
+            <button class="ds-btn ds-btn--sm ds-btn--secondary-light" disabled>Disabled</button>
+          </div>
+          <div class="btn-row">
+            <span class="btn-row-label" style="color:#757575;">Medium</span>
+            <button class="ds-btn ds-btn--md ds-btn--secondary-light">View CV</button>
+            <button class="ds-btn ds-btn--md ds-btn--secondary-light" disabled>Disabled</button>
+          </div>
+          <div class="btn-row">
+            <span class="btn-row-label" style="color:#757575;">Large</span>
+            <button class="ds-btn ds-btn--lg ds-btn--secondary-light">Download Resume</button>
+            <button class="ds-btn ds-btn--lg ds-btn--secondary-light" disabled>Disabled</button>
+          </div>
+
+          <div class="doc-label" style="color:#757575; margin-top: 32px; margin-bottom: 16px;">Ghost</div>
+          <div class="btn-row">
+            <span class="btn-row-label" style="color:#757575;">Small</span>
+            <button class="ds-btn ds-btn--sm ds-btn--ghost-light">Learn More</button>
+            <button class="ds-btn ds-btn--sm ds-btn--ghost-light" disabled>Disabled</button>
+          </div>
+          <div class="btn-row">
+            <span class="btn-row-label" style="color:#757575;">Medium</span>
+            <button class="ds-btn ds-btn--md ds-btn--ghost-light">See Prototype</button>
+            <button class="ds-btn ds-btn--md ds-btn--ghost-light" disabled>Disabled</button>
+          </div>
+          <div class="btn-row">
+            <span class="btn-row-label" style="color:#757575;">Large</span>
+            <button class="ds-btn ds-btn--lg ds-btn--ghost-light">Explore Case Study</button>
+            <button class="ds-btn ds-btn--lg ds-btn--ghost-light" disabled>Disabled</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="doc-subsection">
+        <div class="doc-label">Anatomy</div>
+        <table class="doc-table">
+          <thead><tr><th>Property</th><th>Small</th><th>Medium</th><th>Large</th></tr></thead>
+          <tbody>
+            <tr><td>Font size</td><td><code>11px</code></td><td><code>12px</code></td><td><code>14px</code></td></tr>
+            <tr><td>Padding</td><td><code>8px 16px</code></td><td><code>16px 32px</code></td><td><code>20px 48px</code></td></tr>
+            <tr><td>Letter spacing</td><td><code>0.12em</code></td><td><code>0.15em</code></td><td><code>0.12em</code></td></tr>
+            <tr><td>Font</td><td colspan="3"><code>Barlow 800, uppercase</code></td></tr>
+            <tr><td>Transition</td><td colspan="3"><code>120ms</code> (dur-fast)</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="example-code">.btn-primary {
+  font-family: 'Barlow', sans-serif;
+  font-weight: 800;
+  font-size: 12px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #fff;
+  background: oklch(55% 0.28 264);     /* --color-blue */
+  padding: 16px 32px;                  /* --sp-4 --sp-8 */
+  border: none;
+  transition: background 120ms;
+}
+
+.btn-primary:hover {
+  background: oklch(68% 0.25 264);     /* --color-blue-dim */
+}
+
+.btn-secondary {
+  background: transparent;
+  color: #fafafa;
+  border: 1px solid oklch(45% 0 0);
+}
+
+.btn-secondary:hover {
+  background: oklch(18% 0 0);
+  border-color: oklch(60% 0 0);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: oklch(68% 0.25 264);
+}
+
+.btn-ghost:hover {
+  background: rgba(75, 139, 255, 0.1);
+}</div>
+    </section>
+
+    <!-- ====== FORM ELEMENTS ====== -->
+    <section class="doc-section" id="comp-forms">
+      <h2 class="doc-section-title">Form Elements</h2>
+      <p class="doc-section-desc">
+        Input fields, textareas, selects, checkboxes, radios, and toggles.
+        All elements include focus, hover, disabled, and error states.
+      </p>
+
+      <div class="doc-subsection">
+        <div class="doc-label">Text Input &mdash; Dark Surface</div>
+        <div class="example-box example-box--dark">
+          <div class="ds-form-group">
+            <label class="ds-form-label" style="color: var(--doc-text);">Default</label>
+            <input type="text" class="ds-input" placeholder="Enter your name" />
+          </div>
+          <div class="ds-form-group">
+            <label class="ds-form-label" style="color: var(--doc-text);">With Value</label>
+            <input type="text" class="ds-input" value="Bohdan Doshchak" />
+          </div>
+          <div class="ds-form-group">
+            <label class="ds-form-label" style="color: var(--doc-text);">Error</label>
+            <input type="text" class="ds-input ds-input--error" value="bad@" />
+            <div class="ds-error-text">Please enter a valid email address</div>
+          </div>
+          <div class="ds-form-group">
+            <label class="ds-form-label" style="color: var(--doc-text);">Disabled</label>
+            <input type="text" class="ds-input" value="Cannot edit" disabled />
+          </div>
+        </div>
+      </div>
+
+      <div class="doc-subsection">
+        <div class="doc-label">Input Sizes</div>
+        <div class="example-box example-box--dark">
+          <div class="ds-form-group">
+            <label class="ds-form-label" style="color: var(--doc-text);">Small</label>
+            <input type="text" class="ds-input ds-input--sm" placeholder="Small input" />
+          </div>
+          <div class="ds-form-group">
+            <label class="ds-form-label" style="color: var(--doc-text);">Medium (default)</label>
+            <input type="text" class="ds-input" placeholder="Medium input" />
+          </div>
+          <div class="ds-form-group">
+            <label class="ds-form-label" style="color: var(--doc-text);">Large</label>
+            <input type="text" class="ds-input ds-input--lg" placeholder="Large input" />
+          </div>
+        </div>
+      </div>
+
+      <div class="doc-subsection">
+        <div class="doc-label">Text Input &mdash; Light Surface</div>
+        <div class="example-box example-box--light">
+          <div class="ds-form-group">
+            <label class="ds-form-label" style="color: #141414;">Default</label>
+            <input type="text" class="ds-input ds-input--light" placeholder="Enter your name" />
+          </div>
+          <div class="ds-form-group">
+            <label class="ds-form-label" style="color: #141414;">With Value</label>
+            <input type="text" class="ds-input ds-input--light" value="Bohdan Doshchak" />
+          </div>
+          <div class="ds-form-group">
+            <label class="ds-form-label" style="color: #141414;">Error</label>
+            <input type="text" class="ds-input ds-input--light ds-input--error" value="bad@" />
+            <div class="ds-error-text">Please enter a valid email address</div>
+          </div>
+          <div class="ds-form-group">
+            <label class="ds-form-label" style="color: #141414;">Disabled</label>
+            <input type="text" class="ds-input ds-input--light" value="Cannot edit" disabled />
+          </div>
+        </div>
+      </div>
+
+      <div class="doc-subsection">
+        <div class="doc-label">Textarea</div>
+        <div class="form-demo-grid">
+          <div class="example-box example-box--dark">
+            <div class="ds-form-group">
+              <label class="ds-form-label" style="color: var(--doc-text);">Message</label>
+              <textarea class="ds-textarea" placeholder="Tell me about your project..."></textarea>
+              <div class="ds-form-hint">Max 500 characters</div>
+            </div>
+          </div>
+          <div class="example-box example-box--light">
+            <div class="ds-form-group">
+              <label class="ds-form-label" style="color: #141414;">Message</label>
+              <textarea class="ds-textarea ds-textarea--light" placeholder="Tell me about your project..."></textarea>
+              <div class="ds-form-hint" style="color: #757575;">Max 500 characters</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="doc-subsection">
+        <div class="doc-label">Select</div>
+        <div class="form-demo-grid">
+          <div class="example-box example-box--dark">
+            <div class="ds-form-group">
+              <label class="ds-form-label" style="color: var(--doc-text);">Project Type</label>
+              <select class="ds-select">
+                <option value="" disabled selected>Choose an option</option>
+                <option>Product Design</option>
+                <option>Design System</option>
+                <option>UX Audit</option>
+                <option>Mobile App</option>
+              </select>
+            </div>
+            <div class="ds-form-group">
+              <label class="ds-form-label" style="color: var(--doc-text);">Disabled</label>
+              <select class="ds-select" disabled>
+                <option>Cannot change</option>
+              </select>
+            </div>
+          </div>
+          <div class="example-box example-box--light">
+            <div class="ds-form-group">
+              <label class="ds-form-label" style="color: #141414;">Project Type</label>
+              <select class="ds-select ds-select--light">
+                <option value="" disabled selected>Choose an option</option>
+                <option>Product Design</option>
+                <option>Design System</option>
+                <option>UX Audit</option>
+                <option>Mobile App</option>
+              </select>
+            </div>
+            <div class="ds-form-group">
+              <label class="ds-form-label" style="color: #141414;">Disabled</label>
+              <select class="ds-select ds-select--light" disabled>
+                <option>Cannot change</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="doc-subsection">
+        <div class="doc-label">Checkboxes</div>
+        <div class="form-demo-grid">
+          <div class="example-box example-box--dark">
+            <div class="ds-check-group">
+              <label class="ds-check-label">
+                <input type="checkbox" class="ds-checkbox" checked />
+                Enterprise SaaS
+              </label>
+              <label class="ds-check-label">
+                <input type="checkbox" class="ds-checkbox" />
+                Design Systems
+              </label>
+              <label class="ds-check-label">
+                <input type="checkbox" class="ds-checkbox" checked />
+                Mobile
+              </label>
+              <label class="ds-check-label">
+                <input type="checkbox" class="ds-checkbox" disabled />
+                Disabled
+              </label>
+              <label class="ds-check-label">
+                <input type="checkbox" class="ds-checkbox" checked disabled />
+                Checked + Disabled
+              </label>
+            </div>
+          </div>
+          <div class="example-box example-box--light">
+            <div class="ds-check-group">
+              <label class="ds-check-label" style="color: #141414;">
+                <input type="checkbox" class="ds-checkbox ds-checkbox--light" checked />
+                Enterprise SaaS
+              </label>
+              <label class="ds-check-label" style="color: #141414;">
+                <input type="checkbox" class="ds-checkbox ds-checkbox--light" />
+                Design Systems
+              </label>
+              <label class="ds-check-label" style="color: #141414;">
+                <input type="checkbox" class="ds-checkbox ds-checkbox--light" checked />
+                Mobile
+              </label>
+              <label class="ds-check-label" style="color: #141414;">
+                <input type="checkbox" class="ds-checkbox ds-checkbox--light" disabled />
+                Disabled
+              </label>
+              <label class="ds-check-label" style="color: #141414;">
+                <input type="checkbox" class="ds-checkbox ds-checkbox--light" checked disabled />
+                Checked + Disabled
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="doc-subsection">
+        <div class="doc-label">Radio Buttons</div>
+        <div class="form-demo-grid">
+          <div class="example-box example-box--dark">
+            <div class="ds-check-group">
+              <label class="ds-check-label">
+                <input type="radio" name="role-dark" class="ds-radio" checked />
+                Designer
+              </label>
+              <label class="ds-check-label">
+                <input type="radio" name="role-dark" class="ds-radio" />
+                Developer
+              </label>
+              <label class="ds-check-label">
+                <input type="radio" name="role-dark" class="ds-radio" />
+                Product Manager
+              </label>
+              <label class="ds-check-label">
+                <input type="radio" name="role-dark" class="ds-radio" disabled />
+                Disabled
+              </label>
+            </div>
+          </div>
+          <div class="example-box example-box--light">
+            <div class="ds-check-group">
+              <label class="ds-check-label" style="color: #141414;">
+                <input type="radio" name="role-light" class="ds-radio ds-radio--light" checked />
+                Designer
+              </label>
+              <label class="ds-check-label" style="color: #141414;">
+                <input type="radio" name="role-light" class="ds-radio ds-radio--light" />
+                Developer
+              </label>
+              <label class="ds-check-label" style="color: #141414;">
+                <input type="radio" name="role-light" class="ds-radio ds-radio--light" />
+                Product Manager
+              </label>
+              <label class="ds-check-label" style="color: #141414;">
+                <input type="radio" name="role-light" class="ds-radio ds-radio--light" disabled />
+                Disabled
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="doc-subsection">
+        <div class="doc-label">Toggle Switch</div>
+        <div class="form-demo-grid">
+          <div class="example-box example-box--dark">
+            <div class="ds-check-group">
+              <label class="ds-toggle-label">
+                <input type="checkbox" class="ds-toggle" checked />
+                Dark mode
+              </label>
+              <label class="ds-toggle-label">
+                <input type="checkbox" class="ds-toggle" />
+                Notifications
+              </label>
+              <label class="ds-toggle-label">
+                <input type="checkbox" class="ds-toggle" disabled />
+                Disabled
+              </label>
+            </div>
+          </div>
+          <div class="example-box example-box--light">
+            <div class="ds-check-group">
+              <label class="ds-toggle-label" style="color: #141414;">
+                <input type="checkbox" class="ds-toggle ds-toggle--light" checked />
+                Dark mode
+              </label>
+              <label class="ds-toggle-label" style="color: #141414;">
+                <input type="checkbox" class="ds-toggle ds-toggle--light" />
+                Notifications
+              </label>
+              <label class="ds-toggle-label" style="color: #141414;">
+                <input type="checkbox" class="ds-toggle ds-toggle--light" disabled />
+                Disabled
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="doc-subsection">
+        <div class="doc-label">Specs</div>
+        <table class="doc-table">
+          <thead><tr><th>Property</th><th>Small</th><th>Medium (default)</th><th>Large</th></tr></thead>
+          <tbody>
+            <tr><td>Font size</td><td><code>13px</code></td><td><code>15px</code></td><td><code>17px</code></td></tr>
+            <tr><td>Padding</td><td><code>8px 12px</code></td><td><code>12px 16px</code></td><td><code>16px 20px</code></td></tr>
+            <tr><td>Border</td><td colspan="3"><code>1px solid oklch(22% 0 0)</code> dark / <code>oklch(80% 0 0)</code> light</td></tr>
+            <tr><td>Border radius</td><td colspan="3"><code>4px</code></td></tr>
+            <tr><td>Focus ring</td><td colspan="3"><code>0 0 0 3px rgba(75, 139, 255, 0.2)</code></td></tr>
+            <tr><td>Font</td><td colspan="3"><code>Inter 400</code></td></tr>
+          </tbody>
+        </table>
+
+        <table class="doc-table" style="margin-top: 24px;">
+          <thead><tr><th>Element</th><th>Size</th><th>Border radius</th><th>Active color</th></tr></thead>
+          <tbody>
+            <tr><td>Checkbox</td><td><code>20 &times; 20px</code></td><td><code>4px</code></td><td><code>oklch(55% 0.28 264)</code></td></tr>
+            <tr><td>Radio</td><td><code>20 &times; 20px</code></td><td><code>50%</code></td><td><code>oklch(55% 0.28 264)</code></td></tr>
+            <tr><td>Toggle</td><td><code>44 &times; 24px</code></td><td><code>12px</code></td><td><code>oklch(55% 0.28 264)</code></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="example-code">.input {
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  color: var(--text-primary);
+  background: oklch(12% 0 0);
+  border: 1px solid oklch(22% 0 0);
+  border-radius: 4px;
+  padding: 12px 16px;
+  transition: border-color 120ms, box-shadow 120ms;
+}
+
+.input:focus {
+  border-color: oklch(68% 0.25 264);
+  box-shadow: 0 0 0 3px rgba(75, 139, 255, 0.2);
+}
+
+.input--error {
+  border-color: oklch(65% 0.25 25);
+}
+
+.checkbox:checked {
+  background: oklch(55% 0.28 264);
+  border-color: oklch(55% 0.28 264);
+}
+
+.toggle:checked {
+  background: oklch(55% 0.28 264);
+}</div>
+    </section>
+
+    <!-- ====== ACCESSIBILITY ====== -->
+    <section class="doc-section" id="a11y">
+      <h2 class="doc-section-title">Accessibility</h2>
+      <p class="doc-section-desc">
+        WCAG 2.1 AA compliance. All text colors meet minimum contrast ratios on their intended backgrounds.
+      </p>
+
+      <table class="doc-table">
+        <thead><tr><th>Rule</th><th>Requirement</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td>Normal text contrast</td><td>4.5 : 1 minimum</td><td>AA &check;</td></tr>
+          <tr><td>Large text contrast</td><td>3 : 1 minimum</td><td>AA &check;</td></tr>
+          <tr><td>Focus indicators</td><td>Visible on all interactive elements</td><td>&check;</td></tr>
+          <tr><td>Reduced motion</td><td>Respects <code>prefers-reduced-motion</code></td><td>&check;</td></tr>
+          <tr><td>Semantic HTML</td><td>Landmarks, headings, ARIA labels</td><td>&check;</td></tr>
+          <tr><td>200% zoom</td><td>Usable at 200% browser zoom</td><td>&check;</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="doc-section" id="focus">
+      <h2 class="doc-section-title">Focus States</h2>
+      <p class="doc-section-desc">
+        All interactive elements use <code>:focus-visible</code> with a 2px accent outline and 3px offset.
+        Tab through the buttons below to see it in action.
+      </p>
+
+      <div class="example-box example-box--dark">
+        <div class="focus-demo">
+          <button class="focus-demo-btn">Tab to me</button>
+          <button class="focus-demo-btn">And me</button>
+          <button class="focus-demo-btn">And me too</button>
+        </div>
+      </div>
+
+      <div class="example-code">:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}</div>
+    </section>
+
+  </main>
+
+  <!-- ====== NAV ACTIVE STATE ====== -->
+  <script>
+    (function () {
+      var links = document.querySelectorAll('.doc-nav-link');
+      var sections = [];
+      links.forEach(function (l) {
+        var id = l.getAttribute('href');
+        if (id && id.startsWith('#')) {
+          var el = document.querySelector(id);
+          if (el) sections.push({ el: el, link: l });
+        }
+      });
+
+      function update() {
+        var scrollY = window.scrollY + 120;
+        var active = null;
+        for (var i = sections.length - 1; i >= 0; i--) {
+          if (sections[i].el.offsetTop <= scrollY) { active = sections[i]; break; }
+        }
+        links.forEach(function (l) { l.classList.remove('is-active'); });
+        if (active) active.link.classList.add('is-active');
+      }
+
+      window.addEventListener('scroll', update, { passive: true });
+      update();
+    })();
+  </script>
+</body>
+</html>

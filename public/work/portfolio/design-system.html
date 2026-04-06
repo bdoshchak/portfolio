@@ -11,6 +11,7 @@
        DESIGN SYSTEM DOC — Self-contained styles
        ============================================================ */
     :root {
+      /* --- Doc chrome UI variables --- */
       --doc-bg: #0a0a0a;
       --doc-surface: #141414;
       --doc-surface-2: #1a1a1a;
@@ -24,6 +25,122 @@
       --doc-mono: 'JetBrains Mono', monospace;
       --doc-body: 'Inter', sans-serif;
       --doc-display: 'Barlow', sans-serif;
+
+      /* --- Color tokens (from global.css) --- */
+      --color-black:    oklch(8% 0 0);
+      --color-white:    oklch(98% 0 0);
+      --color-grey-100: oklch(96% 0 0);
+      --color-grey-200: oklch(90% 0 0);
+      --color-grey-400: oklch(70% 0 0);
+      --color-grey-450: oklch(60% 0 0);
+      --color-grey-500: oklch(52% 0 0);
+      --color-grey-600: oklch(50% 0 0);
+      --color-grey-800: oklch(25% 0 0);
+
+      --color-blue:     oklch(55% 0.28 264);
+      --color-blue-dim: oklch(68% 0.25 264);
+      --color-blue-hover: oklch(48% 0.28 264);
+      --color-blue-active: oklch(48% 0.28 264);
+      --color-blue-disabled-bg: oklch(30% 0.08 264);
+      --color-blue-disabled-text: oklch(55% 0 0);
+
+      --color-success:  oklch(72% 0.19 145);
+      --color-warning:  oklch(78% 0.16 75);
+      --color-error:    oklch(65% 0.25 25);
+
+      /* --- Derived tokens: buttons/forms (dark) --- */
+      --color-border-dark: oklch(45% 0 0);
+      --color-border-dark-hover: oklch(60% 0 0);
+      --color-surface-hover-dark: oklch(18% 0 0);
+      --color-surface-active-dark: oklch(14% 0 0);
+      --color-disabled-text-dark: oklch(40% 0 0);
+      --color-disabled-border-dark: oklch(25% 0 0);
+
+      /* --- Derived tokens: buttons/forms (light) --- */
+      --color-border-light: oklch(80% 0 0);
+      --color-border-light-hover: oklch(60% 0 0);
+      --color-surface-hover-light: oklch(96% 0 0);
+      --color-disabled-text-light: oklch(75% 0 0);
+      --color-disabled-border-light: oklch(88% 0 0);
+      --color-disabled-bg-light: oklch(96% 0 0);
+      --color-disabled-input-text-light: oklch(65% 0 0);
+
+      --color-ghost-hover-bg: rgba(75, 139, 255, 0.1);
+      --color-ghost-active-bg: rgba(75, 139, 255, 0.18);
+      --color-ghost-light-hover-bg: rgba(29, 78, 216, 0.08);
+
+      --color-blue-disabled-bg-light: oklch(80% 0.06 264);
+
+      --color-placeholder-dark: oklch(45% 0 0);
+      --color-placeholder-light: oklch(65% 0 0);
+
+      --color-focus-ring: rgba(75, 139, 255, 0.2);
+      --color-focus-ring-light: rgba(29, 78, 216, 0.15);
+      --color-error-ring: rgba(239, 68, 68, 0.2);
+      --color-error-ring-light: rgba(239, 68, 68, 0.15);
+
+      --color-checkbox-border-dark: oklch(45% 0 0);
+      --color-checkbox-border-dark-hover: oklch(60% 0 0);
+      --color-checkbox-border-light: oklch(75% 0 0);
+      --color-checkbox-border-light-hover: oklch(55% 0 0);
+      --color-checkbox-disabled-bg-light: oklch(96% 0 0);
+      --color-checkbox-disabled-border-light: oklch(85% 0 0);
+
+      --color-toggle-bg-dark: oklch(30% 0 0);
+      --color-toggle-knob-dark: oklch(65% 0 0);
+      --color-toggle-bg-light: oklch(82% 0 0);
+
+      /* --- Spacing tokens --- */
+      --sp-1:  0.25rem;
+      --sp-2:  0.5rem;
+      --sp-3:  0.75rem;
+      --sp-4:  1rem;
+      --sp-6:  1.5rem;
+      --sp-8:  2rem;
+      --sp-12: 3rem;
+      --sp-16: 4rem;
+      --sp-24: 6rem;
+      --sp-32: 8rem;
+
+      /* --- Typography tokens --- */
+      --font-display: 'Barlow', 'Helvetica Neue', Arial, sans-serif;
+      --font-body:    'Inter', 'Helvetica Neue', Arial, sans-serif;
+
+      --fw-regular:   400;
+      --fw-medium:    500;
+      --fw-extrabold: 800;
+      --fw-black:     900;
+
+      --fs-hero:    clamp(3.5rem, 8vw, 8rem);
+      --fs-display: clamp(2.5rem, 5vw, 4.5rem);
+      --fs-h1:      clamp(2rem, 4vw, 3rem);
+      --fs-h2:      clamp(1.5rem, 3vw, 2.25rem);
+      --fs-h3:      1.5rem;
+      --fs-body-lg: 1.125rem;
+      --fs-body:    1rem;
+      --fs-caption: 0.875rem;
+      --fs-label:   0.75rem;
+
+      --lh-tight:  1.05;
+      --lh-snug:   1.25;
+      --lh-normal: 1.5;
+      --lh-loose:  1.75;
+
+      --ls-tight:  -0.03em;
+      --ls-normal: 0em;
+      --ls-wide:   0.08em;
+      --ls-widest: 0.15em;
+
+      /* --- Motion tokens --- */
+      --dur-fast: 120ms;
+      --dur-base: 220ms;
+      --dur-slow: 400ms;
+      --ease:     cubic-bezier(0.4, 0, 0.2, 1);
+      --ease-out: cubic-bezier(0, 0, 0.2, 1);
+
+      /* --- Radius tokens --- */
+      --radius-sm: 4px;
+      --radius-md: 8px;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -49,39 +166,39 @@
       overflow-y: auto;
       background: var(--doc-surface);
       border-right: 1px solid var(--doc-border);
-      padding: 32px 24px;
+      padding: var(--sp-8) var(--sp-6);
       z-index: 100;
     }
 
     .doc-nav-logo {
       font-family: var(--doc-display);
-      font-weight: 900;
+      font-weight: var(--fw-black);
       font-size: 14px;
       letter-spacing: 0.12em;
       text-transform: uppercase;
       color: var(--doc-text);
-      margin-bottom: 8px;
+      margin-bottom: var(--sp-2);
     }
 
     .doc-nav-sub {
       font-size: 11px;
       color: var(--doc-text-muted);
       letter-spacing: 0.05em;
-      margin-bottom: 32px;
+      margin-bottom: var(--sp-8);
     }
 
     .doc-nav-group {
-      margin-bottom: 24px;
+      margin-bottom: var(--sp-6);
     }
 
     .doc-nav-group-title {
       font-family: var(--doc-display);
-      font-weight: 800;
+      font-weight: var(--fw-extrabold);
       font-size: 11px;
-      letter-spacing: 0.15em;
+      letter-spacing: var(--ls-widest);
       text-transform: uppercase;
       color: var(--doc-text-muted);
-      margin-bottom: 8px;
+      margin-bottom: var(--sp-2);
     }
 
     .doc-nav-link {
@@ -90,7 +207,7 @@
       text-decoration: none;
       font-size: 13px;
       padding: 4px 0;
-      transition: color 150ms;
+      transition: color var(--dur-fast);
     }
 
     .doc-nav-link:hover,
@@ -102,7 +219,7 @@
     .doc-main {
       margin-left: 260px;
       max-width: 960px;
-      padding: 48px 48px 120px;
+      padding: var(--sp-12) var(--sp-12) 120px;
     }
 
     /* --- SECTIONS --- */
@@ -112,37 +229,37 @@
 
     .doc-section-title {
       font-family: var(--doc-display);
-      font-weight: 900;
+      font-weight: var(--fw-black);
       font-size: 32px;
       letter-spacing: -0.02em;
-      margin-bottom: 8px;
+      margin-bottom: var(--sp-2);
       color: var(--doc-text);
     }
 
     .doc-section-desc {
       color: var(--doc-text-muted);
       font-size: 15px;
-      margin-bottom: 32px;
+      margin-bottom: var(--sp-8);
       max-width: 60ch;
     }
 
     .doc-subsection {
-      margin-bottom: 48px;
+      margin-bottom: var(--sp-12);
     }
 
     .doc-subsection-title {
       font-family: var(--doc-display);
-      font-weight: 800;
+      font-weight: var(--fw-extrabold);
       font-size: 18px;
-      margin-bottom: 16px;
+      margin-bottom: var(--sp-4);
       color: var(--doc-text);
     }
 
     .doc-label {
       font-family: var(--doc-display);
-      font-weight: 800;
+      font-weight: var(--fw-extrabold);
       font-size: 11px;
-      letter-spacing: 0.15em;
+      letter-spacing: var(--ls-widest);
       text-transform: uppercase;
       color: var(--doc-text-muted);
       margin-bottom: 12px;
@@ -153,18 +270,18 @@
       width: 100%;
       border-collapse: collapse;
       font-size: 13px;
-      margin-bottom: 24px;
+      margin-bottom: var(--sp-6);
     }
 
     .doc-table th {
       text-align: left;
       font-family: var(--doc-display);
-      font-weight: 800;
+      font-weight: var(--fw-extrabold);
       font-size: 11px;
       letter-spacing: 0.1em;
       text-transform: uppercase;
       color: var(--doc-text-muted);
-      padding: 8px 12px;
+      padding: var(--sp-2) 12px;
       border-bottom: 1px solid var(--doc-border);
     }
 
@@ -178,9 +295,9 @@
 
     .doc-table code {
       font-family: var(--doc-mono);
-      font-size: 12px;
+      font-size: var(--fs-label);
       color: var(--doc-accent);
-      background: rgba(75, 139, 255, 0.1);
+      background: var(--color-ghost-hover-bg);
       padding: 2px 6px;
       border-radius: 3px;
     }
@@ -190,11 +307,11 @@
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
       gap: 12px;
-      margin-bottom: 32px;
+      margin-bottom: var(--sp-8);
     }
 
     .swatch {
-      border-radius: 8px;
+      border-radius: var(--radius-md);
       overflow: hidden;
       border: 1px solid var(--doc-border);
     }
@@ -208,7 +325,7 @@
       content: attr(data-contrast);
       position: absolute;
       bottom: 6px;
-      right: 8px;
+      right: var(--sp-2);
       font-family: var(--doc-mono);
       font-size: 10px;
       color: rgba(255,255,255,0.6);
@@ -220,7 +337,7 @@
     }
 
     .swatch-name {
-      font-size: 12px;
+      font-size: var(--fs-label);
       font-weight: 600;
       margin-bottom: 2px;
     }
@@ -235,24 +352,24 @@
     .spacing-row {
       display: flex;
       align-items: center;
-      gap: 16px;
-      margin-bottom: 8px;
+      gap: var(--sp-4);
+      margin-bottom: var(--sp-2);
     }
 
     .spacing-label {
       font-family: var(--doc-mono);
-      font-size: 12px;
+      font-size: var(--fs-label);
       color: var(--doc-accent);
       width: 60px;
       flex-shrink: 0;
     }
 
     .spacing-bar {
-      height: 24px;
+      height: var(--sp-6);
       background: var(--doc-accent);
-      border-radius: 4px;
+      border-radius: var(--radius-sm);
       opacity: 0.3;
-      transition: opacity 150ms;
+      transition: opacity var(--dur-fast);
     }
 
     .spacing-bar:hover { opacity: 0.6; }
@@ -268,16 +385,16 @@
 
     /* --- TYPE SPECIMENS --- */
     .type-specimen {
-      margin-bottom: 32px;
-      padding: 24px;
+      margin-bottom: var(--sp-8);
+      padding: var(--sp-6);
       background: var(--doc-surface);
       border: 1px solid var(--doc-border);
-      border-radius: 8px;
+      border-radius: var(--radius-md);
     }
 
     .type-specimen-meta {
       display: flex;
-      gap: 16px;
+      gap: var(--sp-4);
       margin-bottom: 12px;
       flex-wrap: wrap;
     }
@@ -286,8 +403,8 @@
       font-family: var(--doc-mono);
       font-size: 11px;
       color: var(--doc-accent);
-      background: rgba(75, 139, 255, 0.1);
-      padding: 3px 8px;
+      background: var(--color-ghost-hover-bg);
+      padding: 3px var(--sp-2);
       border-radius: 3px;
     }
 
@@ -298,32 +415,32 @@
 
     /* --- COMPONENT EXAMPLES --- */
     .example-box {
-      padding: 32px;
+      padding: var(--sp-8);
       background: var(--doc-surface);
       border: 1px solid var(--doc-border);
-      border-radius: 8px;
-      margin-bottom: 16px;
+      border-radius: var(--radius-md);
+      margin-bottom: var(--sp-4);
     }
 
     .example-box--light {
-      background: #fafafa;
-      color: #141414;
+      background: var(--color-white);
+      color: var(--color-black);
     }
 
     .example-box--dark {
-      background: #141414;
+      background: var(--color-black);
     }
 
     .example-code {
       font-family: var(--doc-mono);
-      font-size: 12px;
+      font-size: var(--fs-label);
       color: var(--doc-text-muted);
       background: var(--doc-surface-2);
       border: 1px solid var(--doc-border);
       border-radius: 6px;
-      padding: 16px;
+      padding: var(--sp-4);
       overflow-x: auto;
-      margin-bottom: 24px;
+      margin-bottom: var(--sp-6);
       white-space: pre;
       line-height: 1.7;
     }
@@ -333,14 +450,14 @@
       display: grid;
       grid-template-columns: repeat(12, 1fr);
       gap: 12px;
-      margin-bottom: 16px;
+      margin-bottom: var(--sp-4);
     }
 
     .grid-demo-col {
-      height: 48px;
+      height: var(--sp-12);
       background: rgba(75, 139, 255, 0.15);
       border: 1px solid rgba(75, 139, 255, 0.3);
-      border-radius: 4px;
+      border-radius: var(--radius-sm);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -353,29 +470,29 @@
     .semantic-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 16px;
-      margin-bottom: 32px;
+      gap: var(--sp-4);
+      margin-bottom: var(--sp-8);
     }
 
     .semantic-card {
       border: 1px solid var(--doc-border);
-      border-radius: 8px;
+      border-radius: var(--radius-md);
       overflow: hidden;
     }
 
     .semantic-card-header {
       font-family: var(--doc-display);
-      font-weight: 800;
+      font-weight: var(--fw-extrabold);
       font-size: 11px;
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      padding: 12px 16px;
+      padding: 12px var(--sp-4);
       border-bottom: 1px solid var(--doc-border);
       color: var(--doc-text-muted);
     }
 
     .semantic-card-body {
-      padding: 20px 16px;
+      padding: 20px var(--sp-4);
     }
 
     .semantic-row {
@@ -391,14 +508,14 @@
     .semantic-dot {
       width: 20px;
       height: 20px;
-      border-radius: 4px;
+      border-radius: var(--radius-sm);
       flex-shrink: 0;
       border: 1px solid rgba(255,255,255,0.1);
     }
 
     .semantic-token {
       font-family: var(--doc-mono);
-      font-size: 12px;
+      font-size: var(--fs-label);
       color: var(--doc-accent);
     }
 
@@ -416,8 +533,8 @@
     /* --- MOTION --- */
     .motion-demo {
       display: flex;
-      gap: 24px;
-      margin-bottom: 24px;
+      gap: var(--sp-6);
+      margin-bottom: var(--sp-6);
     }
 
     .motion-card {
@@ -425,26 +542,26 @@
       padding: 20px;
       background: var(--doc-surface);
       border: 1px solid var(--doc-border);
-      border-radius: 8px;
+      border-radius: var(--radius-md);
       text-align: center;
     }
 
     .motion-card-label {
       font-family: var(--doc-mono);
-      font-size: 12px;
+      font-size: var(--fs-label);
       color: var(--doc-accent);
-      margin-bottom: 8px;
+      margin-bottom: var(--sp-2);
     }
 
     .motion-card-value {
       font-size: 24px;
-      font-weight: 900;
+      font-weight: var(--fw-black);
       font-family: var(--doc-display);
       margin-bottom: 4px;
     }
 
     .motion-card-desc {
-      font-size: 12px;
+      font-size: var(--fs-label);
       color: var(--doc-text-muted);
     }
 
@@ -452,7 +569,7 @@
       height: 4px;
       background: var(--doc-border);
       border-radius: 2px;
-      margin-top: 16px;
+      margin-top: var(--sp-4);
       position: relative;
       overflow: hidden;
     }
@@ -467,9 +584,9 @@
       animation: motionFill 2s infinite;
     }
 
-    .motion-card:nth-child(1) .motion-bar-fill { animation-duration: 0.12s; animation-timing-function: cubic-bezier(0.4,0,0.2,1); }
-    .motion-card:nth-child(2) .motion-bar-fill { animation-duration: 0.22s; animation-timing-function: cubic-bezier(0.4,0,0.2,1); }
-    .motion-card:nth-child(3) .motion-bar-fill { animation-duration: 0.4s; animation-timing-function: cubic-bezier(0,0,0.2,1); }
+    .motion-card:nth-child(1) .motion-bar-fill { animation-duration: 0.12s; animation-timing-function: var(--ease); }
+    .motion-card:nth-child(2) .motion-bar-fill { animation-duration: 0.22s; animation-timing-function: var(--ease); }
+    .motion-card:nth-child(3) .motion-bar-fill { animation-duration: 0.4s; animation-timing-function: var(--ease-out); }
 
     @keyframes motionFill {
       0% { width: 0; }
@@ -480,23 +597,23 @@
     /* --- FOCUS EXAMPLE --- */
     .focus-demo {
       display: flex;
-      gap: 16px;
+      gap: var(--sp-4);
       flex-wrap: wrap;
     }
 
     .focus-demo-btn {
-      padding: 10px 24px;
+      padding: 10px var(--sp-6);
       font-family: var(--doc-display);
-      font-weight: 800;
-      font-size: 12px;
-      letter-spacing: 0.15em;
+      font-weight: var(--fw-extrabold);
+      font-size: var(--fs-label);
+      letter-spacing: var(--ls-widest);
       text-transform: uppercase;
       border: none;
       background: transparent;
       color: var(--doc-accent);
       border-bottom: 1px solid var(--doc-accent);
       cursor: pointer;
-      transition: color 150ms, border-color 150ms;
+      transition: color var(--dur-fast), border-color var(--dur-fast);
     }
 
     .focus-demo-btn:hover {
@@ -505,13 +622,13 @@
     }
 
     .focus-demo-btn--light {
-      color: oklch(55% 0.28 264);
-      border-color: oklch(55% 0.28 264);
+      color: var(--color-blue);
+      border-color: var(--color-blue);
     }
 
     .focus-demo-btn--light:hover {
-      color: #141414;
-      border-color: #141414;
+      color: var(--color-black);
+      border-color: var(--color-black);
     }
 
     .focus-demo-btn:focus-visible {
@@ -522,9 +639,9 @@
     /* --- COMPONENT PREVIEWS --- */
     .comp-label-example {
       font-family: var(--doc-display);
-      font-weight: 800;
-      font-size: 12px;
-      letter-spacing: 0.15em;
+      font-weight: var(--fw-extrabold);
+      font-size: var(--fs-label);
+      letter-spacing: var(--ls-widest);
       text-transform: uppercase;
       color: var(--doc-text-muted);
     }
@@ -535,9 +652,9 @@
 
     .comp-counter {
       font-family: var(--doc-display);
-      font-weight: 800;
-      font-size: 12px;
-      letter-spacing: 0.15em;
+      font-weight: var(--fw-extrabold);
+      font-size: var(--fs-label);
+      letter-spacing: var(--ls-widest);
       text-transform: uppercase;
       color: var(--doc-accent);
       margin-bottom: 12px;
@@ -545,53 +662,53 @@
 
     .comp-h2 {
       font-family: var(--doc-display);
-      font-weight: 900;
+      font-weight: var(--fw-black);
       font-size: 36px;
-      letter-spacing: -0.03em;
-      line-height: 1.05;
+      letter-spacing: var(--ls-tight);
+      line-height: var(--lh-tight);
     }
 
     .comp-signal {
       display: flex;
-      gap: 64px;
+      gap: var(--sp-16);
     }
 
     .comp-signal-item {
       display: flex;
       flex-direction: column;
-      gap: 8px;
+      gap: var(--sp-2);
     }
 
     .comp-signal-number {
       font-family: var(--doc-display);
-      font-weight: 900;
+      font-weight: var(--fw-black);
       font-size: 48px;
-      letter-spacing: -0.03em;
+      letter-spacing: var(--ls-tight);
       line-height: 1;
       color: var(--doc-text);
     }
 
     .comp-signal-label {
       font-size: 14px;
-      color: #a3a3a3;
+      color: var(--color-grey-400);
       max-width: 18ch;
-      line-height: 1.25;
+      line-height: var(--lh-snug);
     }
 
     .comp-info-bar {
       display: flex;
-      gap: 48px;
-      padding-top: 32px;
+      gap: var(--sp-12);
+      padding-top: var(--sp-8);
       border-top: 1px solid var(--doc-border);
     }
 
     .comp-info-item-label {
       font-family: var(--doc-display);
-      font-weight: 800;
-      font-size: 12px;
-      letter-spacing: 0.15em;
+      font-weight: var(--fw-extrabold);
+      font-size: var(--fs-label);
+      letter-spacing: var(--ls-widest);
       text-transform: uppercase;
-      color: oklch(60% 0 0);
+      color: var(--color-grey-450);
       margin-bottom: 4px;
     }
 
@@ -603,11 +720,11 @@
     .comp-tag {
       display: inline-block;
       font-family: var(--doc-display);
-      font-weight: 800;
-      font-size: 12px;
-      letter-spacing: 0.08em;
+      font-weight: var(--fw-extrabold);
+      font-size: var(--fs-label);
+      letter-spacing: var(--ls-wide);
       text-transform: uppercase;
-      padding: 2px 8px;
+      padding: 2px var(--sp-2);
       border: 1px solid var(--doc-border);
       color: var(--doc-text-muted);
       margin-right: 6px;
@@ -615,8 +732,8 @@
     }
 
     .comp-tag--light {
-      border-color: oklch(80% 0 0);
-      color: oklch(52% 0 0);
+      border-color: var(--color-border-light);
+      color: var(--color-grey-500);
     }
 
     /* --- BUTTONS --- */
@@ -624,15 +741,15 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
+      gap: var(--sp-2);
       font-family: var(--doc-display);
-      font-weight: 800;
-      letter-spacing: 0.15em;
+      font-weight: var(--fw-extrabold);
+      letter-spacing: var(--ls-widest);
       text-transform: uppercase;
       border: none;
       border-radius: 0;
       cursor: pointer;
-      transition: background 120ms, color 120ms, border-color 120ms, box-shadow 120ms;
+      transition: background var(--dur-fast), color var(--dur-fast), border-color var(--dur-fast), box-shadow var(--dur-fast);
       text-decoration: none;
       white-space: nowrap;
     }
@@ -645,123 +762,123 @@
     /* Sizes */
     .ds-btn--sm {
       font-size: 11px;
-      padding: 8px 16px;
+      padding: var(--sp-2) var(--sp-4);
       letter-spacing: 0.12em;
     }
 
     .ds-btn--md {
-      font-size: 12px;
-      padding: 16px 32px;
+      font-size: var(--fs-label);
+      padding: var(--sp-4) var(--sp-8);
     }
 
     .ds-btn--lg {
       font-size: 14px;
-      padding: 20px 48px;
+      padding: 20px var(--sp-12);
       letter-spacing: 0.12em;
     }
 
     /* Primary */
     .ds-btn--primary {
-      background: oklch(55% 0.28 264);
-      color: #fff;
+      background: var(--color-blue);
+      color: var(--color-white);
     }
 
     .ds-btn--primary:hover {
-      background: oklch(68% 0.25 264);
+      background: var(--color-blue-dim);
     }
 
     .ds-btn--primary:active {
-      background: oklch(48% 0.28 264);
+      background: var(--color-blue-active);
     }
 
     .ds-btn--primary:disabled {
-      background: oklch(30% 0.08 264);
-      color: oklch(55% 0 0);
+      background: var(--color-blue-disabled-bg);
+      color: var(--color-blue-disabled-text);
       cursor: not-allowed;
     }
 
     /* Secondary */
     .ds-btn--secondary {
       background: transparent;
-      color: #fafafa;
-      border: 1px solid oklch(45% 0 0);
+      color: var(--color-white);
+      border: 1px solid var(--color-border-dark);
     }
 
     .ds-btn--secondary:hover {
-      background: oklch(18% 0 0);
-      border-color: oklch(60% 0 0);
+      background: var(--color-surface-hover-dark);
+      border-color: var(--color-border-dark-hover);
     }
 
     .ds-btn--secondary:active {
-      background: oklch(14% 0 0);
+      background: var(--color-surface-active-dark);
     }
 
     .ds-btn--secondary:disabled {
-      color: oklch(40% 0 0);
-      border-color: oklch(25% 0 0);
+      color: var(--color-disabled-text-dark);
+      border-color: var(--color-disabled-border-dark);
       cursor: not-allowed;
     }
 
     /* Ghost */
     .ds-btn--ghost {
       background: transparent;
-      color: oklch(68% 0.25 264);
+      color: var(--color-blue-dim);
       border: none;
     }
 
     .ds-btn--ghost:hover {
-      background: rgba(75, 139, 255, 0.1);
+      background: var(--color-ghost-hover-bg);
     }
 
     .ds-btn--ghost:active {
-      background: rgba(75, 139, 255, 0.18);
+      background: var(--color-ghost-active-bg);
     }
 
     /* Light-mode variants */
     .ds-btn--primary-light {
-      background: oklch(55% 0.28 264);
-      color: #fff;
+      background: var(--color-blue);
+      color: var(--color-white);
     }
 
     .ds-btn--primary-light:hover {
-      background: oklch(48% 0.28 264);
+      background: var(--color-blue-hover);
     }
 
     .ds-btn--secondary-light {
       background: transparent;
-      color: #141414;
-      border: 1px solid oklch(80% 0 0);
+      color: var(--color-black);
+      border: 1px solid var(--color-border-light);
     }
 
     .ds-btn--secondary-light:hover {
-      background: oklch(96% 0 0);
-      border-color: oklch(60% 0 0);
+      background: var(--color-surface-hover-light);
+      border-color: var(--color-border-light-hover);
     }
 
     .ds-btn--ghost-light {
       background: transparent;
-      color: oklch(55% 0.28 264);
+      color: var(--color-blue);
       border: none;
     }
 
     .ds-btn--ghost-light:hover {
-      background: rgba(29, 78, 216, 0.08);
+      background: var(--color-ghost-light-hover-bg);
     }
 
     .ds-btn--primary-light:disabled {
-      background: oklch(80% 0.06 264);
+      background: var(--color-blue-disabled-bg-light);
       color: rgba(255,255,255,0.6);
       cursor: not-allowed;
     }
 
     .ds-btn--secondary-light:disabled {
-      color: oklch(75% 0 0);
-      border-color: oklch(88% 0 0);
+      color: var(--color-disabled-text-light);
+      border-color: var(--color-disabled-border-light);
       cursor: not-allowed;
     }
 
     .ds-btn--ghost-light:disabled {
-      color: oklch(75% 0 0);
+      color: var(--color-disabled-text-light);
       cursor: not-allowed;
     }
 
@@ -771,7 +888,7 @@
       align-items: center;
       gap: 12px;
       flex-wrap: wrap;
-      margin-bottom: 16px;
+      margin-bottom: var(--sp-4);
     }
 
     .btn-row-label {
@@ -784,21 +901,21 @@
 
     /* --- FORM ELEMENTS --- */
     .ds-form-group {
-      margin-bottom: 24px;
+      margin-bottom: var(--sp-6);
     }
 
     .ds-form-label {
       display: block;
       font-family: var(--doc-display);
-      font-weight: 800;
-      font-size: 12px;
-      letter-spacing: 0.15em;
+      font-weight: var(--fw-extrabold);
+      font-size: var(--fs-label);
+      letter-spacing: var(--ls-widest);
       text-transform: uppercase;
-      margin-bottom: 8px;
+      margin-bottom: var(--sp-2);
     }
 
     .ds-form-hint {
-      font-size: 12px;
+      font-size: var(--fs-label);
       color: var(--doc-text-muted);
       margin-top: 6px;
     }
@@ -810,32 +927,32 @@
       max-width: 400px;
       font-family: var(--doc-body);
       font-size: 15px;
-      line-height: 1.5;
+      line-height: var(--lh-normal);
       color: var(--doc-text);
       background: var(--doc-surface-2);
       border: 1px solid var(--doc-border);
-      border-radius: 4px;
-      padding: 12px 16px;
-      transition: border-color 120ms, box-shadow 120ms;
+      border-radius: var(--radius-sm);
+      padding: 12px var(--sp-4);
+      transition: border-color var(--dur-fast), box-shadow var(--dur-fast);
       outline: none;
     }
 
     .ds-input::placeholder,
     .ds-textarea::placeholder {
-      color: oklch(45% 0 0);
+      color: var(--color-placeholder-dark);
     }
 
     .ds-input:hover,
     .ds-textarea:hover,
     .ds-select:hover {
-      border-color: oklch(45% 0 0);
+      border-color: var(--color-border-dark);
     }
 
     .ds-input:focus,
     .ds-textarea:focus,
     .ds-select:focus {
       border-color: var(--doc-accent);
-      box-shadow: 0 0 0 3px rgba(75, 139, 255, 0.2);
+      box-shadow: 0 0 0 3px var(--color-focus-ring);
     }
 
     .ds-input:disabled,
@@ -847,29 +964,29 @@
 
     .ds-input--error,
     .ds-textarea--error {
-      border-color: oklch(65% 0.25 25);
+      border-color: var(--color-error);
     }
 
     .ds-input--error:focus,
     .ds-textarea--error:focus {
-      box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.2);
+      box-shadow: 0 0 0 3px var(--color-error-ring);
     }
 
     .ds-error-text {
-      font-size: 12px;
-      color: oklch(65% 0.25 25);
+      font-size: var(--fs-label);
+      color: var(--color-error);
       margin-top: 6px;
     }
 
     /* Input sizes */
     .ds-input--sm {
       font-size: 13px;
-      padding: 8px 12px;
+      padding: var(--sp-2) 12px;
     }
 
     .ds-input--lg {
       font-size: 17px;
-      padding: 16px 20px;
+      padding: var(--sp-4) 20px;
     }
 
     .ds-textarea {
@@ -890,52 +1007,52 @@
     .ds-input--light,
     .ds-textarea--light,
     .ds-select--light {
-      background: #fff;
-      color: #141414;
-      border-color: oklch(80% 0 0);
+      background: var(--color-white);
+      color: var(--color-black);
+      border-color: var(--color-border-light);
     }
 
     .ds-input--light::placeholder,
     .ds-textarea--light::placeholder {
-      color: oklch(65% 0 0);
+      color: var(--color-placeholder-light);
     }
 
     .ds-input--light:hover,
     .ds-textarea--light:hover,
     .ds-select--light:hover {
-      border-color: oklch(60% 0 0);
+      border-color: var(--color-border-light-hover);
     }
 
     .ds-input--light:focus,
     .ds-textarea--light:focus,
     .ds-select--light:focus {
-      border-color: oklch(55% 0.28 264);
-      box-shadow: 0 0 0 3px rgba(29, 78, 216, 0.15);
+      border-color: var(--color-blue);
+      box-shadow: 0 0 0 3px var(--color-focus-ring-light);
     }
 
     .ds-input--light:disabled,
     .ds-textarea--light:disabled {
-      background: oklch(96% 0 0);
-      color: oklch(65% 0 0);
-      border-color: oklch(88% 0 0);
+      background: var(--color-disabled-bg-light);
+      color: var(--color-disabled-input-text-light);
+      border-color: var(--color-disabled-border-light);
       opacity: 0.6;
       cursor: not-allowed;
     }
 
     .ds-select--light:disabled {
-      background-color: oklch(96% 0 0);
-      color: oklch(65% 0 0);
-      border-color: oklch(88% 0 0);
+      background-color: var(--color-disabled-bg-light);
+      color: var(--color-disabled-input-text-light);
+      border-color: var(--color-disabled-border-light);
       opacity: 0.6;
       cursor: not-allowed;
     }
 
     .ds-input--light.ds-input--error {
-      border-color: oklch(65% 0.25 25);
+      border-color: var(--color-error);
     }
 
     .ds-input--light.ds-input--error:focus {
-      box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.15);
+      box-shadow: 0 0 0 3px var(--color-error-ring-light);
     }
 
     .ds-select--light {
@@ -965,16 +1082,16 @@
       appearance: none;
       width: 20px;
       height: 20px;
-      border: 2px solid oklch(45% 0 0);
+      border: 2px solid var(--color-checkbox-border-dark);
       background: var(--doc-surface-2);
       cursor: pointer;
-      transition: border-color 120ms, background 120ms;
+      transition: border-color var(--dur-fast), background var(--dur-fast);
       flex-shrink: 0;
       position: relative;
     }
 
     .ds-checkbox {
-      border-radius: 4px;
+      border-radius: var(--radius-sm);
     }
 
     .ds-radio {
@@ -983,7 +1100,7 @@
 
     .ds-checkbox:hover,
     .ds-radio:hover {
-      border-color: oklch(60% 0 0);
+      border-color: var(--color-checkbox-border-dark-hover);
     }
 
     .ds-checkbox:focus-visible,
@@ -993,8 +1110,8 @@
     }
 
     .ds-checkbox:checked {
-      background: oklch(55% 0.28 264);
-      border-color: oklch(55% 0.28 264);
+      background: var(--color-blue);
+      border-color: var(--color-blue);
     }
 
     .ds-checkbox:checked::after {
@@ -1004,13 +1121,13 @@
       top: 2px;
       width: 6px;
       height: 10px;
-      border: solid #fff;
+      border: solid var(--color-white);
       border-width: 0 2px 2px 0;
       transform: rotate(45deg);
     }
 
     .ds-radio:checked {
-      border-color: oklch(55% 0.28 264);
+      border-color: var(--color-blue);
     }
 
     .ds-radio:checked::after {
@@ -1021,7 +1138,7 @@
       width: 8px;
       height: 8px;
       border-radius: 50%;
-      background: oklch(55% 0.28 264);
+      background: var(--color-blue);
     }
 
     .ds-checkbox:disabled,
@@ -1031,43 +1148,43 @@
     }
 
     .ds-checkbox:checked:disabled {
-      background: oklch(55% 0.28 264);
-      border-color: oklch(55% 0.28 264);
+      background: var(--color-blue);
+      border-color: var(--color-blue);
       opacity: 0.35;
     }
 
     /* Light checkbox/radio */
     .ds-checkbox--light,
     .ds-radio--light {
-      background: #fff;
-      border-color: oklch(75% 0 0);
+      background: var(--color-white);
+      border-color: var(--color-checkbox-border-light);
     }
 
     .ds-checkbox--light:hover,
     .ds-radio--light:hover {
-      border-color: oklch(55% 0 0);
+      border-color: var(--color-checkbox-border-light-hover);
     }
 
     .ds-checkbox--light:checked {
-      background: oklch(55% 0.28 264);
-      border-color: oklch(55% 0.28 264);
+      background: var(--color-blue);
+      border-color: var(--color-blue);
     }
 
     .ds-radio--light:checked {
-      border-color: oklch(55% 0.28 264);
+      border-color: var(--color-blue);
     }
 
     .ds-checkbox--light:disabled,
     .ds-radio--light:disabled {
-      background: oklch(96% 0 0);
-      border-color: oklch(85% 0 0);
+      background: var(--color-checkbox-disabled-bg-light);
+      border-color: var(--color-checkbox-disabled-border-light);
       opacity: 0.5;
       cursor: not-allowed;
     }
 
     .ds-checkbox--light:checked:disabled {
-      background: oklch(55% 0.28 264);
-      border-color: oklch(55% 0.28 264);
+      background: var(--color-blue);
+      border-color: var(--color-blue);
       opacity: 0.4;
     }
 
@@ -1085,12 +1202,12 @@
       appearance: none;
       width: 44px;
       height: 24px;
-      background: oklch(30% 0 0);
+      background: var(--color-toggle-bg-dark);
       border-radius: 12px;
       border: none;
       cursor: pointer;
       position: relative;
-      transition: background 150ms;
+      transition: background var(--dur-fast);
       flex-shrink: 0;
     }
 
@@ -1102,17 +1219,17 @@
       width: 18px;
       height: 18px;
       border-radius: 50%;
-      background: oklch(65% 0 0);
-      transition: transform 150ms, background 150ms;
+      background: var(--color-toggle-knob-dark);
+      transition: transform var(--dur-fast), background var(--dur-fast);
     }
 
     .ds-toggle:checked {
-      background: oklch(55% 0.28 264);
+      background: var(--color-blue);
     }
 
     .ds-toggle:checked::after {
       transform: translateX(20px);
-      background: #fff;
+      background: var(--color-white);
     }
 
     .ds-toggle:focus-visible {
@@ -1127,15 +1244,15 @@
 
     /* Light toggle */
     .ds-toggle--light {
-      background: oklch(82% 0 0);
+      background: var(--color-toggle-bg-light);
     }
 
     .ds-toggle--light::after {
-      background: #fff;
+      background: var(--color-white);
     }
 
     .ds-toggle--light:checked {
-      background: oklch(55% 0.28 264);
+      background: var(--color-blue);
     }
 
     .ds-toggle--light:disabled {
@@ -1147,8 +1264,8 @@
     .form-demo-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 24px;
-      margin-bottom: 24px;
+      gap: var(--sp-6);
+      margin-bottom: var(--sp-6);
     }
 
     @media (max-width: 700px) {
@@ -1158,11 +1275,11 @@
     /* --- RESPONSIVE --- */
     @media (max-width: 900px) {
       .doc-nav { display: none; }
-      .doc-main { margin-left: 0; padding: 24px 20px 80px; }
+      .doc-main { margin-left: 0; padding: var(--sp-6) 20px 80px; }
       .semantic-grid { grid-template-columns: 1fr; }
       .motion-demo { flex-direction: column; }
-      .comp-signal { gap: 32px; }
-      .comp-info-bar { flex-direction: column; gap: 16px; }
+      .comp-signal { gap: var(--sp-8); }
+      .comp-info-bar { flex-direction: column; gap: var(--sp-4); }
     }
   </style>
 </head>
@@ -1206,7 +1323,7 @@
   <main class="doc-main">
 
     <!-- HERO -->
-    <div style="margin-bottom: 64px;">
+    <div style="margin-bottom: var(--sp-16);">
       <div class="doc-label">Design System Documentation</div>
       <h1 style="font-family: var(--doc-display); font-weight: 900; font-size: 48px; letter-spacing: -0.02em; line-height: 1.1; margin-bottom: 12px;">
         Bohdan Doshchak<br>Portfolio Theme
@@ -1418,7 +1535,7 @@
           </tbody>
         </table>
 
-        <table class="doc-table" style="margin-top: 16px;">
+        <table class="doc-table" style="margin-top: var(--sp-4);">
           <thead><tr><th>Shade</th><th>Lightness</th><th>Usage</th></tr></thead>
           <tbody>
             <tr><td><code>50</code></td><td>93–95%</td><td>Tinted backgrounds</td></tr>
@@ -1747,14 +1864,14 @@
 
       <div class="example-box example-box--dark">
         <span class="comp-label-example" style="color: var(--doc-accent);">[LivePerson]</span>
-        <span style="display: inline-block; width: 24px;"></span>
+        <span style="display: inline-block; width: var(--sp-6);"></span>
         <span class="comp-label-example">[01] Counter</span>
       </div>
 
       <div class="example-box example-box--light">
-        <span class="comp-label-example" style="color: #1D4ED8;">[Healthcare · NDA]</span>
-        <span style="display: inline-block; width: 24px;"></span>
-        <span class="comp-label-example" style="color: #757575;">[02] Counter</span>
+        <span class="comp-label-example" style="color: var(--color-blue);">[Healthcare · NDA]</span>
+        <span style="display: inline-block; width: var(--sp-6);"></span>
+        <span class="comp-label-example" style="color: var(--color-grey-500);">[02] Counter</span>
       </div>
 
       <div class="example-code">.label {
@@ -1787,8 +1904,8 @@
 
       <div class="example-box example-box--light">
         <div class="comp-section-header">
-          <div class="comp-counter" style="color: #1D4ED8;">[01]</div>
-          <div class="comp-h2" style="color: #141414;">Overview</div>
+          <div class="comp-counter" style="color: var(--color-blue);">[01]</div>
+          <div class="comp-h2" style="color: var(--color-black);">Overview</div>
         </div>
       </div>
 
@@ -1976,7 +2093,7 @@
       <div class="doc-subsection">
         <div class="doc-label">Dark Surface</div>
         <div class="example-box example-box--dark">
-          <div class="doc-label" style="margin-bottom: 16px;">Primary</div>
+          <div class="doc-label" style="margin-bottom: var(--sp-4);">Primary</div>
           <div class="btn-row">
             <span class="btn-row-label">Small</span>
             <button class="ds-btn ds-btn--sm ds-btn--primary">Action</button>
@@ -1993,7 +2110,7 @@
             <button class="ds-btn ds-btn--lg ds-btn--primary" disabled>Disabled</button>
           </div>
 
-          <div class="doc-label" style="margin-top: 32px; margin-bottom: 16px;">Secondary</div>
+          <div class="doc-label" style="margin-top: var(--sp-8); margin-bottom: var(--sp-4);">Secondary</div>
           <div class="btn-row">
             <span class="btn-row-label">Small</span>
             <button class="ds-btn ds-btn--sm ds-btn--secondary">Action</button>
@@ -2010,7 +2127,7 @@
             <button class="ds-btn ds-btn--lg ds-btn--secondary" disabled>Disabled</button>
           </div>
 
-          <div class="doc-label" style="margin-top: 32px; margin-bottom: 16px;">Ghost</div>
+          <div class="doc-label" style="margin-top: var(--sp-8); margin-bottom: var(--sp-4);">Ghost</div>
           <div class="btn-row">
             <span class="btn-row-label">Small</span>
             <button class="ds-btn ds-btn--sm ds-btn--ghost">Learn More</button>
@@ -2029,53 +2146,53 @@
       <div class="doc-subsection">
         <div class="doc-label">Light Surface</div>
         <div class="example-box example-box--light">
-          <div class="doc-label" style="color:#757575; margin-bottom: 16px;">Primary</div>
+          <div class="doc-label" style="color: var(--color-grey-500); margin-bottom: var(--sp-4);">Primary</div>
           <div class="btn-row">
-            <span class="btn-row-label" style="color:#757575;">Small</span>
+            <span class="btn-row-label" style="color: var(--color-grey-500);">Small</span>
             <button class="ds-btn ds-btn--sm ds-btn--primary-light">Action</button>
             <button class="ds-btn ds-btn--sm ds-btn--primary-light" disabled>Disabled</button>
           </div>
           <div class="btn-row">
-            <span class="btn-row-label" style="color:#757575;">Medium</span>
+            <span class="btn-row-label" style="color: var(--color-grey-500);">Medium</span>
             <button class="ds-btn ds-btn--md ds-btn--primary-light">Get in Touch</button>
             <button class="ds-btn ds-btn--md ds-btn--primary-light" disabled>Disabled</button>
           </div>
           <div class="btn-row">
-            <span class="btn-row-label" style="color:#757575;">Large</span>
+            <span class="btn-row-label" style="color: var(--color-grey-500);">Large</span>
             <button class="ds-btn ds-btn--lg ds-btn--primary-light">View Selected Work</button>
             <button class="ds-btn ds-btn--lg ds-btn--primary-light" disabled>Disabled</button>
           </div>
 
-          <div class="doc-label" style="color:#757575; margin-top: 32px; margin-bottom: 16px;">Secondary</div>
+          <div class="doc-label" style="color: var(--color-grey-500); margin-top: var(--sp-8); margin-bottom: var(--sp-4);">Secondary</div>
           <div class="btn-row">
-            <span class="btn-row-label" style="color:#757575;">Small</span>
+            <span class="btn-row-label" style="color: var(--color-grey-500);">Small</span>
             <button class="ds-btn ds-btn--sm ds-btn--secondary-light">Action</button>
             <button class="ds-btn ds-btn--sm ds-btn--secondary-light" disabled>Disabled</button>
           </div>
           <div class="btn-row">
-            <span class="btn-row-label" style="color:#757575;">Medium</span>
+            <span class="btn-row-label" style="color: var(--color-grey-500);">Medium</span>
             <button class="ds-btn ds-btn--md ds-btn--secondary-light">View CV</button>
             <button class="ds-btn ds-btn--md ds-btn--secondary-light" disabled>Disabled</button>
           </div>
           <div class="btn-row">
-            <span class="btn-row-label" style="color:#757575;">Large</span>
+            <span class="btn-row-label" style="color: var(--color-grey-500);">Large</span>
             <button class="ds-btn ds-btn--lg ds-btn--secondary-light">Download Resume</button>
             <button class="ds-btn ds-btn--lg ds-btn--secondary-light" disabled>Disabled</button>
           </div>
 
-          <div class="doc-label" style="color:#757575; margin-top: 32px; margin-bottom: 16px;">Ghost</div>
+          <div class="doc-label" style="color: var(--color-grey-500); margin-top: var(--sp-8); margin-bottom: var(--sp-4);">Ghost</div>
           <div class="btn-row">
-            <span class="btn-row-label" style="color:#757575;">Small</span>
+            <span class="btn-row-label" style="color: var(--color-grey-500);">Small</span>
             <button class="ds-btn ds-btn--sm ds-btn--ghost-light">Learn More</button>
             <button class="ds-btn ds-btn--sm ds-btn--ghost-light" disabled>Disabled</button>
           </div>
           <div class="btn-row">
-            <span class="btn-row-label" style="color:#757575;">Medium</span>
+            <span class="btn-row-label" style="color: var(--color-grey-500);">Medium</span>
             <button class="ds-btn ds-btn--md ds-btn--ghost-light">See Prototype</button>
             <button class="ds-btn ds-btn--md ds-btn--ghost-light" disabled>Disabled</button>
           </div>
           <div class="btn-row">
-            <span class="btn-row-label" style="color:#757575;">Large</span>
+            <span class="btn-row-label" style="color: var(--color-grey-500);">Large</span>
             <button class="ds-btn ds-btn--lg ds-btn--ghost-light">Explore Case Study</button>
             <button class="ds-btn ds-btn--lg ds-btn--ghost-light" disabled>Disabled</button>
           </div>
@@ -2088,49 +2205,49 @@
           <thead><tr><th>Property</th><th>Small</th><th>Medium</th><th>Large</th></tr></thead>
           <tbody>
             <tr><td>Font size</td><td><code>11px</code></td><td><code>12px</code></td><td><code>14px</code></td></tr>
-            <tr><td>Padding</td><td><code>8px 16px</code></td><td><code>16px 32px</code></td><td><code>20px 48px</code></td></tr>
-            <tr><td>Letter spacing</td><td><code>0.12em</code></td><td><code>0.15em</code></td><td><code>0.12em</code></td></tr>
-            <tr><td>Font</td><td colspan="3"><code>Barlow 800, uppercase</code></td></tr>
-            <tr><td>Transition</td><td colspan="3"><code>120ms</code> (dur-fast)</td></tr>
+            <tr><td>Padding</td><td><code>var(--sp-2) var(--sp-4)</code></td><td><code>var(--sp-4) var(--sp-8)</code></td><td><code>20px var(--sp-12)</code></td></tr>
+            <tr><td>Letter spacing</td><td><code>0.12em</code></td><td><code>var(--ls-widest)</code></td><td><code>0.12em</code></td></tr>
+            <tr><td>Font</td><td colspan="3"><code>var(--font-display), var(--fw-extrabold), uppercase</code></td></tr>
+            <tr><td>Transition</td><td colspan="3"><code>var(--dur-fast)</code></td></tr>
           </tbody>
         </table>
       </div>
 
       <div class="example-code">.btn-primary {
-  font-family: 'Barlow', sans-serif;
-  font-weight: 800;
-  font-size: 12px;
-  letter-spacing: 0.15em;
+  font-family: var(--font-display);
+  font-weight: var(--fw-extrabold);
+  font-size: var(--fs-label);
+  letter-spacing: var(--ls-widest);
   text-transform: uppercase;
-  color: #fff;
-  background: oklch(55% 0.28 264);     /* --color-blue */
-  padding: 16px 32px;                  /* --sp-4 --sp-8 */
+  color: var(--color-white);
+  background: var(--color-blue);
+  padding: var(--sp-4) var(--sp-8);
   border: none;
-  transition: background 120ms;
+  transition: background var(--dur-fast);
 }
 
 .btn-primary:hover {
-  background: oklch(68% 0.25 264);     /* --color-blue-dim */
+  background: var(--color-blue-dim);
 }
 
 .btn-secondary {
   background: transparent;
-  color: #fafafa;
-  border: 1px solid oklch(45% 0 0);
+  color: var(--color-white);
+  border: 1px solid var(--color-border-dark);
 }
 
 .btn-secondary:hover {
-  background: oklch(18% 0 0);
-  border-color: oklch(60% 0 0);
+  background: var(--color-surface-hover-dark);
+  border-color: var(--color-border-dark-hover);
 }
 
 .btn-ghost {
   background: transparent;
-  color: oklch(68% 0.25 264);
+  color: var(--color-blue-dim);
 }
 
 .btn-ghost:hover {
-  background: rgba(75, 139, 255, 0.1);
+  background: var(--color-ghost-hover-bg);
 }</div>
     </section>
 
@@ -2187,20 +2304,20 @@
         <div class="doc-label">Text Input &mdash; Light Surface</div>
         <div class="example-box example-box--light">
           <div class="ds-form-group">
-            <label class="ds-form-label" style="color: #141414;">Default</label>
+            <label class="ds-form-label" style="color: var(--color-black);">Default</label>
             <input type="text" class="ds-input ds-input--light" placeholder="Enter your name" />
           </div>
           <div class="ds-form-group">
-            <label class="ds-form-label" style="color: #141414;">With Value</label>
+            <label class="ds-form-label" style="color: var(--color-black);">With Value</label>
             <input type="text" class="ds-input ds-input--light" value="Bohdan Doshchak" />
           </div>
           <div class="ds-form-group">
-            <label class="ds-form-label" style="color: #141414;">Error</label>
+            <label class="ds-form-label" style="color: var(--color-black);">Error</label>
             <input type="text" class="ds-input ds-input--light ds-input--error" value="bad@" />
             <div class="ds-error-text">Please enter a valid email address</div>
           </div>
           <div class="ds-form-group">
-            <label class="ds-form-label" style="color: #141414;">Disabled</label>
+            <label class="ds-form-label" style="color: var(--color-black);">Disabled</label>
             <input type="text" class="ds-input ds-input--light" value="Cannot edit" disabled />
           </div>
         </div>
@@ -2218,9 +2335,9 @@
           </div>
           <div class="example-box example-box--light">
             <div class="ds-form-group">
-              <label class="ds-form-label" style="color: #141414;">Message</label>
+              <label class="ds-form-label" style="color: var(--color-black);">Message</label>
               <textarea class="ds-textarea ds-textarea--light" placeholder="Tell me about your project..."></textarea>
-              <div class="ds-form-hint" style="color: #757575;">Max 500 characters</div>
+              <div class="ds-form-hint" style="color: var(--color-grey-500);">Max 500 characters</div>
             </div>
           </div>
         </div>
@@ -2249,7 +2366,7 @@
           </div>
           <div class="example-box example-box--light">
             <div class="ds-form-group">
-              <label class="ds-form-label" style="color: #141414;">Project Type</label>
+              <label class="ds-form-label" style="color: var(--color-black);">Project Type</label>
               <select class="ds-select ds-select--light">
                 <option value="" disabled selected>Choose an option</option>
                 <option>Product Design</option>
@@ -2259,7 +2376,7 @@
               </select>
             </div>
             <div class="ds-form-group">
-              <label class="ds-form-label" style="color: #141414;">Disabled</label>
+              <label class="ds-form-label" style="color: var(--color-black);">Disabled</label>
               <select class="ds-select ds-select--light" disabled>
                 <option>Cannot change</option>
               </select>
@@ -2297,23 +2414,23 @@
           </div>
           <div class="example-box example-box--light">
             <div class="ds-check-group">
-              <label class="ds-check-label" style="color: #141414;">
+              <label class="ds-check-label" style="color: var(--color-black);">
                 <input type="checkbox" class="ds-checkbox ds-checkbox--light" checked />
                 Enterprise SaaS
               </label>
-              <label class="ds-check-label" style="color: #141414;">
+              <label class="ds-check-label" style="color: var(--color-black);">
                 <input type="checkbox" class="ds-checkbox ds-checkbox--light" />
                 Design Systems
               </label>
-              <label class="ds-check-label" style="color: #141414;">
+              <label class="ds-check-label" style="color: var(--color-black);">
                 <input type="checkbox" class="ds-checkbox ds-checkbox--light" checked />
                 Mobile
               </label>
-              <label class="ds-check-label" style="color: #141414;">
+              <label class="ds-check-label" style="color: var(--color-black);">
                 <input type="checkbox" class="ds-checkbox ds-checkbox--light" disabled />
                 Disabled
               </label>
-              <label class="ds-check-label" style="color: #141414;">
+              <label class="ds-check-label" style="color: var(--color-black);">
                 <input type="checkbox" class="ds-checkbox ds-checkbox--light" checked disabled />
                 Checked + Disabled
               </label>
@@ -2347,19 +2464,19 @@
           </div>
           <div class="example-box example-box--light">
             <div class="ds-check-group">
-              <label class="ds-check-label" style="color: #141414;">
+              <label class="ds-check-label" style="color: var(--color-black);">
                 <input type="radio" name="role-light" class="ds-radio ds-radio--light" checked />
                 Designer
               </label>
-              <label class="ds-check-label" style="color: #141414;">
+              <label class="ds-check-label" style="color: var(--color-black);">
                 <input type="radio" name="role-light" class="ds-radio ds-radio--light" />
                 Developer
               </label>
-              <label class="ds-check-label" style="color: #141414;">
+              <label class="ds-check-label" style="color: var(--color-black);">
                 <input type="radio" name="role-light" class="ds-radio ds-radio--light" />
                 Product Manager
               </label>
-              <label class="ds-check-label" style="color: #141414;">
+              <label class="ds-check-label" style="color: var(--color-black);">
                 <input type="radio" name="role-light" class="ds-radio ds-radio--light" disabled />
                 Disabled
               </label>
@@ -2389,15 +2506,15 @@
           </div>
           <div class="example-box example-box--light">
             <div class="ds-check-group">
-              <label class="ds-toggle-label" style="color: #141414;">
+              <label class="ds-toggle-label" style="color: var(--color-black);">
                 <input type="checkbox" class="ds-toggle ds-toggle--light" checked />
                 Dark mode
               </label>
-              <label class="ds-toggle-label" style="color: #141414;">
+              <label class="ds-toggle-label" style="color: var(--color-black);">
                 <input type="checkbox" class="ds-toggle ds-toggle--light" />
                 Notifications
               </label>
-              <label class="ds-toggle-label" style="color: #141414;">
+              <label class="ds-toggle-label" style="color: var(--color-black);">
                 <input type="checkbox" class="ds-toggle ds-toggle--light" disabled />
                 Disabled
               </label>
@@ -2412,51 +2529,51 @@
           <thead><tr><th>Property</th><th>Small</th><th>Medium (default)</th><th>Large</th></tr></thead>
           <tbody>
             <tr><td>Font size</td><td><code>13px</code></td><td><code>15px</code></td><td><code>17px</code></td></tr>
-            <tr><td>Padding</td><td><code>8px 12px</code></td><td><code>12px 16px</code></td><td><code>16px 20px</code></td></tr>
-            <tr><td>Border</td><td colspan="3"><code>1px solid oklch(22% 0 0)</code> dark / <code>oklch(80% 0 0)</code> light</td></tr>
-            <tr><td>Border radius</td><td colspan="3"><code>4px</code></td></tr>
-            <tr><td>Focus ring</td><td colspan="3"><code>0 0 0 3px rgba(75, 139, 255, 0.2)</code></td></tr>
-            <tr><td>Font</td><td colspan="3"><code>Inter 400</code></td></tr>
+            <tr><td>Padding</td><td><code>var(--sp-2) var(--sp-3)</code></td><td><code>var(--sp-3) var(--sp-4)</code></td><td><code>var(--sp-4) 20px</code></td></tr>
+            <tr><td>Border</td><td colspan="3"><code>1px solid var(--doc-border)</code> dark / <code>var(--color-border-light)</code> light</td></tr>
+            <tr><td>Border radius</td><td colspan="3"><code>var(--radius-sm)</code></td></tr>
+            <tr><td>Focus ring</td><td colspan="3"><code>0 0 0 3px var(--color-focus-ring)</code></td></tr>
+            <tr><td>Font</td><td colspan="3"><code>var(--font-body), var(--fw-regular)</code></td></tr>
           </tbody>
         </table>
 
-        <table class="doc-table" style="margin-top: 24px;">
+        <table class="doc-table" style="margin-top: var(--sp-6);">
           <thead><tr><th>Element</th><th>Size</th><th>Border radius</th><th>Active color</th></tr></thead>
           <tbody>
-            <tr><td>Checkbox</td><td><code>20 &times; 20px</code></td><td><code>4px</code></td><td><code>oklch(55% 0.28 264)</code></td></tr>
-            <tr><td>Radio</td><td><code>20 &times; 20px</code></td><td><code>50%</code></td><td><code>oklch(55% 0.28 264)</code></td></tr>
-            <tr><td>Toggle</td><td><code>44 &times; 24px</code></td><td><code>12px</code></td><td><code>oklch(55% 0.28 264)</code></td></tr>
+            <tr><td>Checkbox</td><td><code>20 &times; 20px</code></td><td><code>var(--radius-sm)</code></td><td><code>var(--color-blue)</code></td></tr>
+            <tr><td>Radio</td><td><code>20 &times; 20px</code></td><td><code>50%</code></td><td><code>var(--color-blue)</code></td></tr>
+            <tr><td>Toggle</td><td><code>44 &times; 24px</code></td><td><code>12px</code></td><td><code>var(--color-blue)</code></td></tr>
           </tbody>
         </table>
       </div>
 
       <div class="example-code">.input {
-  font-family: 'Inter', sans-serif;
-  font-size: 15px;
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
   color: var(--text-primary);
-  background: oklch(12% 0 0);
-  border: 1px solid oklch(22% 0 0);
-  border-radius: 4px;
-  padding: 12px 16px;
-  transition: border-color 120ms, box-shadow 120ms;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: var(--sp-3) var(--sp-4);
+  transition: border-color var(--dur-fast), box-shadow var(--dur-fast);
 }
 
 .input:focus {
-  border-color: oklch(68% 0.25 264);
-  box-shadow: 0 0 0 3px rgba(75, 139, 255, 0.2);
+  border-color: var(--color-blue-dim);
+  box-shadow: 0 0 0 3px var(--color-focus-ring);
 }
 
 .input--error {
-  border-color: oklch(65% 0.25 25);
+  border-color: var(--color-error);
 }
 
 .checkbox:checked {
-  background: oklch(55% 0.28 264);
-  border-color: oklch(55% 0.28 264);
+  background: var(--color-blue);
+  border-color: var(--color-blue);
 }
 
 .toggle:checked {
-  background: oklch(55% 0.28 264);
+  background: var(--color-blue);
 }</div>
     </section>
 

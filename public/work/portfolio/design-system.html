@@ -539,7 +539,7 @@
       font-size: 12px;
       letter-spacing: 0.15em;
       text-transform: uppercase;
-      color: var(--doc-text-muted);
+      color: var(--doc-accent);
       margin-bottom: 12px;
     }
 
@@ -553,19 +553,20 @@
 
     .comp-signal {
       display: flex;
-      gap: 48px;
+      gap: 64px;
     }
 
     .comp-signal-item {
       display: flex;
       flex-direction: column;
-      gap: 4px;
+      gap: 8px;
     }
 
     .comp-signal-number {
       font-family: var(--doc-display);
       font-weight: 900;
       font-size: 48px;
+      letter-spacing: -0.03em;
       line-height: 1;
       color: var(--doc-text);
     }
@@ -580,9 +581,8 @@
     .comp-info-bar {
       display: flex;
       gap: 48px;
-      padding: 16px 0;
+      padding-top: 32px;
       border-top: 1px solid var(--doc-border);
-      border-bottom: 1px solid var(--doc-border);
     }
 
     .comp-info-item-label {
@@ -591,7 +591,7 @@
       font-size: 12px;
       letter-spacing: 0.15em;
       text-transform: uppercase;
-      color: var(--doc-text-muted);
+      color: oklch(60% 0 0);
       margin-bottom: 4px;
     }
 
@@ -602,13 +602,21 @@
 
     .comp-tag {
       display: inline-block;
+      font-family: var(--doc-display);
+      font-weight: 800;
       font-size: 12px;
-      padding: 4px 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 2px 8px;
       border: 1px solid var(--doc-border);
-      border-radius: 100px;
       color: var(--doc-text-muted);
       margin-right: 6px;
       margin-bottom: 6px;
+    }
+
+    .comp-tag--light {
+      border-color: oklch(80% 0 0);
+      color: oklch(52% 0 0);
     }
 
     /* --- BUTTONS --- */
@@ -622,6 +630,7 @@
       letter-spacing: 0.15em;
       text-transform: uppercase;
       border: none;
+      border-radius: 0;
       cursor: pointer;
       transition: background 120ms, color 120ms, border-color 120ms, box-shadow 120ms;
       text-decoration: none;
@@ -1152,7 +1161,7 @@
       .doc-main { margin-left: 0; padding: 24px 20px 80px; }
       .semantic-grid { grid-template-columns: 1fr; }
       .motion-demo { flex-direction: column; }
-      .comp-signal { gap: 24px; }
+      .comp-signal { gap: 32px; }
       .comp-info-bar { flex-direction: column; gap: 16px; }
     }
   </style>
@@ -1737,11 +1746,15 @@
       </p>
 
       <div class="example-box example-box--dark">
-        <span class="comp-label-example">[01] Enterprise SaaS</span>
+        <span class="comp-label-example" style="color: var(--doc-accent);">[LivePerson]</span>
+        <span style="display: inline-block; width: 24px;"></span>
+        <span class="comp-label-example">[01] Counter</span>
       </div>
 
       <div class="example-box example-box--light">
-        <span class="comp-label-example" style="color: #757575;">[02] Design Systems</span>
+        <span class="comp-label-example" style="color: #1D4ED8;">[Healthcare · NDA]</span>
+        <span style="display: inline-block; width: 24px;"></span>
+        <span class="comp-label-example" style="color: #757575;">[02] Counter</span>
       </div>
 
       <div class="example-code">.label {
@@ -1750,7 +1763,14 @@
   font-size: 12px;           /* --fs-label */
   letter-spacing: 0.15em;    /* --ls-widest */
   text-transform: uppercase;
-}</div>
+}
+
+/* Client labels use accent color */
+.work-card-client { color: var(--accent-text); }
+
+/* Counters use muted color */
+.section-counter   { color: var(--accent-text); }
+.work-card-counter { color: var(--text-muted); }</div>
     </section>
 
     <!-- Section Header -->
@@ -1767,7 +1787,7 @@
 
       <div class="example-box example-box--light">
         <div class="comp-section-header">
-          <div class="comp-counter" style="color: #757575;">[01]</div>
+          <div class="comp-counter" style="color: #1D4ED8;">[01]</div>
           <div class="comp-h2" style="color: #141414;">Overview</div>
         </div>
       </div>
@@ -1775,7 +1795,19 @@
       <div class="example-code">&lt;header class="section-header"&gt;
   &lt;span class="section-counter label"&gt;[01]&lt;/span&gt;
   &lt;h2 class="section-title"&gt;Overview&lt;/h2&gt;
-&lt;/header&gt;</div>
+&lt;/header&gt;
+
+/* Counter uses accent color (blue) */
+.section-counter { color: var(--accent-text); }
+
+/* Title: Barlow Black, display size */
+.section-title {
+  font-family: 'Barlow';
+  font-weight: 900;
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+}</div>
     </section>
 
     <!-- CTA Link -->
@@ -1901,8 +1933,9 @@
     <!-- Tags -->
     <section class="doc-section" id="comp-tags">
       <h2 class="doc-section-title">Tags</h2>
-      <p class="doc-section-desc">Domain and skill tags. Pill-shaped, border only.</p>
+      <p class="doc-section-desc">Domain and skill tags. Rectangular, border only.</p>
 
+      <div class="doc-label">Dark Surface</div>
       <div class="example-box example-box--dark">
         <span class="comp-tag">Enterprise SaaS</span>
         <span class="comp-tag">Design Systems</span>
@@ -1912,11 +1945,22 @@
         <span class="comp-tag">Healthcare</span>
       </div>
 
+      <div class="doc-label">Light Surface</div>
+      <div class="example-box example-box--light">
+        <span class="comp-tag comp-tag--light">Enterprise SaaS</span>
+        <span class="comp-tag comp-tag--light">Design Systems</span>
+        <span class="comp-tag comp-tag--light">CRM</span>
+        <span class="comp-tag comp-tag--light">Mobile</span>
+      </div>
+
       <div class="example-code">.work-card-tag {
-  font-size: 12px;
-  padding: 4px 12px;
+  font-family: 'Barlow', sans-serif;
+  font-weight: 800;
+  font-size: 12px;             /* --fs-label */
+  letter-spacing: 0.08em;      /* --ls-wide */
+  text-transform: uppercase;
+  padding: 2px 8px;            /* --sp-2 horizontal */
   border: 1px solid var(--border);
-  border-radius: 100px;
   color: var(--text-muted);
 }</div>
     </section>

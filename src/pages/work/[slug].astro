@@ -158,6 +158,23 @@ const outcomeCounter = `[0${++_idx}]`;
           </li>
         ))}
       </ol>
+
+      {project.slug === 'liveperson' && (
+        <div class="cs-process-cases">
+          <h3 class="cs-step-title">Selected UX Cases</h3>
+          <ul class="cs-responsibilities" role="list">
+            <li class="cs-responsibility">
+              <span class="cs-responsibility-dot" aria-hidden="true"></span>
+              <span><strong>Knowledge Center search.</strong> Hotjar session recordings and in-page comments showed the search returning too many irrelevant results – users were giving up and hunting for answers on their own. Replacing the search engine outright cut negative feedback roughly in half.</span>
+            </li>
+            <li class="cs-responsibility">
+              <span class="cs-responsibility-dot" aria-hidden="true"></span>
+              <span><strong>Main menu &amp; information architecture.</strong> The first IA pass shipped without a tree-sorting round and the gap showed up fast. Customer success managers ran follow-up interviews with real users (in this product the buyer isn't the user) and surfaced the real friction: people were burning time digging through the menu and switching between two core work tools. Fix – promote both tools to the menu root, and keep text labels next to icons even in the collapsed state. <strong>Time on task dropped by 80%.</strong></span>
+            </li>
+          </ul>
+          <p class="cs-body-text cs-cases-principle"><strong>Validation principle.</strong> Every new feature followed the same rule – prototypes were walked through the cross-functional team (Ukraine, US, India, Europe) before development started, and each MVP was put in front of Early Adopters from the Customer Advisory Board before a full release.</p>
+        </div>
+      )}
     </div>
   </section>
 
@@ -679,6 +696,15 @@ const outcomeCounter = `[0${++_idx}]`;
     .cs-process-grid {
       grid-template-columns: 1fr;
     }
+  }
+
+  .cs-process-cases {
+    margin-top: var(--sp-12);
+  }
+
+  .cs-cases-principle {
+    margin-top: var(--sp-6);
+    max-width: 72ch;
   }
 
   .cs-step-num {

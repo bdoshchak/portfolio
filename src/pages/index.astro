@@ -122,7 +122,7 @@ const capabilities = [
         </div>
       </div>
       <div class="hero-portrait animate-fade-in delay-4" aria-hidden="true">
-        <img src={b + '/portrait_color.jpg'} alt="" class="hero-portrait-img" />
+        <img src={b + '/me.png'} alt="" class="hero-portrait-img" />
       </div>
     </div>
   </section>
@@ -297,16 +297,6 @@ const capabilities = [
           </p>
           <a href={b + '/about'} class="about-link label">Full story <ArrowRight size={13} class="inline-icon" /></a>
         </div>
-        <div class="about-photo-wrap">
-          <img
-            src={b + '/me.png'}
-            alt="Bohdan Doshchak"
-            class="about-photo"
-            width="480"
-            height="600"
-            loading="lazy"
-          />
-        </div>
       </div>
     </div>
   </section>
@@ -361,7 +351,6 @@ const capabilities = [
 
     // About preview text + photo
     revealEach('.about-body');
-    revealEach('.about-photo-wrap', 0.1);
   }
 
   // Fires on initial load and after every ViewTransitions navigation
@@ -382,7 +371,7 @@ const capabilities = [
 
   .hero-inner {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 8fr 4fr;
     align-items: stretch;
     height: calc(100svh - 60px);
     width: 100%;
@@ -405,8 +394,8 @@ const capabilities = [
   }
 
   .hero-portrait {
-    align-self: stretch;
-    margin-right: calc(-1 * var(--grid-margin));
+    align-self: center;
+    justify-self: center;
     overflow: hidden;
   }
 
@@ -418,9 +407,9 @@ const capabilities = [
   }
 
   .hero-portrait-img {
-    width: 100%;
+    width: 115%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
     object-position: bottom center;
     display: block;
   }
@@ -440,16 +429,26 @@ const capabilities = [
     .hero-portrait {
       order: 1;
       margin-right: 0;
-      height: auto;
-      min-height: 0;
+      height: 82vw;
+      max-height: 540px;
       overflow: hidden;
+      position: relative;
+    }
+    .hero-portrait::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 40%;
+      background: linear-gradient(to bottom, transparent, var(--color-bg));
+      pointer-events: none;
     }
     .hero-portrait-img {
       width: 100%;
-      height: auto;
-      object-fit: initial;
-      margin-top: -30%;
-      margin-left: -5%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
     }
     .hero-content {
       justify-content: flex-start;
@@ -862,10 +861,7 @@ const capabilities = [
   }
 
   .about-grid {
-    display: grid;
-    grid-template-columns: 8fr 4fr;
-    gap: var(--sp-16);
-    align-items: start;
+    max-width: 72ch;
   }
 
   .about-body {
@@ -884,26 +880,6 @@ const capabilities = [
   }
 
   .about-link:hover { opacity: 0.7; }
-
-  .about-photo-wrap {
-    position: relative;
-  }
-
-  .about-photo {
-    width: auto;
-    height: 360px;
-    display: block;
-    object-fit: cover;
-    object-position: top center;
-    filter: grayscale(20%) contrast(1.05);
-  }
-
-  @media (max-width: 768px) {
-    .about-grid {
-      grid-template-columns: 1fr;
-    }
-    .about-photo-wrap { order: -1; max-width: 320px; }
-  }
 
   /* ================================================
      CONTACT

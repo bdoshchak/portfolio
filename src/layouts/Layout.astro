@@ -107,6 +107,62 @@ const b = import.meta.env.BASE_URL.replace(/\/$/, '');
 
   sections.forEach(function (s) { io.observe(s); });
 })();
+
+/* Mobile-style scroll indicator */
+(function () {
+  var el = document.createElement('div');
+  el.className = 'scroll-indicator';
+  el.innerHTML = '<div class="scroll-indicator-thumb"></div>';
+  document.body.appendChild(el);
+  var thumb = el.firstChild;
+  var timer;
+
+  function update() {
+    var doc = document.documentElement;
+    var scrollTop = window.scrollY;
+    var scrollHeight = doc.scrollHeight - doc.clientHeight;
+    if (scrollHeight <= 0) { el.classList.remove('is-visible'); return; }
+    var viewRatio = doc.clientHeight / doc.scrollHeight;
+    var thumbH = Math.max(32, doc.clientHeight * viewRatio);
+    var track = doc.clientHeight - thumbH;
+    var thumbY = (scrollTop / scrollHeight) * track;
+    thumb.style.height = thumbH + 'px';
+    thumb.style.top = thumbY + 'px';
+    el.classList.add('is-visible');
+    clearTimeout(timer);
+    timer = setTimeout(function () { el.classList.remove('is-visible'); }, 1000);
+  }
+
+  window.addEventListener('scroll', update, { passive: true });
+  window.addEventListener('resize', update, { passive: true });
+  update();
+
+  /* Drag support (desktop) */
+  var dragging = false, startY = 0, startScroll = 0;
+  thumb.addEventListener('mousedown', function (e) {
+    dragging = true;
+    startY = e.clientY;
+    startScroll = window.scrollY;
+    document.body.style.userSelect = 'none';
+    e.preventDefault();
+  });
+  window.addEventListener('mousemove', function (e) {
+    if (!dragging) return;
+    var doc = document.documentElement;
+    var scrollHeight = doc.scrollHeight - doc.clientHeight;
+    var viewRatio = doc.clientHeight / doc.scrollHeight;
+    var thumbH = Math.max(32, doc.clientHeight * viewRatio);
+    var track = doc.clientHeight - thumbH;
+    var delta = e.clientY - startY;
+    var scrollDelta = (delta / track) * scrollHeight;
+    window.scrollTo(0, startScroll + scrollDelta);
+  });
+  window.addEventListener('mouseup', function () {
+    if (!dragging) return;
+    dragging = false;
+    document.body.style.userSelect = '';
+  });
+})();
 </script>
 
 <style>

@@ -3675,6 +3675,277 @@ CHAPTERS.push({
   ]
 });
 
+CHAPTERS.push({
+  id:'ch9', num:'Розділ 10', emoji:'🧠',
+  title:'Сучасні практики ресерчу',
+  lead:'Чотири теми що вимагають окремої уваги у 2026: AI в ресерчі, Continuous Discovery, ResearchOps і демократизація дослідження. Те що розрізняє senior-рівень від middle на інтерв\'ю в міжнародних компаніях.',
+  level:'Senior', levelColor:'#f8dfa0', levelText:'#5a3200',
+  sections:[
+    {
+      id:'s90', level:'strategic', title:'AI в UX Research',
+      tag:'Практика', tb:'#EEEDFE', tc:'#3f3699',
+      intro:'AI більше не «можливо колись», а частина щоденного робочого процесу UX-дослідника. За даними User Interviews (AI in UX Research Report 2024), 90% UX-фахівців уже використовують AI на етапі аналізу й синтезу. Ключове питання тепер не «чи використовувати», а «де AI підсилює ресерч, а де руйнує його якість». Саме це запитують на senior-інтерв\'ю у 2026.',
+      points:[
+        'AI добре працює на транскрипції, первинному тегуванні, генерації скринерів і підсумках — усе що потребує швидкості на великих обсягах тексту',
+        'AI погано працює на інтерпретації контексту, пріоритизації інсайтів і побудові наративу для стейкхолдерів — це лишається за людиною',
+        'Synthetic users — не заміна реальних користувачів. NN/g: «too shallow to be useful» для більшості задач. Допустимо лише для desk research і генерації гіпотез',
+        'Основні ризики: галюцинації, sycophancy (підлабузнюваність), конфіденційність даних учасників, упередження в training set',
+        'Senior-навичка: не «знаю AI-інструменти», а «вмію аргументувати де AI додає цінність, а де навпаки»'
+      ],
+      body:`<h3>Де AI реально працює: 6 перевірених use cases</h3>
+<p>За звітом User Interviews 2024 (200+ UX-фахівців), найпопулярніші і найефективніші застосування AI розподіляються на дві групи.</p>
+<p><strong>Створення і доопрацювання:</strong> генерація питань для скринерів і інтерв\'ю (40% учасників), планування і пошук ідей (24%), редагування текстів звітів (23%). Тут AI долає «паралізуючий білий аркуш» — дає перший чернетковий варіант який дослідник адаптує.</p>
+<p><strong>Організація і категоризація:</strong> тематичний аналіз транскриптів (26%), підсумки сесій (23%). AI швидко групує цитати за темами і робить draft-summary з 60-хвилинного інтерв\'ю за 2 хвилини.</p>
+<p>Найчастіше використовувані інструменти: ChatGPT (73.6% респондентів), Claude (12.6%), Microsoft Copilot (10.2%). Галузеві — Dovetail AI, Notably, Looppanel.</p>
+
+<h3>Де AI ламається</h3>
+<p><strong>Інтерпретація мікро-сигналів.</strong> «Учасник каже X, але 3 рази зупиняється перед відповіддю» — AI бачить слова, не паузи. Поведінкові нюанси і контекст сесії лишаються за людиною.</p>
+<p><strong>Sycophancy (підлабузнюваність моделі).</strong> LLM навчені давати «корисні» відповіді і часто погоджуються з припущеннями в промпті. Якщо ти питаєш «які 3 основні проблеми онбордингу?» — AI знайде 3, навіть якщо в даних їх 7 або жодної. Sharma et al. (2023) формально довели цей ефект у Towards Understanding Sycophancy in Language Models (arXiv:2310.13548).</p>
+<p><strong>Галюцинації в кількісних даних.</strong> AI плутає «5 з 8 учасників» із «5 з 12», придумує проценти яких не було в даних. Критично: кожна цифра в AI-саммарі має бути перевірена вручну.</p>
+<p><strong>Конфіденційність.</strong> Завантаження транскриптів в публічні LLM — порушення GDPR і NDA. Рішення: enterprise-версії (ChatGPT Enterprise, Claude for Work) з «walled off» режимом, або on-premise моделі.</p>
+
+<h3>Synthetic users: чому це не заміна ресерчу</h3>
+<p>Synthetic users — AI-згенеровані «учасники» що імітують відповіді реальних людей. Платформи типу Synthetic Users обіцяють «user research without the users». Це найбільш суперечлива частина AI в ресерчі.</p>
+<p>NN/g провели пряме порівняння synthetic users і реальних у трьох дослідженнях (червень 2024). Висновок: «Synthetic-user responses for many research activities are too shallow to be useful». AI відповідає однобоко, дає надто прихильні відповіді, втрачає контекстну глибину.</p>
+<p>Водночас нове дослідження Park et al. (Stanford, 2024) «Generative Agent Simulations of 1,000 People» показало 85% точність відтворення реальних survey-відповідей при ретельному fine-tuning на реальних даних. Розбіжність не випадкова: synthetic users працюють для прогнозування на рівні популяції, не працюють для глибинних інтерв\'ю.</p>
+<div class="formula-box">
+  <div class="formula-label">Де synthetic users ДОПУСТИМІ (і тільки там)</div>
+  <p><strong>Desk research:</strong> швидко зрозуміти загальну тему перед справжнім ресерчем.</p>
+  <p><strong>Proto-persona:</strong> гіпотеза про аудиторію до першого інтерв\'ю.</p>
+  <p><strong>Генерація гіпотез:</strong> «що б могло бути проблемою» — потім перевіряти на реальних людях.</p>
+  <p><strong>Тестування питань інтерв\'ю:</strong> прогнати скрипт через AI щоб знайти навідні формулювання.</p>
+</div>
+<p>Червона лінія: synthetic users ніколи не замінюють реальних для final decisions. Позиція NN/g: «relying on them too much can be harmful to your organization and product».</p>
+
+<h3>Senior-workflow: як вбудовувати AI правильно</h3>
+<div class="formula-box">
+  <div class="formula-label">Гібридний workflow (Tania Ostanina, HCID 2025)</div>
+  <p><strong>1. Планування:</strong> AI допомагає згенерувати чернетку discussion guide → дослідник адаптує під реальну гіпотезу.</p>
+  <p><strong>2. Збір даних:</strong> модерує людина. AI транскрибує автоматично (Otter, Fathom, вбудовані в Zoom).</p>
+  <p><strong>3. Аналіз:</strong> AI робить перший прохід тематичного кодування → дослідник перевіряє цитати й корегує теги.</p>
+  <p><strong>4. Синтез:</strong> дослідник пише інсайти сам. AI допомагає з формулюванням, не з інтерпретацією.</p>
+  <p><strong>5. Звіт:</strong> AI чистить текст, генерує draft-слайди → дослідник перевіряє кожну цифру.</p>
+</div>
+
+<h3>Як відповідати на senior-інтерв\'ю про AI</h3>
+<p>Слабка відповідь: «Я використовую ChatGPT для транскрипцій і Claude для звітів».</p>
+<p>Сильна відповідь: «Я використовую AI де він справді прискорює — транскрипція, перший прохід тегування, draft резюме сесій. Для синтезу інсайтів роблю сама/сам, бо LLM схильні до sycophancy і можуть підтвердити хибну гіпотезу. Synthetic users — тільки на стадії desk research, ніколи для final decisions. Усі AI-сгенеровані цифри в звіті я перевіряю вручну — це дешева страховка від галюцинацій».</p>`,
+      dos:[
+        'Використовуй enterprise-версії (ChatGPT Enterprise, Claude for Work) для роботи з чутливими даними — вони не тренують модель на твоїх даних',
+        'Перевіряй кожну цифру і цитату в AI-вихідному тексті вручну — галюцинації найчастіше саме там',
+        'Формулюй промпти нейтрально: «Що в цих транскриптах?» замість «Які 3 проблеми онбордингу?» — останнє провокує sycophancy',
+        'Фіксуй у звіті де використовувався AI — це стандарт прозорості для senior-рівня'
+      ],
+      donts:[
+        'Не завантажуй транскрипти з ПІІ у безплатні LLM — це порушення GDPR і NDA',
+        'Не використовуй synthetic users для рішень з реальними наслідками — лише для desk research і гіпотез',
+        'Не роби AI-згенерований звіт «як є»: це твої інсайти, не AI — відповідальність на тобі',
+        'Не плутай транскрипцію з синтезом: LLM добре перетворює звук на текст, але погано розуміє чому щось важливе'
+      ],
+      task:'Візьми будь-який свій минулий дослідницький матеріал (якщо є) або відкритий транскрипт з UXR Guild / GitHub. 1) Завантаж у ChatGPT/Claude і попроси знайти топ-3 теми. 2) Зроби той самий аналіз вручну — виділи теми самостійно. 3) Порівняй: скільки тем збігається, скільки AI пропустив, скільки AI придумав. 4) Сформулюй для себе 2-3 правила коли AI допомагає, а коли заважає.',
+      links:[
+        {text:'NN/g: Synthetic Users — If, When, and How to Use AI-Generated "Research"', url:'https://www.nngroup.com/articles/synthetic-users/'},
+        {text:'NN/g: Evaluating AI-Simulated Behavior — Digital Twins and Synthetic Users', url:'https://www.nngroup.com/articles/ai-simulations-studies/'},
+        {text:'NN/g: A Research Agenda for Generative AI in UX', url:'https://www.nngroup.com/articles/genai-ux-research-agenda/'},
+        {text:'User Interviews: AI in UX Research Report 2024', url:'https://www.userinterviews.com/ai-in-ux-research-report'},
+        {text:'Tania Ostanina: How I use generative AI for research in 2025 (HCID 2025)', url:'https://uxdesign.cc/an-ai-for-ux-v2-0-how-i-used-ai-for-research-in-2025-d4a0d652714b'},
+        {text:'Sharma et al.: Towards Understanding Sycophancy in Language Models', url:'https://arxiv.org/abs/2310.13548'}
+      ]
+    },
+    {
+      id:'s91', level:'strategic', title:'Continuous Discovery (Teresa Torres)',
+      tag:'Фреймворк', tb:'#EEEDFE', tc:'#3f3699',
+      intro:'Continuous Discovery — не черговий фреймворк, а центральна модель роботи продуктових команд з 2020 року. Запропонована Teresa Torres у книзі Continuous Discovery Habits (2021), описує перехід від «досліджуємо один раз перед великим релізом» до «щотижневі контакти з користувачами як звичка команди». На senior-інтерв\'ю в міжнародних компаніях це запитують майже завжди — часто як відкрите «how do you integrate research into the product cycle?».',
+      points:[
+        'Визначення (Torres): щотижневі контакти з користувачами, які проводить команда що будує продукт, задля досягнення конкретного outcome',
+        'Ключове зрушення: від «проєкт ресерчу» до «звички команди». Ресерч не лінійна фаза, а паралельний потік до розробки',
+        'Opportunity Solution Tree (OST) — головний інструмент: outcome → opportunities → solutions → assumption tests',
+        'Product trio: PM + дизайнер + інженер проводять ресерч разом — не тільки дослідник',
+        'Фокус на outcomes (бізнес-результати) замість outputs (фічі) — фундаментальний принцип'
+      ],
+      body:`<h3>Що таке Continuous Discovery насправді</h3>
+<p>Торрес визначає Continuous Discovery як поєднання 4 компонентів одночасно: <strong>мінімум тижневі контакти</strong> з користувачами, <strong>проводить команда яка будує продукт</strong> (не аутсорсний дослідник), <strong>невеликі дослідницькі активності</strong> (не великі проєкти), <strong>заради досягнення конкретного outcome</strong>. Прибери будь-який з 4 компонентів — це вже не Continuous Discovery.</p>
+<p>Типові заміщення які не є Continuous Discovery: щомісячні інтерв\'ю (недостатньо часто), ресерч силами окремого UXR відділу без команди (немає shared learning), великі одноразові дослідження перед релізами (не continuous), ресерч без прив\'язки до outcome (нема фокусу).</p>
+
+<h3>Opportunity Solution Tree — центральний артефакт</h3>
+<p>OST (введений Torres у 2016) — візуалізація зв\'язку між бізнес-метою і конкретними експериментами. Структура:</p>
+<div class="formula-box">
+  <div class="formula-label">Опорне дерево OST</div>
+  <p><strong>1. Outcome</strong> (верхній рівень): бажаний продуктовий результат, прив\'язаний до бізнесу. Приклад: «збільшити retention Day-7 з 24% до 40%».</p>
+  <p><strong>2. Opportunities</strong>: потреби, pain points, бажання користувачів які, якщо вирішити, наблизять до outcome. Приклад: «користувачам важко зрозуміти цінність у перший день».</p>
+  <p><strong>3. Solutions</strong>: конкретні ідеї як вирішити opportunity. Не фінальні фічі — гіпотези.</p>
+  <p><strong>4. Assumption tests</strong>: швидкі експерименти (1–2 дні) щоб перевірити припущення якими тримається solution.</p>
+</div>
+<p>Головна ідея — <em>розбивати opportunities на менші під-opportunities</em> поки не стануть достатньо малими щоб атакувати один solution. «Покращити онбординг» — надто велика opportunity. «Користувач не розуміє як запросити колегу» — вже працююча.</p>
+
+<h3>Outcomes vs outputs — ключове зрушення</h3>
+<p>Class фокусу команди на outputs: «запустили нову фічу», «оновили дизайн», «зробили 3 релізи». Continuous Discovery змушує питати: <strong>а що змінилось у користувача?</strong> Запустити фічу — output. Те що після неї retention зріс на 15% — outcome. Якщо після output немає outcome — робота марна.</p>
+<p>Torres наводить як найпоширенішу помилку: команди «досліджують» вже обрані рішення. Тобто приходять з вирішеним «що будувати» і шукають підтвердження. Continuous Discovery працює навпаки — спочатку outcome, потім opportunity space, потім solutions.</p>
+
+<h3>Реальні кейси з книги Torres</h3>
+<p><strong>Simply Business</strong> (UK business insurance). Команда виявила pain point клієнтів: проблеми з запізнілими платежами. Побудували OST, сформулювали як opportunity. Assumption tests показали: клієнти <em>не хочуть</em> щоб Simply Business допомагала з цим — це їхня внутрішня справа. Opportunity визнали нежиттєздатною, команда швидко перемкнулась на іншу. Ціна помилки — 2 тижні замість 3-місячного проєкту який мав би шанс не спрацювати.</p>
+<p><strong>CarMax</strong> (used car reseller). Команда досліджувала цінність reconditioning сервісу. Discovery показав: клієнти цінують <em>vehicle-specific</em> інформацію про reconditioning конкретного авто, а не загальну. Це привело до редизайну product page з персоналізованою інформацією замість generic секції про сервіс.</p>
+
+<h3>Як застосовувати: practical workflow</h3>
+<div class="formula-box">
+  <div class="formula-label">Тижневий цикл команди (Torres)</div>
+  <p><strong>Monday:</strong> product trio дивиться на OST, обирає 1–2 opportunity для фокусу.</p>
+  <p><strong>Mid-week:</strong> 2–3 customer interviews (по 30 хв) про обрану opportunity. Проводить хтось з trio.</p>
+  <p><strong>Thursday:</strong> синтез, оновлення OST новими opportunity / solutions.</p>
+  <p><strong>Friday:</strong> assumption test для 1–2 solutions. Швидкий — 1 день, не тиждень.</p>
+  <p><strong>Повторити наступного тижня.</strong> Успіх приходить через 3–6 місяців стабільної практики.</p>
+</div>
+
+<h3>Як відповідати на senior-інтерв\'ю</h3>
+<p>Слабка відповідь: «Ми робимо discovery перед кожним великим релізом».</p>
+<p>Сильна відповідь: «Я практикую Continuous Discovery у розумінні Torres. Наша команда має тижневі інтерв\'ю з користувачами які проводить product trio. Я підтримую OST дерево прив\'язане до квартальних outcomes — не до roadmap фіч. Перед кожним solution ми формулюємо 3–5 assumption tests які можна пройти за день. Так ресерч стає частиною product cycle, а не окремим етапом який сповільнює команду».</p>`,
+      dos:[
+        'Починай з одного outcome, не з 5 — фокус критичний. «Збільшити X метрику на Y» — ось формат',
+        'Залучай PM і інженера до інтерв\'ю (хоча б спостерігати) — це не «ресерчерська задача», це задача product trio',
+        'Розбивай opportunities до малих. «Онбординг не працює» — ні. «Користувач на кроці 3 не знаходить кнопку Invite» — так',
+        'Тестуй assumptions а не solutions. Assumption tests швидші у 5–10 разів'
+      ],
+      donts:[
+        'Не плутай Continuous Discovery з «постійним ресерчем» — ключове слово discovery, не research. Мета — знаходити opportunities, не описувати користувачів',
+        'Не шукай підтверджень уже обраному solution — це не discovery, це validation theater',
+        'Не додавай на OST «все що знаємо про користувачів» — воно має бути attached до одного outcome, інакше перетвориться на дошку нотаток',
+        'Не пропускай виміри outcome після релізу — інакше не дізнаєшся чи opportunity була правильною'
+      ],
+      task:'Візьми будь-який продукт що ти добре знаєш (свій проєкт, улюблений застосунок). 1) Сформулюй одне бажане outcome у форматі «метрика X з A до B». 2) Намалюй OST на 2 рівні під ним: 3–4 opportunities (потреби/pain points), під кожною по 2 solutions. 3) Для 1 solution сформулюй 3 assumption що мають бути true щоб це спрацювало. 4) Для кожного assumption придумай швидкий тест (день-два).',
+      links:[
+        {text:'Product Talk: What a Good Continuous Discovery Team Looks Like (реальний кейс)', url:'https://www.producttalk.org/continuous-discovery-case-study/'},
+        {text:'Teresa Torres\' Product Talk — блог і курси', url:'https://www.producttalk.org/'},
+        {text:'Lab Zero: Reversing the OST — коли solution уже обрано', url:'https://www.mindtheproduct.com/reversing-teresa-torres-opportunity-solution-tree-to-find-the-why-behind-solutions/'},
+        {text:'Chameleon: Interview with Torres on OST', url:'https://www.chameleon.io/blog/opportunity-solution-tree'},
+        {text:'Paweł Huryn: Extended OST with Impact Mapping', url:'https://www.productcompass.pm/p/the-extended-opportunity-solution-tree'}
+      ]
+    },
+    {
+      id:'s92', level:'strategic', title:'ResearchOps (ReOps)',
+      tag:'Практика', tb:'#EEEDFE', tc:'#3f3699',
+      intro:'ResearchOps — інфраструктура яка дозволяє команді фокусуватися на craft дослідження замість logistics. Дисципліна виросла з 2018 коли Kate Towsey запустила ResearchOps Community на Slack — зараз там 15,000+ членів зі 100+ країн. У 2024 Kate видала Research That Scales (Rosenfeld Media) — перший фундаментальний handbook. Для senior UX researcher — це не «зручно мати», а «визначає чи масштабується твоя практика».',
+      points:[
+        'Визначення (ResearchOps Community): люди, механізми і стратегії які запускають user research у дії',
+        '6 основних доменів: participants, governance, tools, knowledge management, competency, logistics',
+        'Research Repository (Dovetail, Notably, EnjoyHQ) — основний актив ReOps. Без нього інсайти зникають через 6 місяців',
+        'PWDR (Kate Towsey): People Who Do Research — усі хто проводить ресерч, а не тільки researchers by title. Це хто ResearchOps обслуговує',
+        'Без ReOps кожен дослідник витрачає 30–50% часу на логістику замість ресерчу'
+      ],
+      body:`<h3>Що саме входить у ResearchOps</h3>
+<p>#WhatisResearchOps framework (2018, зібрано на 34 воркшопах по світу) визначає 6 основних доменів:</p>
+<ul>
+<li><strong>Participants:</strong> рекрутинг, reward-логістика, панелі, incentives, GDPR compliance, screener management</li>
+<li><strong>Governance:</strong> NDA, consent forms, legal/ethical підходи, policies</li>
+<li><strong>Tools &amp; infrastructure:</strong> ліцензії, procurement, vendor management (UserTesting, Maze, Dovetail — хто оплачує, хто адмініструє)</li>
+<li><strong>Knowledge management:</strong> research repository, tagging taxonomy, пошук, доступ до історичних інсайтів</li>
+<li><strong>Competency:</strong> навчання дослідників і PWDR, сертифікації, шаблони, guidelines</li>
+<li><strong>Logistics:</strong> розклад сесій, кімнати / Zoom, транскрипції, нотатки, post-session workflow</li>
+</ul>
+<p>Kate Towsey робить акцент: усі 6 доменів пов\'язані. Не можна «додати рекрутинг» без legal (GDPR), без tools (де зберігати дані), без knowledge management (де індексувати учасників). Звідси її термін «knee-jerk operations» — коли команда реагує на одну проблему без бачення системи.</p>
+
+<h3>Research Repository — найцінніший актив</h3>
+<p>Репозиторій перетворює сесії з витраченого часу на накопичувальний актив. Без нього: через 6 місяців 90% інсайтів забуто, нові команди повторюють вже проведені дослідження.</p>
+<p>Ключові функції репозиторію: зберігання транскрипцій і відео, tagging за темами/продуктами/ролями користувачів, пошук цитат, зв\'язок інсайтів з рішеннями які вони вплинули. Сучасні інструменти (Dovetail AI, Notably) додають автотегування і semantic search — команді не треба вручну підтримувати taxonomy.</p>
+<p>Правило яке часто цитує ResearchOps Community: репозиторій має служити трьом аудиторіям — researchers (шукають патерни), PMs (шукають докази для рішень), нові члени команди (шукають контекст).</p>
+
+<h3>Реальні приклади побудови ReOps</h3>
+<p><strong>Atlassian.</strong> Kate Towsey (2019–2024) будувала ReOps для команди 20+ дослідників. Фреймворк покривав усі 6 доменів плюс vendor management як окрему дисципліну — перевірка тулів за 3 місяці до поновлення, а не у день експірації.</p>
+<p><strong>Capital One.</strong> Christian Rohrer виступав на Design Ops Summit 2017 з «Research Operations at Scale». Фокус: у великому банку ReOps долає regulatory constraints — урядові вимоги часто роблять стандартні UX-практики несумісними. Відповідь Capital One: окрема ReOps команда (technicians, coordinators, leads) + research education (internal instructors).</p>
+<p><strong>UK Government Digital Service (GDS).</strong> Одні з перших системних ReOps у публічному секторі — Kate Towsey заклала основи на початку кар\'єри.</p>
+
+<h3>Коли починати будувати ReOps</h3>
+<p>Ранні сигнали що ResearchOps потрібен: команда 3+ дослідників; тратимо більше 30% часу на рекрутинг і логістику; кілька команд дублюють дослідження; нові проєкти починають «з нуля» не знаючи що вже досліджено; юридичні ризики (GDPR) вимагають структурованого підходу.</p>
+<p>Anti-pattern: починати з купівлі дорогого tool (Dovetail Pro, UserTesting Enterprise) без процесу. Без ReOps-культури інструмент не впроваджується. Починай з людей і процесів, потім додавай tools.</p>
+
+<h3>Як відповідати на senior-інтерв\'ю</h3>
+<p>Слабка відповідь: «Ми зберігаємо інсайти в Notion».</p>
+<p>Сильна відповідь: «Я підтримую research repository з tagging taxonomy прив\'язаною до наших OKR. Це дозволяє новому PM за 20 хвилин знайти все що знаємо про конкретну тему. Рекрутинг стандартизований через screener templates і готові панелі учасників. GDPR consent forms автоматизовані через Typeform. Завдяки цьому я трачу ~70% часу на сам ресерч, а не на логістику — без ReOps це було б 40%».</p>`,
+      dos:[
+        'Починай з однієї найболючішої проблеми — частіше це рекрутинг або knowledge management. Розв\'яжи її, потім рухайся до інших доменів',
+        'Зроби research repository ПЕРШИМ кроком а не останнім — ретрофіт 6-місячних даних болючий',
+        'Інтегруй ReOps з OKR команди — без бізнес-метрик він сприймається як бюрократія',
+        'Evangelize: research digest раз на місяць, показ конкретних прикладів «як знайшли інсайт за 20 хв»'
+      ],
+      donts:[
+        'Не купуй enterprise tool без процесу — платиш за фічі які ніхто не використовує',
+        'Не змішуй ReOps з research methodology — це підтримка craft, не сам craft',
+        'Не будуй системи для ідеальної майбутньої команди 20 людей якщо зараз вас троє — оверінжиніринг убиває запуск',
+        'Не ігноруй vendor renewals — тривога «завтра відключать UserTesting» забирає кілька днів, якщо продумати заздалегідь — 30 хвилин'
+      ],
+      task:'Проаналізуй свою поточну практику (або минулу). 1) Пройди 6 доменів #WhatisResearchOps (participants, governance, tools, knowledge, competency, logistics) і постав собі оцінку 1–5 для кожного. 2) Визнач найболючіший домен. 3) Напиши 3 конкретні кроки які можна зробити за 2 тижні щоб підняти його хоча б на 1 бал. 4) Сформулюй що б ти відповів на інтерв\'ю «розкажіть про вашу ResearchOps практику».',
+      links:[
+        {text:'ResearchOps Community — 15,000+ practitioners, Slack + resources', url:'https://researchops.community/'},
+        {text:'Kate Towsey: A framework for #WhatisResearchOps (оригінальна стаття, CC licensed)', url:'https://medium.com/researchops-community/a-framework-for-whatisresearchops-e862315ab70d'},
+        {text:'NN/g: Strategic Research — Advice from Kate Towsey', url:'https://www.nngroup.com/articles/researchops-kate-towsey/'},
+        {text:'Kate Towsey: Research That Scales (book + masterclasses)', url:'https://katetowsey.com/'},
+        {text:'User Interviews: Kate Towsey on Starting a ReOps Practice', url:'https://www.userinterviews.com/blog/kate-towsey-on-starting-a-researchops-practice'}
+      ]
+    },
+    {
+      id:'s93', level:'strategic', title:'Democratizing Research',
+      tag:'Практика', tb:'#EEEDFE', tc:'#3f3699',
+      intro:'Співвідношення дослідників до дизайнерів у середній продуктовій команді — 1:5, до розробників — 1:50 (NN/g дані). Одна людина фізично не може обслужити попит на ресерч. Democratizing research — це не «будь-хто проводить ресерч», а структурований підхід коли PM, дизайнери, customer success проводять прості дослідження під наглядом дослідника. За Maze State of Continuous Research 2023 — 64% компаній вже мають democratized research culture. Ключове питання зараз не «чи робити», а «як робити без деградації якості».',
+      points:[
+        'NN/g ratio: 1 researcher : 5 designers : 50 developers (2020). Без democratization ресерч — бутилочна шийка',
+        'Три рівні моделі: closed (тільки researchers), assisted (PwDR з guardrails), open (self-service). Більшість організацій потребують assisted',
+        'PWDR (People Who Do Research) — термін Kate Towsey. Дизайнери, PM, CS що роблять прості дослідження, але не researchers by title',
+        'Головний ризик: biased and low-quality research який сприймається як рівний професійному — розмиває довіру до ресерчу в цілому',
+        'Senior-роль у цьому: не «gatekeeper» а «research coach» — навчаєш, задаєш стандарти, береш складні проєкти собі'
+      ],
+      body:`<h3>Три рівні democratization</h3>
+<div class="formula-box">
+  <div class="formula-label">Спектр democratization (User Research Strategist, 2025)</div>
+  <p><strong>Closed model:</strong> тільки researchers проводять дослідження. Плюси: якість контрольована. Мінуси: інсайти централізовані, ресерч — bottleneck. Підходить для regulated industries (банки, медицина) і для ранніх стадій розвитку research practice.</p>
+  <p><strong>Assisted (2.0) model:</strong> non-researchers проводять прості дослідження під guardrails дослідника. Templates, training, review. Підходить для більшості організацій. Саме тут ReOps грає критичну роль.</p>
+  <p><strong>Open model:</strong> будь-хто проводить будь-який ресерч без нагляду. Найвищий ризик bias і low-quality. Підходить тільки для дуже зрілих організацій з сильною research culture.</p>
+</div>
+<p>Kate Moran (NN/g) застерігає від стрибка від closed до open — розрив у якості колосальний. Assisted model — практичний компроміс для більшості команд.</p>
+
+<h3>Що можна делегувати, що — ні</h3>
+<p><strong>Можна делегувати PwDR:</strong> прості юзабіліті-тести з 5 учасників на готових прототипах, survey з заздалегідь підготовленими питаннями, first-click tests, sentiment checks на in-app messages, copy testing.</p>
+<p><strong>Не делегувати:</strong> generative research (розуміння нових проблемних просторів), складний сегментаційний аналіз, дослідження для стратегічних рішень, research design (вибір методу), синтез інсайтів з багатьох джерел, робота з vulnerable groups.</p>
+<p>Правило Jeanette Fuccella (Pendo.io): чим вищий ризик хибного рішення — тим менше делегування. Research risk = (вплив на бізнес) × (незворотність рішення). При високому значенні — йде до researcher.</p>
+
+<h3>5 кроків NN/g для впровадження</h3>
+<ol>
+<li><strong>Identify research demand.</strong> Хто робить ресерч зараз? Скільки студій потрібно на квартал? Які з них прості, які складні?</li>
+<li><strong>Classify skills of PwDR.</strong> Хто в команді вже проводив прості дослідження? Хто готовий вчитись? Хто категорично проти?</li>
+<li><strong>Gap analysis &amp; matching.</strong> Які студії можна делегувати кому? Де бракує навичок і як закрити?</li>
+<li><strong>Agreement &amp; roles.</strong> Формалізувати хто що робить. Писаний charter — не домовленість на словах.</li>
+<li><strong>Assess &amp; iterate.</strong> Ретроспектива раз на квартал. Що працює, що ні, що треба скоригувати.</li>
+</ol>
+
+<h3>Роль senior researcher у democratization</h3>
+<p>Роль зсувається з «проводжу всі дослідження» на «навчаю команду і займаюсь тим що делегувати не можна». Roy Olende (Head of UXR at Zapier): «Я вважав що буду фіксити проблеми UX-ресерч команди, а провів більшість часу розв\'язуючи проблеми тих хто не ресерчер by title».</p>
+<p>Конкретні senior-задачі у democratized environment: research playbook (шаблони для типових ситуацій), training program (onboarding нових PwDR), quality gates (review процес для важливих студій), research strategy на квартал, складний research сам.</p>
+
+<h3>Як відповідати на senior-інтерв\'ю</h3>
+<p>Слабка відповідь: «Тільки researcher має проводити дослідження, бо якість».</p>
+<p>Сильна відповідь: «Я практикую assisted democratization: дизайнери проводять прості юзабіліті-тести за моїми шаблонами, PM проводить customer discovery calls — все з моїм review перед фіналізацією інсайтів. Для складних generative і стратегічних досліджень — я. Це дозволяє команді мати у 4 рази більше touchpoints з користувачами без потреби у другому ресерчеру. Ключове — writeн research charter де зафіксовано хто що робить і де я контролюю якість».</p>`,
+      dos:[
+        'Починай з assisted model — навіть якщо команда готова до open, спочатку assisted для культури якості',
+        'Пиши research charter — хто що може, хто що не може, де я перевіряю. Без документа все розмивається',
+        'Роби templates для типових студій — screener, interview guide, report format. Без шаблонів кожен PwDR винаходить колесо',
+        'Включай PwDR до research digest — вони бачать як професійний ресерч відрізняється, вчаться на прикладах'
+      ],
+      donts:[
+        'Не ставай gatekeeper — «тільки я можу» = команда не навчиться, ти — bottleneck',
+        'Не дозволяй PwDR робити generative або стратегічний ресерч — ризик надто великий',
+        'Не плутай democratization з економією — якщо це спосіб не нанімати researcher, практика провалиться',
+        'Не ігноруй ethics training для PwDR — consent і privacy не інтуїтивні, їх треба пояснювати явно'
+      ],
+      task:'Уяви що ти — єдиний researcher у команді 12 людей. 1) Склади research charter на одну сторінку: які типи досліджень може робити хто (designer, PM, CS, ти). 2) Придумай training план на 4 тижні для 2 PwDR — по одному дизайнеру і PM. 3) Визнач 3 quality gates — моменти де ти обов\'язково перевіряєш роботу PwDR перед фіналізацією. 4) Як би ти продав цей підхід стейкхолдерам? Сформулюй у 3 реченнях.',
+      links:[
+        {text:'NN/g: Democratize User Research in 5 Steps', url:'https://www.nngroup.com/articles/democratize-user-research/'},
+        {text:'User Research Strategist: The Democratization Playbook', url:'https://www.userresearchstrategist.com/p/the-user-research-democratization'},
+        {text:'Maze: Democratizing UX Research in 5 Steps', url:'https://maze.co/blog/ux-research-democratization/'},
+        {text:'User Interviews: How ResearchOps Supports Democratization', url:'https://www.userinterviews.com/blog/research-operations-supports-scaling-democratizing-ux-research'},
+        {text:'Dovetail: Five Principles for Scaling & Democratizing Research', url:'https://dovetail.com/blog/five-principles-scaling-democratizing-product-research/'}
+      ]
+    }
+  ]
+});
+
 // ─── Runtime ──────────────────────────────────────────────────────────────────
 const ICONS = {
   compass: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg>',
@@ -3702,6 +3973,10 @@ const TOOLING = {
   s33:[{name:'VWO / Optimizely',desc:'класичні A/B платформи'},{name:'Statsig / GrowthBook',desc:'сучасні open-source варіанти'}],
   s40:[{name:'FigJam / Miro',desc:'онлайн-дошки для affinity mapping'},{name:'Dovetail',desc:'тегування цитат → авто-кластери'}],
   s50:[{name:'Notion / Confluence',desc:'структура звіту'},{name:'Dovetail',desc:'atomic research repository'},{name:'Loom',desc:'async відео-пояснення'}],
+  s90:[{name:'ChatGPT Enterprise / Claude for Work',desc:'walled-off LLM для чутливих даних'},{name:'Dovetail AI',desc:'тегування, sentiment analysis, summary на транскриптах'},{name:'Notably / Looppanel',desc:'AI-native repositories з автопошуком інсайтів'},{name:'Otter.ai / Fathom',desc:'автотранскрипція, інтеграція з Zoom'},{name:'Synthetic Users',desc:'ТІЛЬКИ для desk research, з обережністю'}],
+  s91:[{name:'FigJam / Miro',desc:'побудова OST дерева, командна робота'},{name:'Product Talk (producttalk.org)',desc:'безплатні шаблони OST від Torres'},{name:'Dovetail / Notably',desc:'збереження інсайтів з тижневих інтерв\'ю'},{name:'Maze',desc:'швидкі assumption tests (1–2 дні)'}],
+  s92:[{name:'Dovetail / Notably / EnjoyHQ',desc:'research repository'},{name:'UserInterviews / Respondent.io / Prolific',desc:'participant management і recruiting'},{name:'Typeform / Google Forms',desc:'screeners, consent forms'},{name:'Notion / Confluence',desc:'templates, guidelines, knowledge base'},{name:'Airtable',desc:'participant panel, study tracking'}],
+  s93:[{name:'Maze / UserTesting',desc:'прості тести які можуть проводити non-researchers'},{name:'Notion / Confluence',desc:'research playbook і templates для PwDR'},{name:'Dovetail',desc:'шарений репозиторій для всієї команди'},{name:'Loom',desc:'запис research digest відео для навчання PwDR'}],
 };
 
 const FAILURE_CASES = {
@@ -3710,6 +3985,10 @@ const FAILURE_CASES = {
   s32:'Опитування 500 осіб показало «82% задоволені». Компанія заспокоїлась. За квартал churn +15%. Проблема: опитування надіслали лише активним користувачам. Ті хто пішов — мовчали. Confirmation bias на рівні sample.',
   s40:'Affinity mapping після 6 інтерв’ю з жінками 25–34 з одного міста. Команда вирішила що «знайшла правду» і запустила редизайн. Через місяць метрики впали: чоловіки 40+ (50% аудиторії) мали зовсім інші патерни.',
   s60:'Senior дослідник побудував ідеальний research repository в Dovetail. Через 6 місяців — ніхто не користується, бо ніхто не знав що він існує. Інструмент без культури — мертвий інструмент.',
+  s90:'Команда з 2 дизайнерів завантажила 20 транскриптів у безплатний ChatGPT і попросила «знайти топ-5 проблем онбордингу». Отримали готовий звіт за 10 хвилин. Після запуску redesign метрики не змінились — бо 3 з 5 «проблем» були галюцинаціями (цифри які AI придумав з повітря), а 2 справжні проблеми AI пропустив. Плюс: дані користувачів пішли в training set OpenAI — юристи компанії були в шоці. Мораль: безплатний LLM + чутливі дані + автоматичне довіряння = катастрофа.',
+  s91:'Команда запровадила «тижневі інтерв\'ю» як процес, але без OST і без outcome. Через 2 місяці: багато цікавих розмов, 40 годин відео, 0 продуктових рішень. Проблема: ресерч без outcome = етнографія без практичної цінності. Без OST кожне інтерв\'ю в іншому напрямку, інсайти не накопичуються. Continuous Discovery це не «робимо більше інтерв\'ю» — це «робимо фокусовані інтерв\'ю прив\'язані до одного outcome поки не знайдемо робоче рішення».',
+  s92:'Senior researcher побудував ідеальний research repository в Dovetail: 340 сесій, taxonomy, всі транскрипти. Через 6 місяців ніхто ним не користується. Чому: ніхто не знав що він існує. Не було onboarding-плану для нових членів команди, не було регулярних «research digests», не було evangelism. ReOps без культури = мертвий інструмент. Kate Towsey: «infrastructure without advocacy is invisible».',
+  s93:'Стартап 8 людей, без researcher. PM почитав пару статей і провів 6 «інтерв\'ю». Навідні питання («правда ж що наш продукт економить час?»), тільки активні клієнти (survivorship bias), інсайти підтверджували все що команда вже вирішила. Команда переробила продукт — метрики впали на 12%. Мораль: open democratization без training і оверсайту гірша за відсутність ресерчу — вона дає ілюзію знань на основі biased даних.',
 };
 
 // ── localStorage persistence ──

@@ -16,8 +16,18 @@ const works = [
     cover: '/work/liveperson/cover.png',
   },
   {
-    slug: 'political-crm',
+    slug: 'portfolio-site',
     counter: '02',
+    client: 'Meta · AI Workflow',
+    title: 'This Portfolio',
+    outcome: 'Shipped in 5 days with a multi-agent Claude + Gemini workflow. Full design system, content model, and build authored end-to-end.',
+    domains: ['AI-Assisted', 'Astro', 'Design System'],
+    year: '5 days',
+    cover: '/work/portfolio/portfolio_project_cover.png',
+  },
+  {
+    slug: 'political-crm',
+    counter: '03',
     client: 'Political · NDA',
     title: 'Web CRM for Political Activists',
     outcome: 'Website, mobile app, and CRM for grassroots campaign coordination. AI page builder prototyped in 12 hours across 3 environments.',
@@ -27,7 +37,7 @@ const works = [
   },
   {
     slug: 'nba-teams',
-    counter: '03',
+    counter: '04',
     client: 'NBA Teams · NDA',
     title: 'Web Platform for NBA Teams',
     outcome: 'UX redesign for 2 top NBA team websites. Fan engagement uplift within strict NBA platform constraints.',
@@ -37,7 +47,7 @@ const works = [
   },
   {
     slug: 'healthcare-saas',
-    counter: '04',
+    counter: '05',
     client: 'Healthcare · NDA',
     title: 'Hospital Asset Management SaaS',
     outcome: 'Full product suite – dashboard, admin panel, field mobile app – for ~20 hospitals. Photoshop → Figma migration.',
@@ -47,23 +57,13 @@ const works = [
   },
   {
     slug: 'jewelry-brand',
-    counter: '05',
+    counter: '06',
     client: 'Luxury Retail · NDA',
     title: 'In-Store iOS Suite for Top US Jewelry Brand',
     outcome: 'Bespoke iPhone & iPad app enabling in-store staff to guide diamond selection consultations.',
     domains: ['Luxury Retail', 'iOS'],
     year: '2 years',
     cover: '/work/jewelry/jewelrycover.png',
-  },
-  {
-    slug: 'portfolio-site',
-    counter: '06',
-    client: 'Personal Project',
-    title: 'This Portfolio',
-    outcome: 'Built with Claude Code and Gemini in 5 days. Four AI agents, three of which worked.',
-    domains: ['AI-Assisted', 'Astro'],
-    year: '5 days',
-    cover: '/work/portfolio/portfolio_project_cover.png',
   },
 ];
 
@@ -99,10 +99,16 @@ const capabilities = [
           <p class="hero-statement animate-fade-up delay-2">
             I design systems, not just screens.
           </p>
-          <a href="#work" class="hero-cta animate-fade-up delay-3" aria-label="Jump to selected work">
-            Selected Work
-            <ArrowDown size={16} class="hero-cta-arrow" aria-hidden="true" />
-          </a>
+          <div class="hero-cta-row animate-fade-up delay-3">
+            <a href="#work" class="hero-cta" aria-label="Jump to selected work">
+              Selected Work
+              <ArrowDown size={16} class="hero-cta-arrow" aria-hidden="true" />
+            </a>
+            <a href={b + '/cv.pdf'} target="_blank" rel="noopener" class="hero-cta hero-cta--secondary" aria-label="Open CV in new tab">
+              View CV
+              <ArrowUpRight size={14} class="hero-cta-arrow-ext" aria-hidden="true" />
+            </a>
+          </div>
         </div>
         <div class="hero-metrics" aria-label="Key numbers">
           <ul class="signal-grid" role="list">
@@ -115,8 +121,8 @@ const capabilities = [
               <span class="signal-label">direct reports</span>
             </li>
             <li class="signal-item">
-              <span class="signal-number">STILL</span>
-              <span class="signal-label">making things</span>
+              <span class="signal-number">REMOTE</span>
+              <span class="signal-label">EU / US hours</span>
             </li>
           </ul>
         </div>
@@ -502,9 +508,15 @@ const capabilities = [
     margin-bottom: var(--sp-12);
   }
 
+  .hero-cta-row {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-8);
+    flex-wrap: wrap;
+  }
+
   .hero-cta {
     display: inline-flex;
-    align-self: flex-start;
     align-items: center;
     gap: var(--sp-3);
     font-family: var(--font-display);
@@ -522,6 +534,21 @@ const capabilities = [
   .hero-cta:hover {
     color: var(--color-white);
     border-color: var(--color-white);
+  }
+
+  .hero-cta--secondary {
+    color: var(--color-grey-400);
+    border-bottom-color: oklch(30% 0 0);
+  }
+
+  .hero-cta-arrow-ext {
+    display: inline-block;
+    transition: transform var(--dur-base) var(--ease);
+    vertical-align: middle;
+  }
+
+  .hero-cta--secondary:hover .hero-cta-arrow-ext {
+    transform: translate(2px, -2px);
   }
 
   .hero-cta-arrow {

@@ -54,7 +54,7 @@ export const projects: Project[] = [
     cover: '/work/liveperson/cover.png',
     overviewImage: '/work/liveperson/01.png',
     screens: [
-      { src: '/work/liveperson/01.png', annotation: 'Primary agent workspace – legacy UI redesigned for WCAG 2.0 compliance, extended with new features, and kept familiar enough to eliminate retraining overhead.' },
+      { src: '/work/liveperson/01.png', annotation: 'Primary agent workspace – legacy UI redesigned for WCAG 2.1 compliance, extended with new features, and kept familiar enough to eliminate retraining overhead.' },
       { src: '/work/liveperson/wireframes.png', annotation: 'Rapid wireframing during the discovery phase of a new feature wizard – mapping flows before committing to high-fidelity.' },
       { src: '/work/liveperson/02.png', annotation: 'High-fidelity mockup of the wizard – first step of the rule definition flow for the new feature.' },
       { src: '/work/liveperson/03.png', annotation: 'Fully interactive prototype of the bot-testing workspace – where bot builders can run live conversations with their AI. Built on Material 3, adapted to LivePerson\'s brand token system.' },
@@ -72,13 +72,13 @@ export const projects: Project[] = [
       'Designed and delivered 20+ new product features across multiple squads',
       'Created 1,000+ icons across 3 sizes and 2 styles (outline / filled)',
       'Kept 3–4 engineering teams supplied with design-ready specs 2–3 weeks ahead of sprint',
-      'Maintained WCAG 2.0 AA compliance across all new components',
+      'Maintained WCAG 2.1 AA compliance across all new components',
       'Collaborated directly with product managers and engineers on technical constraints and feasibility',
     ],
     process: [
       {
         title: 'Audit & Alignment',
-        body: 'The legacy design system had hit its ceiling – under modern demands and WCAG 2.0 compliance requirements, it simply couldn\'t cover what the product needed. The task: rebuild the entire system to be accessible, contemporary, and familiar enough that users wouldn\'t experience shock after the redesign. Meanwhile, internal tools earmarked for deprecation were still shipping new features and couldn\'t switch systems mid-flight. The mobile product added a third variable – a forked Material Design system, chosen to compress delivery timelines. Three systems, all live, all requiring maintenance and forward design work simultaneously.',
+        body: 'The legacy design system had hit its ceiling – under modern demands and WCAG 2.1 compliance requirements, it simply couldn\'t cover what the product needed. The task: rebuild the entire system to be accessible, contemporary, and familiar enough that users wouldn\'t experience shock after the redesign. Meanwhile, internal tools earmarked for deprecation were still shipping new features and couldn\'t switch systems mid-flight. The mobile product added a third variable – a forked Material Design system, chosen to compress delivery timelines. Three systems, all live, all requiring maintenance and forward design work simultaneously.',
       },
       {
         title: 'Icon System',
@@ -90,7 +90,7 @@ export const projects: Project[] = [
       },
       {
         title: 'Accessibility',
-        body: 'Applied WCAG 2.0 AA standards to every new component. Worked closely with a dedicated accessibility specialist to find the right balance between brand integrity and genuine inclusivity – not just hitting a checklist. Refined complex web app interfaces to remain usable at 200% zoom, defined proper keyboard navigation flows, documented contrast ratios, focus states, and interaction patterns. Accessible variants were built directly in Figma so engineers had no ambiguity at handoff.',
+        body: 'Applied WCAG 2.1 AA standards to every new component. Worked closely with a dedicated accessibility specialist to find the right balance between brand integrity and genuine inclusivity – not just hitting a checklist. Refined complex web app interfaces to remain usable at 200% zoom, defined proper keyboard navigation flows, documented contrast ratios, focus states, and interaction patterns. Accessible variants were built directly in Figma so engineers had no ambiguity at handoff.',
       },
     ],
     outcomes: 'Over 5+ years, kept multiple engineering teams moving without design becoming a bottleneck. The icon library became a shared asset used across all three design systems. Features shipped consistently, 2–3 weeks ahead of engineering sprints – a supply rhythm that held across team changes and product pivots.',

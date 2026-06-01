@@ -162,17 +162,77 @@ const outcomeCounter = `[0${++_idx}]`;
       {project.slug === 'liveperson' && (
         <div class="cs-process-cases">
           <h3 class="cs-step-title">Selected UX Cases</h3>
+          <p class="cs-body-text cs-cases-intro">No direct user access shaped the whole approach: Hotjar session recordings, insights synthesized from user-submitted feedback, and a UX audit with a researcher, UX writer, and accessibility expert — in place of traditional research.</p>
           <ul class="cs-responsibilities" role="list">
             <li class="cs-responsibility">
               <span class="cs-responsibility-dot" aria-hidden="true"></span>
-              <span><strong>Knowledge Center search.</strong> Hotjar session recordings and in-page comments showed the search returning too many irrelevant results – users were giving up and hunting for answers on their own. Replacing the search engine outright cut negative feedback roughly in half.</span>
+              <span><strong>Knowledge Center search.</strong> Negative feedback cut roughly in half — without a single direct user interview. Hotjar recordings and synthesized in-product feedback pointed to the same gap: the built-in search engine was failing silently. Users had given up and were scanning the full taxonomy by hand. Replaced the search engine, resolved the smaller issues surfaced alongside it.</span>
             </li>
-            <li class="cs-responsibility">
+            <li class="cs-responsibility cs-responsibility--with-thumb">
               <span class="cs-responsibility-dot" aria-hidden="true"></span>
-              <span><strong>Main menu &amp; information architecture.</strong> The first IA pass shipped without a tree-sorting round and the gap showed up fast. Customer success managers ran follow-up interviews with real users (in this product the buyer isn't the user) and surfaced the real friction: people were burning time digging through the menu and switching between two core work tools. Fix – promote both tools to the menu root, and keep text labels next to icons even in the collapsed state. <strong>Time on task dropped by 80%.</strong></span>
+              <div class="cs-responsibility-content">
+                <span><strong>Main menu &amp; information architecture.</strong> Time on task dropped by 80% from a single structural change. The first IA pass had skipped tree-sorting — and the gap surfaced fast. Customer success managers ran follow-up sessions with actual users (in this product, the buyer isn't the user), and the friction was clear: people were digging through the menu to switch between the two tools they used constantly. Fix: both tools promoted to the menu root. Text labels kept next to icons even in the collapsed state.</span>
+                <div class="cs-case-thumb-wrap">
+                  <img
+                    src={b + '/work/liveperson/lp%20before%20after.png'}
+                    alt=""
+                    class="cs-case-thumb lb-trigger"
+                    data-lb-src={b + '/work/liveperson/lp%20before%20after.png'}
+                    data-lb-annotation="Agent Workspace and Manager Workspace promoted to the top level of the main menu. Text labels added in collapsed state. Core users were switching between the two constantly — one structural change cut time on task by 80%."
+                    loading="lazy"
+                  />
+                </div>
+              </div>
             </li>
           </ul>
           <p class="cs-body-text cs-cases-principle"><strong>Validation principle.</strong> Every new feature followed the same rule – prototypes were walked through the cross-functional team (Ukraine, US, India, Europe) before development started, and each MVP was put in front of Early Adopters from the Customer Advisory Board before a full release.</p>
+
+          <div class="cs-ds-extension">
+            <h3 class="cs-step-title">Extending the Foundation</h3>
+            <div class="cs-ds-extension-grid">
+              <div class="cs-ds-extension-text">
+                <p class="cs-body-text">The redesign was built on Untitled UI 3.1 Pro – a solid base, but with two gaps that needed closing. No dark theme. And a chart system too thin for a data-heavy enterprise product.</p>
+                <p class="cs-body-text">Dark theme built from scratch against LivePerson's brand tokens. Additional layouts, navigation patterns, and surface components extended the kit to cover every part of the product.</p>
+                <p class="cs-body-text">The chart work required more depth. The default 3-shade palette didn't scale for complex data views. Rebuilt: accessible components for additional chart types, a 10-color semantic palette, and a 10-shade monochromatic scale – both light and dark. Usage documentation shipped alongside the components.</p>
+              </div>
+              <figure class="cs-ds-extension-visual">
+                <img
+                  src={b + '/work/liveperson/design%20system/charts.png'}
+                  alt="Chart colour palettes and usage examples from the LivePerson design system extension"
+                  loading="lazy"
+                />
+              </figure>
+              <div class="cs-ds-extension-docs">
+                <p class="cs-body-text cs-ds-extension-cta">Click to open examples:</p>
+                <ul class="cs-ds-docs" role="list">
+                  <li>
+                    <a href={b + '/work/liveperson/design%20system/Chart%20Guidelines.pdf'} target="_blank" rel="noopener" class="cs-ds-doc-card">
+                      <span class="cs-ds-doc-icon" aria-hidden="true">PDF</span>
+                      <span class="cs-ds-doc-title">Chart Guidelines</span>
+                      <span class="cs-ds-doc-sub label">Documentation</span>
+                      <ArrowUpRight size={14} class="cs-ds-doc-arrow" aria-hidden="true" />
+                    </a>
+                  </li>
+                  <li>
+                    <a href={b + '/work/liveperson/design%20system/chart%20examples%20light%20theme.pdf'} target="_blank" rel="noopener" class="cs-ds-doc-card">
+                      <span class="cs-ds-doc-icon" aria-hidden="true">PDF</span>
+                      <span class="cs-ds-doc-title">Chart Examples — Light</span>
+                      <span class="cs-ds-doc-sub label">10-color · 10-shade mono</span>
+                      <ArrowUpRight size={14} class="cs-ds-doc-arrow" aria-hidden="true" />
+                    </a>
+                  </li>
+                  <li>
+                    <a href={b + '/work/liveperson/design%20system/chart%20examples%20dark%20theme.pdf'} target="_blank" rel="noopener" class="cs-ds-doc-card">
+                      <span class="cs-ds-doc-icon" aria-hidden="true">PDF</span>
+                      <span class="cs-ds-doc-title">Chart Examples — Dark</span>
+                      <span class="cs-ds-doc-sub label">10-color · 10-shade mono</span>
+                      <ArrowUpRight size={14} class="cs-ds-doc-arrow" aria-hidden="true" />
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
         </div>
       )}
     </div>
@@ -702,9 +762,178 @@ const outcomeCounter = `[0${++_idx}]`;
     margin-top: var(--sp-12);
   }
 
+  .cs-cases-intro {
+    margin-top: var(--sp-4);
+    margin-bottom: var(--sp-6);
+    max-width: 72ch;
+    color: var(--text-muted);
+  }
+
   .cs-cases-principle {
     margin-top: var(--sp-6);
     max-width: 72ch;
+  }
+
+  .cs-ds-extension {
+    margin-top: var(--sp-12);
+  }
+
+  .cs-ds-extension .cs-step-title {
+    margin-bottom: var(--sp-6);
+  }
+
+  .cs-ds-extension-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-template-areas:
+      "text   visual"
+      "docs   visual";
+    column-gap: var(--sp-10, 2.5rem);
+    align-items: start;
+  }
+
+  .cs-ds-extension-text {
+    grid-area: text;
+  }
+
+  .cs-ds-extension-text .cs-body-text {
+    margin-bottom: var(--sp-4);
+  }
+
+  .cs-ds-extension-visual {
+    grid-area: visual;
+    margin: 0;
+    position: sticky;
+    top: calc(80px + var(--sp-6));
+  }
+
+  .cs-ds-extension-visual img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 4px;
+  }
+
+  .cs-ds-extension-docs {
+    grid-area: docs;
+  }
+
+  .cs-ds-extension-cta {
+    margin-top: var(--sp-8);
+    color: var(--text-muted);
+  }
+
+  @media (max-width: 768px) {
+    .cs-ds-extension-grid {
+      display: flex;
+      flex-direction: column;
+      gap: var(--sp-6);
+    }
+
+    .cs-ds-extension-visual {
+      position: static;
+      order: 2;
+    }
+
+    .cs-ds-extension-text {
+      order: 1;
+    }
+
+    .cs-ds-extension-docs {
+      order: 3;
+    }
+
+    .cs-ds-extension-cta {
+      margin-top: 0;
+    }
+  }
+
+  .cs-ds-docs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--sp-4);
+    margin-top: var(--sp-4);
+  }
+
+  .cs-ds-doc-card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-2);
+    padding: var(--sp-6);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    width: 200px;
+    position: relative;
+    text-decoration: none;
+    transition: border-color var(--dur-fast) var(--ease),
+                background var(--dur-fast) var(--ease);
+  }
+
+  .cs-ds-doc-card:hover {
+    border-color: var(--accent);
+    background: var(--bg-secondary);
+  }
+
+  .cs-ds-doc-icon {
+    font-family: var(--font-display);
+    font-weight: var(--fw-extrabold);
+    font-size: var(--fs-label);
+    letter-spacing: var(--ls-wide);
+    color: var(--accent-text);
+  }
+
+  .cs-ds-doc-title {
+    font-family: var(--font-body);
+    font-size: var(--fs-caption);
+    font-weight: var(--fw-medium);
+    color: var(--text-primary);
+    line-height: var(--lh-snug);
+    transition: color var(--dur-fast) var(--ease);
+  }
+
+  .cs-ds-doc-card:hover .cs-ds-doc-title {
+    color: var(--accent-text);
+  }
+
+  .cs-ds-doc-sub {
+    color: var(--text-muted);
+    margin-top: var(--sp-1);
+  }
+
+  .cs-ds-doc-arrow {
+    position: absolute;
+    top: var(--sp-4);
+    right: var(--sp-4);
+    color: var(--text-muted);
+    transition: color var(--dur-fast) var(--ease),
+                transform var(--dur-fast) var(--ease);
+  }
+
+  .cs-ds-doc-card:hover .cs-ds-doc-arrow {
+    color: var(--accent-text);
+    transform: translate(2px, -2px);
+  }
+
+  .cs-responsibility--with-thumb {
+    align-items: flex-start;
+  }
+
+  .cs-responsibility-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-4);
+  }
+
+  .cs-case-thumb-wrap {
+    max-width: 560px;
+  }
+
+  .cs-case-thumb {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 4px;
+    border: 1px solid var(--border);
   }
 
   .cs-step-num {

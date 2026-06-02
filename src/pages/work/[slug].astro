@@ -60,6 +60,8 @@ const outcomeCounter = `[0${++_idx}]`;
           )}
         </div>
 
+        <div id="cs-meta" data-project={project.slug} hidden></div>
+
         <!-- top-right: logo / image -->
         {logoSrc && (
           <div class="cs-hero-logo" data-slug={project.slug} aria-hidden="true">
@@ -401,6 +403,10 @@ const outcomeCounter = `[0${++_idx}]`;
 
 <script>
   import { revealEach, revealGroup } from '../../scripts/reveal';
+  import { track } from '../../scripts/analytics';
+
+  const slug = (document.getElementById('cs-meta') as HTMLElement | null)?.dataset.project;
+  if (slug) track('case_study_viewed', { project: slug });
 
   function init() {
     revealEach('.section-header');

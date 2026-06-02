@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@amplitude/analytics-browser": "^2.42.5",
+    "@amplitude/plugin-session-replay-browser": "^1.31.0",
     "astro": "^6.0.5",
     "lucide-astro": "^0.556.0",
     "motion": "^12.38.0"

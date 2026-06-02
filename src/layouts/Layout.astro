@@ -76,9 +76,9 @@ const b = import.meta.env.BASE_URL.replace(/\/$/, '');
       <div class="footer-inner container">
         <span class="footer-copy">© 2026 Bohdan Doshchak</span>
         <nav class="footer-links" aria-label="Footer links">
-          <a href="https://www.linkedin.com/in/bdoshchak/" target="_blank" rel="noopener" class="footer-link">LinkedIn <ArrowUpRight size={12} class="inline-icon" /></a>
-          <a href="mailto:doschak@gmail.com" class="footer-link">Email</a>
-          <a href={b + '/cv.pdf'} class="footer-link" target="_blank" rel="noopener">CV</a>
+          <a href="https://www.linkedin.com/in/bdoshchak/" target="_blank" rel="noopener" class="footer-link" data-track="contact_clicked" data-track-type="linkedin">LinkedIn <ArrowUpRight size={12} class="inline-icon" /></a>
+          <a href="mailto:doschak@gmail.com" class="footer-link" data-track="contact_clicked" data-track-type="email">Email</a>
+          <a href={b + '/cv.pdf'} class="footer-link" target="_blank" rel="noopener" data-track="cv_downloaded">CV</a>
         </nav>
       </div>
     </footer>
@@ -86,11 +86,21 @@ const b = import.meta.env.BASE_URL.replace(/\/$/, '');
 </html>
 
 <script>
-  import * as amplitude from '@amplitude/unified';
-  amplitude.initAll('b9a8247afb7447504a798bbd27643089', {
-    analytics: { autocapture: true },
-    sessionReplay: { sampleRate: 1 },
-  });
+  import { init, track } from '../scripts/analytics';
+  init();
+
+  document.addEventListener('click', (e) => {
+    const el = (e.target as Element).closest('[data-track]');
+    if (!el) return;
+    const eventName = el.getAttribute('data-track')!;
+    const props: Record<string, string> = {};
+    for (const attr of el.getAttributeNames()) {
+      if (attr.startsWith('data-track-')) {
+        props[attr.slice('data-track-'.length)] = el.getAttribute(attr)!;
+      }
+    }
+    track(eventName, Object.keys(props).length ? props : undefined);
+  }, { capture: true });
 </script>
 
 

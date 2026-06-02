@@ -104,7 +104,7 @@ const capabilities = [
               Selected Work
               <ArrowDown size={16} class="hero-cta-arrow" aria-hidden="true" />
             </a>
-            <a href={b + '/cv.pdf'} target="_blank" rel="noopener" class="hero-cta hero-cta--secondary" aria-label="Open CV in new tab">
+            <a href={b + '/cv.pdf'} target="_blank" rel="noopener" class="hero-cta hero-cta--secondary" aria-label="Open CV in new tab" data-track="cv_downloaded">
               View CV
               <ArrowUpRight size={14} class="hero-cta-arrow-ext" aria-hidden="true" />
             </a>
@@ -212,6 +212,8 @@ const capabilities = [
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Classic Snake – open game in new tab"
+            data-track="side_project_clicked"
+            data-track-project="Snake"
           >
             <div class="work-card-image fun-card-image" aria-hidden="true">
               <img
@@ -247,6 +249,8 @@ const capabilities = [
             target="_blank"
             rel="noopener noreferrer"
             aria-label="ASCII Image Generator – open app in new tab"
+            data-track="side_project_clicked"
+            data-track-project="ASCII Image Generator"
           >
             <div class="work-card-image fun-card-image" aria-hidden="true">
               <img
@@ -320,10 +324,10 @@ const capabilities = [
         Ready when<br />you are.
       </h2>
       <div class="contact-links">
-        <a href="mailto:doschak@gmail.com" class="contact-btn">
+        <a href="mailto:doschak@gmail.com" class="contact-btn" data-track="contact_clicked" data-track-type="email">
           Get in touch
         </a>
-        <a href={b + '/cv.pdf'} target="_blank" rel="noopener" class="contact-btn contact-btn--secondary">
+        <a href={b + '/cv.pdf'} target="_blank" rel="noopener" class="contact-btn contact-btn--secondary" data-track="cv_downloaded">
           View CV
         </a>
         <a
@@ -331,6 +335,8 @@ const capabilities = [
           target="_blank"
           rel="noopener"
           class="contact-linkedin label"
+          data-track="contact_clicked"
+          data-track-type="linkedin"
         >
           LinkedIn <ArrowUpRight size={13} class="inline-icon" />
         </a>

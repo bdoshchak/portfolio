@@ -1,0 +1,558 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { ArrowLeft, ArrowRight } from 'lucide-astro';
+
+const b = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+const title = 'How to Use AI You Do Not Trust';
+const lead = 'Three senior developers write code with AI every day. None of them trust the model. Each built a system to use it anyway. This is what that means, and what to do about it.';
+const tags = ['UX Research', 'User Interview', 'AI'];
+---
+
+<Layout title={`${title} – Bohdan Doshchak`} description={lead}>
+  <!-- ================================================
+       HERO
+       ================================================ -->
+  <section class="cs-hero" aria-label="Study introduction">
+    <div class="container">
+      <a href={b + '/'} class="cs-back label">
+        <ArrowLeft size={13} class="inline-icon" /> Home
+      </a>
+      <div class="study-hero-grid">
+        <div class="study-hero-kicker">
+          <div class="cs-hero-eyebrow">
+            <span class="cs-counter label">Study 01</span>
+            <ul class="cs-domains" role="list">
+              {tags.map((t) => <li class="cs-domain-tag">{t}</li>)}
+            </ul>
+          </div>
+          <h1 class="cs-title">{title}</h1>
+          <p class="cs-tagline">{lead}</p>
+        </div>
+
+        <figure class="study-hero-visual" aria-hidden="true">
+          <img src={b + '/studies/ai-trust/hero.png'} alt="" class="study-hero-img" />
+        </figure>
+
+        <div class="cs-info-bar study-info-bar">
+          <div class="cs-info-item">
+            <span class="cs-info-label label">Discipline</span>
+            <span class="cs-info-value">UX Research</span>
+          </div>
+          <div class="cs-info-item">
+            <span class="cs-info-label label">Duration</span>
+            <span class="cs-info-value">1 week</span>
+          </div>
+          <div class="cs-info-item">
+            <span class="cs-info-label label">Type</span>
+            <span class="cs-info-value">Self-directed</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================
+       [01] PROBLEM
+       ================================================ -->
+  <section class="cs-section cs-section--light" aria-label="Problem">
+    <div class="container study-col">
+      <header class="section-header">
+        <span class="section-counter label" aria-hidden="true">[01]</span>
+        <h2 class="section-title">Problem</h2>
+      </header>
+      <p class="cs-body-text">Most of the debate about AI coding tools is about quality. Can the model write good code? I think that is the wrong question. The code stopped being the problem a while ago.</p>
+      <p class="cs-body-text">The real question starts after the code is generated. A developer looks at the result and has to decide: trust it, or check it? And what does that cost?</p>
+      <p class="cs-body-text">I ran a small discovery study to find where the friction actually lives.</p>
+    </div>
+  </section>
+
+  <!-- ================================================
+       [02] HOW I DID IT
+       ================================================ -->
+  <section class="cs-section cs-section--tint" aria-label="How I did it">
+    <div class="container study-col">
+      <header class="section-header">
+        <span class="section-counter label" aria-hidden="true">[02]</span>
+        <h2 class="section-title">How I Did It</h2>
+      </header>
+      <p class="cs-body-text">Three in-depth interviews with senior developers who use AI every day. Not opinion polls, but conversations about specific moments. When did it save real time? When did it go sideways, and what did that cost? Behavior shows up in stories, not in answers to direct questions.</p>
+      <p class="cs-body-text">I went in with a simple idea: when we adopt AI, we want to be sure the result is reliable and worth it. The interviews complicated that.</p>
+      <p class="cs-body-text">One honest limit. All three are already deep in the tools and stayed with them. This studies the people already inside, not the market. Three people is a signal, not a statistic, and I claim nothing more.</p>
+    </div>
+  </section>
+
+  <!-- ================================================
+       [03] WHAT I SAW
+       ================================================ -->
+  <section class="cs-section cs-section--light" aria-label="What I saw">
+    <div class="container study-col">
+      <header class="section-header">
+        <span class="section-counter label" aria-hidden="true">[03]</span>
+        <h2 class="section-title">What I Saw</h2>
+      </header>
+      <p class="cs-body-text">All three said the same thing, in different words.</p>
+      <p class="study-statement">Nobody trusts the model.</p>
+      <p class="cs-body-text">Not the cautious freelancer who reads every line by hand. Not the enterprise lead who barely writes code himself anymore. Not the one who automated his whole process. The heaviest user of the three said it outright: he does not trust the model and never will, because he knows how it works. He trusts the system he built around it.</p>
+      <p class="cs-body-text">And generation quality was not the problem for any of them. One said that if eighty percent of the code is right, fixing the rest still beats writing it by hand. Good code is already a solved problem in their world.</p>
+      <p class="cs-body-text">So where is the friction? In two places. First, on the input: the hard part is stating intent and holding context, not generating code. Second, control. The model does not give you trust. You build it. And each of the three built it in a different place.</p>
+
+      <figure class="study-figure">
+        <svg viewBox="0 0 760 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="One pipeline, three control points">
+          <defs>
+            <marker id="ar" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="currentColor" stroke-width="1.1"/></marker>
+          </defs>
+          <text x="40" y="38" font-size="13" fill="currentColor" opacity="0.55">[ control ]</text>
+          <g fill="none" stroke="currentColor" stroke-width="1.25">
+            <rect x="40" y="120" width="140" height="56" rx="4"/>
+            <rect x="310" y="120" width="140" height="56" rx="4"/>
+            <rect x="580" y="120" width="140" height="56" rx="4"/>
+          </g>
+          <g fill="currentColor" font-size="15" text-anchor="middle">
+            <text x="110" y="154">Intent</text>
+            <text x="380" y="154">Model</text>
+            <text x="650" y="154">Output</text>
+          </g>
+          <g stroke="currentColor" stroke-width="1.25" fill="none" marker-end="url(#ar)">
+            <line x1="180" y1="148" x2="304" y2="148"/>
+            <line x1="450" y1="148" x2="574" y2="148"/>
+          </g>
+          <g fill="none" stroke="var(--accent)" stroke-width="1.6">
+            <path d="M245,126 v44 M238,126 h12 M238,170 h12"/>
+            <path d="M515,126 v44 M508,126 h12 M508,170 h12"/>
+            <path d="M40,214 h680 M40,214 v-9 M720,214 v-9 M380,214 v9"/>
+          </g>
+          <g font-size="13" fill="var(--accent)" text-anchor="middle">
+            <text x="245" y="104">R3 · input</text>
+            <text x="515" y="104">R1 · output</text>
+            <text x="380" y="242">R2 · by hand</text>
+          </g>
+        </svg>
+        <figcaption class="study-figcaption">Figure 1. One pipeline, three control points. Each developer inserts control in a different place: on the input, on the output, or by reading every line by hand.</figcaption>
+      </figure>
+
+      <p class="cs-body-text">R3 controls the input. He breaks tasks into atoms, fences the agent in with tight instructions, and loops the result through tests until it is right. The model gets no room to wander.</p>
+      <p class="cs-body-text">R1 controls the output. He assumes the model is wrong by default: local tests, manual QA, three required code reviews, the same as for human code.</p>
+      <p class="cs-body-text">R2 controls by hand. He has not built a system yet, so he is the system. He reads every change, and trusts the model most exactly where he is weakest, which is exactly where he is least able to catch a mistake.</p>
+      <p class="study-statement">One tool. Zero trust. Three different places to put the control.</p>
+
+      <blockquote class="study-callout">
+        <p>R2 is the only one of the three who has not built a system around the model. And the only one who lost a project and lost money. A frontend task in an area where he is weak: the AI got about forty percent in, then drifted, and the project had to be handed off. That is not a coincidence. It is the direct result of having no control system.</p>
+      </blockquote>
+    </div>
+  </section>
+
+  <!-- ================================================
+       [04] WHAT IT MEANS
+       ================================================ -->
+  <section class="cs-section cs-section--tint" aria-label="What it means">
+    <div class="container study-col">
+      <header class="section-header">
+        <span class="section-counter label" aria-hidden="true">[04]</span>
+        <h2 class="section-title">What It Means</h2>
+      </header>
+
+      <blockquote class="study-pullquote">
+        <p>Modern AI coding tools deliver reliable results not because of the model itself, but because of the environment you build around it. The key is making your intent explicit before the work starts, and controlling the result at every step.</p>
+      </blockquote>
+
+      <p class="cs-body-text">Reduce the three stories to one line: reliability comes from the environment, not the model. And that changes the developer's work itself.</p>
+      <p class="cs-body-text">The hypothesis I take from this: the developer's focus shifts from writing code and algorithms toward specifying the task and controlling the result. All three showed it from different angles. The enterprise lead barely touches code by hand; he sets the boundaries and verifies. The one who automated his process spends his time on specs and tests, not on typing code. The freelancer still in transition stumbles exactly where he has not yet learned to frame the task.</p>
+      <p class="study-statement">Code gets cheap. Framing the task and controlling the result become the work.</p>
+      <p class="cs-body-text">Two things I noticed but deliberately leave open. Three interviews are not enough to answer them.</p>
+      <p class="cs-body-text">First, the time saved does not disappear, it moves. Most often onto verification and QA. So "faster" does not automatically mean "cheaper." It depends on where the cost moved.</p>
+      <p class="cs-body-text">Second, and more worrying, the more you delegate, the more your own skills erode. Reading large code, holding small methods in your head. One of them named it directly. That is a separate question, bigger than this study. But it is worth naming.</p>
+    </div>
+  </section>
+
+  <!-- ================================================
+       [05] WHAT TO DO ABOUT IT
+       ================================================ -->
+  <section class="cs-section cs-section--light" aria-label="What to do about it">
+    <div class="container study-col">
+      <header class="section-header">
+        <span class="section-counter label" aria-hidden="true">[05]</span>
+        <h2 class="section-title">What to Do About It</h2>
+      </header>
+      <p class="study-statement">Control.</p>
+      <p class="cs-body-text">Control how the agent understood your intent. To the point where it shows you its understanding and its plan before the work starts, not after. Force yourself and others to state the task clearly.</p>
+      <p class="cs-body-text">Control how the agent planned the work.</p>
+      <p class="cs-body-text">Control every intermediate step and the final result.</p>
+      <p class="cs-body-text">R2 showed the price of the other path: trust where you are weak can cost you the project.</p>
+      <p class="study-statement">You do not need to trust it.</p>
+
+      <div class="study-coda">
+        <p class="cs-body-text">An LLM helped me with this study. Interview questions, transcript cleanup, draft text: it did those well. Interpretation and conclusions: it did not.</p>
+        <p class="study-coda-bold">Judgment still belongs to the human.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================
+       BACK TO HOME
+       ================================================ -->
+  <nav class="cs-next" aria-label="Back to home">
+    <a href={b + '/'} class="cs-next-link">
+      <div class="container cs-next-inner">
+        <span class="cs-next-label label">Back to</span>
+        <span class="cs-next-title">Home</span>
+        <ArrowRight size={20} class="cs-next-arrow inline-icon" aria-hidden="true" />
+      </div>
+    </a>
+  </nav>
+</Layout>
+
+<script>
+  import { revealEach } from '../../scripts/reveal';
+  import { track } from '../../scripts/analytics';
+
+  track('case_study_viewed', { project: 'ai-trust' });
+
+  function init() {
+    revealEach('.section-header');
+    revealEach('.cs-body-text');
+    revealEach('.study-statement');
+    revealEach('.study-figure');
+    revealEach('.study-callout');
+    revealEach('.study-pullquote');
+    revealEach('.study-coda');
+  }
+
+  document.addEventListener('astro:page-load', init);
+</script>
+
+<style>
+  /* ================================================
+     HERO
+     ================================================ */
+  .cs-hero {
+    background: var(--color-black);
+    padding-top: calc(60px + var(--sp-16));
+    padding-bottom: var(--sp-24);
+  }
+
+  .cs-back {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--sp-2);
+    color: var(--color-grey-400);
+    margin-bottom: var(--sp-12);
+    transition: color var(--dur-fast) var(--ease);
+  }
+  .cs-back:hover { color: var(--color-white); }
+
+  .study-hero-grid {
+    display: grid;
+    grid-template-columns: 7fr 5fr;
+    grid-template-rows: auto auto;
+    column-gap: var(--sp-16);
+    align-items: center;
+  }
+
+  .study-hero-kicker {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .study-hero-visual {
+    grid-column: 2;
+    grid-row: 1;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+  }
+
+  .study-hero-img {
+    width: 100%;
+    max-width: 420px;
+    height: auto;
+    display: block;
+  }
+
+  .cs-hero-eyebrow {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-4);
+    margin-bottom: var(--sp-8);
+    flex-wrap: wrap;
+  }
+
+  .cs-counter { color: var(--color-grey-400); }
+
+  .cs-domains {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--sp-2);
+  }
+
+  .cs-domain-tag {
+    font-family: var(--font-display);
+    font-weight: var(--fw-extrabold);
+    font-size: var(--fs-label);
+    letter-spacing: var(--ls-wide);
+    text-transform: uppercase;
+    color: var(--color-grey-400);
+    border: 1px solid oklch(28% 0 0);
+    padding: 2px var(--sp-2);
+  }
+
+  .cs-title {
+    font-family: var(--font-display);
+    font-weight: var(--fw-black);
+    font-size: var(--fs-display);
+    letter-spacing: var(--ls-tight);
+    line-height: var(--lh-tight);
+    color: var(--color-white);
+    max-width: 18ch;
+    margin-bottom: var(--sp-6);
+  }
+
+  .cs-tagline {
+    font-family: var(--font-body);
+    font-size: var(--fs-body-lg);
+    color: var(--color-grey-450);
+    max-width: 52ch;
+    line-height: var(--lh-loose);
+    margin-bottom: var(--sp-12);
+  }
+
+  .study-info-bar {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    display: flex;
+    gap: var(--sp-12);
+    flex-wrap: wrap;
+    margin-top: var(--sp-12);
+    padding-top: var(--sp-8);
+    border-top: 1px solid oklch(22% 0 0);
+  }
+
+  .cs-tagline { margin-bottom: 0; }
+
+  @media (max-width: 768px) {
+    .study-hero-grid {
+      grid-template-columns: 1fr;
+      grid-template-rows: auto auto auto;
+    }
+    .study-hero-visual {
+      grid-column: 1;
+      grid-row: 1;
+      justify-content: flex-start;
+      margin-bottom: var(--sp-8);
+    }
+    .study-hero-img { max-width: 280px; }
+    .study-hero-kicker {
+      grid-column: 1;
+      grid-row: 2;
+    }
+    .study-info-bar { grid-row: 3; }
+  }
+
+  .cs-info-item {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-1);
+  }
+
+  .cs-info-label { color: var(--color-grey-450); }
+
+  .cs-info-value {
+    font-family: var(--font-body);
+    font-size: var(--fs-body);
+    color: var(--color-white);
+  }
+
+  /* ================================================
+     SECTIONS
+     ================================================ */
+  .cs-section {
+    padding-bottom: var(--sp-24);
+  }
+  .cs-section--light { background: var(--bg-primary); }
+  .cs-section--tint  { background: var(--bg-secondary); }
+
+  .study-col {
+    max-width: 768px;
+  }
+
+  .section-header {
+    position: relative;
+    margin-bottom: var(--sp-12);
+    padding-top: var(--sp-24);
+  }
+
+  .section-counter {
+    position: absolute;
+    top: var(--sp-24);
+    right: 100%;
+    padding-right: var(--sp-4);
+    color: var(--accent-text);
+    white-space: nowrap;
+  }
+
+  .section-title {
+    font-family: var(--font-display);
+    font-weight: var(--fw-black);
+    font-size: var(--fs-display);
+    letter-spacing: var(--ls-tight);
+    line-height: var(--lh-tight);
+    color: var(--text-primary);
+  }
+
+  @media (max-width: 900px) {
+    .section-counter {
+      position: static;
+      display: block;
+      margin-bottom: var(--sp-2);
+    }
+  }
+
+  /* ================================================
+     BODY
+     ================================================ */
+  .cs-body-text {
+    font-family: var(--font-body);
+    font-size: var(--fs-body-lg);
+    color: var(--text-secondary);
+    line-height: var(--lh-loose);
+    max-width: 68ch;
+    margin-bottom: var(--sp-6);
+  }
+
+  .study-statement {
+    font-family: var(--font-display);
+    font-weight: var(--fw-extrabold);
+    font-size: var(--fs-h2);
+    letter-spacing: var(--ls-tight);
+    line-height: var(--lh-snug);
+    color: var(--text-primary);
+    max-width: 30ch;
+    margin: var(--sp-12) 0;
+  }
+
+  /* ================================================
+     FIGURE
+     ================================================ */
+  .study-figure {
+    margin: var(--sp-16) 0;
+    color: var(--text-secondary);
+  }
+
+  .study-figure svg {
+    width: 100%;
+    height: auto;
+    display: block;
+    font-family: var(--font-body);
+  }
+
+  .study-figcaption {
+    font-family: var(--font-display);
+    font-weight: var(--fw-extrabold);
+    font-size: var(--fs-label);
+    letter-spacing: var(--ls-wide);
+    text-transform: uppercase;
+    color: var(--text-muted);
+    line-height: var(--lh-normal);
+    margin-top: var(--sp-4);
+    max-width: 60ch;
+  }
+
+  /* ================================================
+     QUOTES
+     ================================================ */
+  .study-pullquote {
+    border-left: 3px solid var(--accent);
+    background: color-mix(in oklch, var(--accent) 8%, transparent);
+    padding: var(--sp-6) var(--sp-8);
+    margin: var(--sp-12) 0;
+    border-radius: 0 4px 4px 0;
+    max-width: 68ch;
+  }
+
+  .study-pullquote p {
+    font-family: var(--font-body);
+    font-size: var(--fs-body-lg);
+    color: var(--text-primary);
+    line-height: var(--lh-loose);
+    margin: 0;
+  }
+
+  .study-callout {
+    border-left: 3px solid var(--border-strong);
+    background: var(--bg-secondary);
+    padding: var(--sp-6) var(--sp-8);
+    margin: var(--sp-12) 0;
+    border-radius: 0 4px 4px 0;
+    max-width: 68ch;
+  }
+  .cs-section--tint .study-callout { background: var(--bg-primary); }
+
+  .study-callout p {
+    font-family: var(--font-body);
+    font-size: var(--fs-body);
+    color: var(--text-secondary);
+    line-height: var(--lh-loose);
+    margin: 0;
+  }
+
+  /* ================================================
+     CODA
+     ================================================ */
+  .study-coda {
+    margin-top: var(--sp-16);
+    padding-top: var(--sp-8);
+    border-top: 1px solid var(--border);
+    max-width: 68ch;
+  }
+
+  .study-coda-bold {
+    font-family: var(--font-display);
+    font-weight: var(--fw-black);
+    font-size: var(--fs-h3);
+    letter-spacing: var(--ls-tight);
+    color: var(--text-primary);
+    margin-top: var(--sp-4);
+  }
+
+  /* ================================================
+     BACK TO HOME
+     ================================================ */
+  .cs-next {
+    background: var(--bg-secondary);
+    border-top: 1px solid var(--border);
+  }
+
+  .cs-next-link {
+    display: block;
+    color: var(--text-primary);
+    transition: color var(--dur-fast) var(--ease);
+  }
+  .cs-next-link:hover { color: var(--accent-text); }
+
+  .cs-next-inner {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-6);
+    padding-top: var(--sp-12);
+    padding-bottom: var(--sp-12);
+  }
+
+  .cs-next-label {
+    color: var(--text-muted);
+    flex-shrink: 0;
+  }
+
+  .cs-next-title {
+    font-family: var(--font-display);
+    font-weight: var(--fw-black);
+    font-size: var(--fs-h2);
+    letter-spacing: var(--ls-tight);
+    flex: 1;
+  }
+
+  .cs-next-arrow {
+    flex-shrink: 0;
+    transition: transform var(--dur-fast) var(--ease);
+  }
+  .cs-next-link:hover .cs-next-arrow { transform: translateX(4px); }
+</style>

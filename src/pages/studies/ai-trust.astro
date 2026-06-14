@@ -1,6 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import { ArrowLeft, ArrowRight } from 'lucide-astro';
+import { ArrowLeft, ArrowRight, ArrowUpRight } from 'lucide-astro';
 
 const b = import.meta.env.BASE_URL.replace(/\/$/, '');
 
@@ -79,6 +79,27 @@ const tags = ['Discovery', 'User Interviews', 'Synthesis', 'AI Tools'];
       <p class="cs-body-text">Three in-depth interviews with senior developers who use AI every day. Not opinion polls, but conversations about specific moments. When did it save real time? When did it go sideways, and what did that cost? Behavior shows up in stories, not in answers to direct questions.</p>
       <p class="cs-body-text">I went in with a simple idea: when we adopt AI, we want to be sure the result is reliable and worth it. The interviews complicated that.</p>
       <p class="cs-body-text">One honest limit. All three are already deep in the tools and stayed with them. This studies the people already inside, not the market. Three people is a signal, not a statistic, and I claim nothing more.</p>
+      <div class="cs-ds-extension-docs">
+        <p class="cs-body-text cs-ds-extension-cta">The instruments behind this study:</p>
+        <ul class="cs-ds-docs" role="list">
+          <li>
+            <a href={b + '/studies/ai-trust/screener.pdf'} target="_blank" rel="noopener" class="cs-ds-doc-card">
+              <span class="cs-ds-doc-icon" aria-hidden="true">PDF</span>
+              <span class="cs-ds-doc-title">Screener</span>
+              <span class="cs-ds-doc-sub label">participant screening, 3 questions</span>
+              <ArrowUpRight size={14} class="cs-ds-doc-arrow" aria-hidden="true" />
+            </a>
+          </li>
+          <li>
+            <a href={b + '/studies/ai-trust/interview_guide.pdf'} target="_blank" rel="noopener" class="cs-ds-doc-card">
+              <span class="cs-ds-doc-icon" aria-hidden="true">PDF</span>
+              <span class="cs-ds-doc-title">Interview Guide</span>
+              <span class="cs-ds-doc-sub label">story-based discovery, ~45 min</span>
+              <ArrowUpRight size={14} class="cs-ds-doc-arrow" aria-hidden="true" />
+            </a>
+          </li>
+        </ul>
+      </div>
     </div>
   </section>
 
@@ -555,4 +576,79 @@ const tags = ['Discovery', 'User Interviews', 'Synthesis', 'AI Tools'];
     transition: transform var(--dur-fast) var(--ease);
   }
   .cs-next-link:hover .cs-next-arrow { transform: translateX(4px); }
+
+  .cs-ds-extension-cta {
+    margin-top: var(--sp-8);
+    color: var(--text-muted);
+  }
+
+  .cs-ds-docs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--sp-4);
+    margin-top: var(--sp-4);
+  }
+
+  .cs-ds-docs > li {
+    flex: 1 1 240px;
+  }
+
+  .cs-ds-doc-card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-2);
+    padding: var(--sp-6);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    width: 100%;
+    position: relative;
+    text-decoration: none;
+    transition: border-color var(--dur-fast) var(--ease),
+                background var(--dur-fast) var(--ease);
+  }
+
+  .cs-ds-doc-card:hover {
+    border-color: var(--accent);
+    background: var(--bg-secondary);
+  }
+
+  .cs-ds-doc-icon {
+    font-family: var(--font-display);
+    font-weight: var(--fw-extrabold);
+    font-size: var(--fs-label);
+    letter-spacing: var(--ls-wide);
+    color: var(--accent-text);
+  }
+
+  .cs-ds-doc-title {
+    font-family: var(--font-body);
+    font-size: var(--fs-caption);
+    font-weight: var(--fw-medium);
+    color: var(--text-primary);
+    line-height: var(--lh-snug);
+    transition: color var(--dur-fast) var(--ease);
+  }
+
+  .cs-ds-doc-card:hover .cs-ds-doc-title {
+    color: var(--accent-text);
+  }
+
+  .cs-ds-doc-sub {
+    color: var(--text-muted);
+    margin-top: var(--sp-1);
+  }
+
+  .cs-ds-doc-arrow {
+    position: absolute;
+    top: var(--sp-4);
+    right: var(--sp-4);
+    color: var(--text-muted);
+    transition: color var(--dur-fast) var(--ease),
+                transform var(--dur-fast) var(--ease);
+  }
+
+  .cs-ds-doc-card:hover .cs-ds-doc-arrow {
+    color: var(--accent-text);
+    transform: translate(2px, -2px);
+  }
 </style>
